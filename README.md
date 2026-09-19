@@ -56,21 +56,7 @@ ClubOps AI is designed to be:
 | **Community-minded** | Every workflow should help members feel informed and included. 🌱 |
 | **Privacy-conscious** | Club data deserves deliberate access controls and respectful handling. 🔐 |
 
-## Project structure
-## Built with 🧰
 
-```text
-.
-├── index.html          # Landing page
-├── about.html          # Organization story
-├── events.html         # Events experience
-├── dashboard.php       # Authenticated dashboard
-├── auth.php            # Sign-in and account access
-├── css/                # Site styling and responsive rules
-├── js/                 # Client-side interactions
-├── database/           # Database schema and seed resources
-└── images/             # Local visual assets
-```
 - **Python + Flask** for the backend and application routes
 - **MySQL** for reliable, structured club data
 - **HTML, CSS, and JavaScript** for a responsive web experience
