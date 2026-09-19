@@ -4,15 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Events | ClubOps AI</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <title>ClubOps AI - Events</title>
 
     <!-- Font Awesome -->
     <link
@@ -20,14 +12,14 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
 
-    <link rel="stylesheet" href="./css/events.css" />
+    <link rel="stylesheet" href="css/events.css" />
   </head>
 
   <body>
     <div class="app">
-      <!-- ================= SIDEBAR ================= -->
-
-      <!-- ================= SIDEBAR ================= -->
+      <!-- =========================================================
+           SIDEBAR
+      ========================================================= -->
 
       <aside class="sidebar" id="sidebar">
         <!-- LOGO -->
@@ -84,7 +76,7 @@
 
           <p class="nav-title">COLLABORATE</p>
 
-          <a href="#" class="nav-link">
+          <a href="./meetings.html" class="nav-link">
             <i class="fa-solid fa-video"></i>
             <span>Meetings</span>
           </a>
@@ -133,78 +125,84 @@
           </div>
         </div>
       </aside>
-      <!-- ================= MAIN ================= -->
 
-      <main class="main">
-        <!-- Topbar -->
+      <!-- =========================================================
+           MAIN CONTENT
+      ========================================================= -->
+
+      <main class="main-content">
+        <!-- TOP BAR -->
 
         <header class="topbar">
-          <button class="mobile-menu" id="mobileMenu">
+          <button class="menu-btn" id="menuBtn">
             <i class="fa-solid fa-bars"></i>
           </button>
 
-          <div class="breadcrumb">
-            <span>Workspace</span>
-            <i class="fa-solid fa-chevron-right"></i>
-            <strong>Events</strong>
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+              type="text"
+              id="globalSearch"
+              placeholder="Search events, tasks, people..."
+            />
+
+            <span class="shortcut">Ctrl K</span>
           </div>
 
-          <div class="topbar-actions">
-            <div class="search">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input
-                type="text"
-                id="searchInput"
-                placeholder="Search events..."
-              />
-              <span class="shortcut">⌘ K</span>
-            </div>
+          <div class="top-actions">
+            <button class="icon-btn">
+              <i class="fa-regular fa-circle-question"></i>
+            </button>
 
-            <button class="icon-button">
+            <button class="icon-btn notification-btn">
               <i class="fa-regular fa-bell"></i>
-              <span class="notification-dot"></span>
+              <span></span>
             </button>
 
             <div class="top-avatar">MB</div>
           </div>
         </header>
 
-        <!-- Page Content -->
+        <!-- =========================================================
+             EVENTS PAGE
+        ========================================================= -->
 
-        <section class="page-content">
-          <!-- Page Header -->
+        <section class="events-page">
+          <!-- PAGE HEADER -->
 
           <div class="page-header">
             <div>
-              <div class="eyebrow">
-                <i class="fa-regular fa-calendar"></i>
-                EVENT MANAGEMENT
-              </div>
+              <p class="greeting">Saturday, September 19, 2026</p>
 
               <h1>Events</h1>
 
-              <p>Plan, organize and execute every club event from one place.</p>
+              <p class="subtitle">
+                Plan, organize and execute every club event from one place.
+              </p>
             </div>
 
             <div class="header-actions">
-              <button class="ai-button" id="aiPlanBtn">
+              <button class="secondary-btn" id="aiPlanBtn">
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
                 AI Plan Event
               </button>
 
-              <button class="primary-button" id="createEventBtn">
+              <button class="primary-btn" id="createEventBtn">
                 <i class="fa-solid fa-plus"></i>
                 Create Event
               </button>
             </div>
           </div>
 
-          <!-- ================= EVENT OVERVIEW ================= -->
+          <!-- =========================================================
+               EVENT STATISTICS
+          ========================================================= -->
 
-          <div class="event-overview">
+          <div class="overview-grid">
             <div class="overview-item">
-              <div class="overview-icon teal">
-                <i class="fa-regular fa-calendar-check"></i>
+              <div class="overview-icon blue">
+                <i class="fa-solid fa-calendar-days"></i>
               </div>
 
               <div>
@@ -214,8 +212,8 @@
             </div>
 
             <div class="overview-item">
-              <div class="overview-icon gold">
-                <i class="fa-solid fa-bolt"></i>
+              <div class="overview-icon purple">
+                <i class="fa-solid fa-clock"></i>
               </div>
 
               <div>
@@ -236,8 +234,8 @@
             </div>
 
             <div class="overview-item">
-              <div class="overview-icon purple">
-                <i class="fa-solid fa-check"></i>
+              <div class="overview-icon green">
+                <i class="fa-solid fa-circle-check"></i>
               </div>
 
               <div>
@@ -247,10 +245,12 @@
             </div>
           </div>
 
-          <!-- ================= FILTER BAR ================= -->
+          <!-- =========================================================
+               FILTER BAR
+          ========================================================= -->
 
-          <div class="filter-bar">
-            <div class="tabs">
+          <div class="events-toolbar">
+            <div class="filter-tabs">
               <button class="filter-tab active" data-filter="all">
                 All Events
                 <span>12</span>
@@ -272,13 +272,15 @@
               </button>
             </div>
 
-            <button class="filter-button">
+            <button class="filter-button" id="filterButton">
               <i class="fa-solid fa-sliders"></i>
-              Filters
+              Filter
             </button>
           </div>
 
-          <!-- ================= EVENTS GRID ================= -->
+          <!-- =========================================================
+               EVENTS GRID
+          ========================================================= -->
 
           <div class="events-grid" id="eventsGrid">
             <!-- EVENT 1 -->
@@ -289,17 +291,15 @@
               data-name="TechFest 2026"
             >
               <div class="event-cover techfest">
-                <div class="cover-pattern"></div>
-
                 <div class="event-date">
-                  <span>OCT</span>
                   <strong>18</strong>
+                  <span>OCT</span>
                 </div>
 
-                <div class="event-status ongoing">
+                <span class="event-status ongoing">
                   <span></span>
                   Ongoing
-                </div>
+                </span>
 
                 <button class="event-menu">
                   <i class="fa-solid fa-ellipsis"></i>
@@ -311,52 +311,50 @@
 
                 <h2>TechFest 2026</h2>
 
-                <p class="event-description">
-                  Annual technology festival featuring coding, robotics and
-                  innovation competitions.
+                <p>
+                  Annual technical festival featuring coding, innovation and
+                  technology competitions.
                 </p>
 
-                <div class="event-meta">
-                  <span>
-                    <i class="fa-regular fa-clock"></i>
-                    18 Oct · 9:00 AM
-                  </span>
-
-                  <span>
-                    <i class="fa-solid fa-location-dot"></i>
-                    Main Auditorium
-                  </span>
+                <div class="event-location">
+                  <i class="fa-solid fa-location-dot"></i>
+                  Main Auditorium
                 </div>
 
-                <div class="progress-section">
+                <div class="event-progress">
                   <div class="progress-label">
-                    <span>Event progress</span>
+                    <span>Event Progress</span>
                     <strong>72%</strong>
                   </div>
 
                   <div class="progress">
-                    <div style="width: 72%"></div>
+                    <div class="progress-bar" style="width: 72%"></div>
                   </div>
                 </div>
 
-                <div class="event-footer">
-                  <div class="event-stats">
-                    <span>
-                      <i class="fa-solid fa-list-check"></i>
-                      18 tasks
-                    </span>
+                <div class="event-meta">
+                  <span>
+                    <i class="fa-solid fa-list-check"></i>
+                    18 Tasks
+                  </span>
 
-                    <span>
-                      <i class="fa-solid fa-users"></i>
-                      32 volunteers
-                    </span>
-                  </div>
-
-                  <button class="view-button">
-                    View
-                    <i class="fa-solid fa-arrow-right"></i>
-                  </button>
+                  <span>
+                    <i class="fa-solid fa-user-group"></i>
+                    32 Volunteers
+                  </span>
                 </div>
+              </div>
+
+              <div class="event-footer">
+                <span>
+                  <i class="fa-regular fa-calendar"></i>
+                  Oct 18, 2026
+                </span>
+
+                <button class="view-button">
+                  View Event
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
               </div>
             </article>
 
@@ -368,17 +366,15 @@
               data-name="Hackathon 2026"
             >
               <div class="event-cover hackathon">
-                <div class="cover-pattern"></div>
-
                 <div class="event-date">
-                  <span>NOV</span>
                   <strong>07</strong>
+                  <span>NOV</span>
                 </div>
 
-                <div class="event-status upcoming">
+                <span class="event-status upcoming">
                   <span></span>
                   Upcoming
-                </div>
+                </span>
 
                 <button class="event-menu">
                   <i class="fa-solid fa-ellipsis"></i>
@@ -390,52 +386,50 @@
 
                 <h2>Hackathon 2026</h2>
 
-                <p class="event-description">
-                  24-hour coding challenge where students build innovative
-                  solutions to real problems.
+                <p>
+                  A 24-hour coding challenge where students build innovative
+                  technology solutions.
                 </p>
 
-                <div class="event-meta">
-                  <span>
-                    <i class="fa-regular fa-clock"></i>
-                    07 Nov · 10:00 AM
-                  </span>
-
-                  <span>
-                    <i class="fa-solid fa-location-dot"></i>
-                    Innovation Lab
-                  </span>
+                <div class="event-location">
+                  <i class="fa-solid fa-location-dot"></i>
+                  Innovation Lab
                 </div>
 
-                <div class="progress-section">
+                <div class="event-progress">
                   <div class="progress-label">
-                    <span>Event progress</span>
+                    <span>Event Progress</span>
                     <strong>38%</strong>
                   </div>
 
                   <div class="progress">
-                    <div style="width: 38%"></div>
+                    <div class="progress-bar" style="width: 38%"></div>
                   </div>
                 </div>
 
-                <div class="event-footer">
-                  <div class="event-stats">
-                    <span>
-                      <i class="fa-solid fa-list-check"></i>
-                      24 tasks
-                    </span>
+                <div class="event-meta">
+                  <span>
+                    <i class="fa-solid fa-list-check"></i>
+                    24 Tasks
+                  </span>
 
-                    <span>
-                      <i class="fa-solid fa-users"></i>
-                      45 volunteers
-                    </span>
-                  </div>
-
-                  <button class="view-button">
-                    View
-                    <i class="fa-solid fa-arrow-right"></i>
-                  </button>
+                  <span>
+                    <i class="fa-solid fa-user-group"></i>
+                    45 Volunteers
+                  </span>
                 </div>
+              </div>
+
+              <div class="event-footer">
+                <span>
+                  <i class="fa-regular fa-calendar"></i>
+                  Nov 07, 2026
+                </span>
+
+                <button class="view-button">
+                  View Event
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
               </div>
             </article>
 
@@ -444,20 +438,18 @@
             <article
               class="event-card"
               data-status="upcoming"
-              data-name="AI Workshop"
+              data-name="AI & Machine Learning"
             >
               <div class="event-cover aiworkshop">
-                <div class="cover-pattern"></div>
-
                 <div class="event-date">
-                  <span>NOV</span>
                   <strong>21</strong>
+                  <span>NOV</span>
                 </div>
 
-                <div class="event-status upcoming">
+                <span class="event-status upcoming">
                   <span></span>
                   Upcoming
-                </div>
+                </span>
 
                 <button class="event-menu">
                   <i class="fa-solid fa-ellipsis"></i>
@@ -469,52 +461,50 @@
 
                 <h2>AI & Machine Learning</h2>
 
-                <p class="event-description">
-                  Interactive workshop covering generative AI, machine learning
-                  and practical applications.
+                <p>
+                  Hands-on workshop introducing students to artificial
+                  intelligence and machine learning.
                 </p>
 
-                <div class="event-meta">
-                  <span>
-                    <i class="fa-regular fa-clock"></i>
-                    21 Nov · 2:00 PM
-                  </span>
-
-                  <span>
-                    <i class="fa-solid fa-location-dot"></i>
-                    Seminar Hall
-                  </span>
+                <div class="event-location">
+                  <i class="fa-solid fa-location-dot"></i>
+                  Seminar Hall
                 </div>
 
-                <div class="progress-section">
+                <div class="event-progress">
                   <div class="progress-label">
-                    <span>Event progress</span>
+                    <span>Event Progress</span>
                     <strong>24%</strong>
                   </div>
 
                   <div class="progress">
-                    <div style="width: 24%"></div>
+                    <div class="progress-bar" style="width: 24%"></div>
                   </div>
                 </div>
 
-                <div class="event-footer">
-                  <div class="event-stats">
-                    <span>
-                      <i class="fa-solid fa-list-check"></i>
-                      14 tasks
-                    </span>
+                <div class="event-meta">
+                  <span>
+                    <i class="fa-solid fa-list-check"></i>
+                    14 Tasks
+                  </span>
 
-                    <span>
-                      <i class="fa-solid fa-users"></i>
-                      18 volunteers
-                    </span>
-                  </div>
-
-                  <button class="view-button">
-                    View
-                    <i class="fa-solid fa-arrow-right"></i>
-                  </button>
+                  <span>
+                    <i class="fa-solid fa-user-group"></i>
+                    18 Volunteers
+                  </span>
                 </div>
+              </div>
+
+              <div class="event-footer">
+                <span>
+                  <i class="fa-regular fa-calendar"></i>
+                  Nov 21, 2026
+                </span>
+
+                <button class="view-button">
+                  View Event
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
               </div>
             </article>
 
@@ -526,19 +516,17 @@
               data-name="Freshers Meetup"
             >
               <div class="event-cover freshers">
-                <div class="cover-pattern"></div>
-
                 <div class="event-date">
-                  <span>AUG</span>
                   <strong>28</strong>
+                  <span>AUG</span>
                 </div>
 
-                <div class="event-status completed">
+                <span class="event-status completed">
                   <span>
                     <i class="fa-solid fa-check"></i>
                   </span>
                   Completed
-                </div>
+                </span>
 
                 <button class="event-menu">
                   <i class="fa-solid fa-ellipsis"></i>
@@ -550,52 +538,53 @@
 
                 <h2>Freshers Meetup</h2>
 
-                <p class="event-description">
-                  Welcome event for new students with games, networking and club
-                  introductions.
+                <p>
+                  Welcome event for new students with introductions, games and
+                  networking.
                 </p>
 
-                <div class="event-meta">
-                  <span>
-                    <i class="fa-regular fa-clock"></i>
-                    28 Aug · 4:00 PM
-                  </span>
-
-                  <span>
-                    <i class="fa-solid fa-location-dot"></i>
-                    Open Ground
-                  </span>
+                <div class="event-location">
+                  <i class="fa-solid fa-location-dot"></i>
+                  Open Ground
                 </div>
 
-                <div class="progress-section">
+                <div class="event-progress">
                   <div class="progress-label">
-                    <span>Event progress</span>
+                    <span>Event Progress</span>
                     <strong>100%</strong>
                   </div>
 
                   <div class="progress">
-                    <div style="width: 100%"></div>
+                    <div
+                      class="progress-bar completed-bar"
+                      style="width: 100%"
+                    ></div>
                   </div>
                 </div>
 
-                <div class="event-footer">
-                  <div class="event-stats">
-                    <span>
-                      <i class="fa-solid fa-list-check"></i>
-                      16 tasks
-                    </span>
+                <div class="event-meta">
+                  <span>
+                    <i class="fa-solid fa-list-check"></i>
+                    16 Tasks
+                  </span>
 
-                    <span>
-                      <i class="fa-solid fa-users"></i>
-                      28 volunteers
-                    </span>
-                  </div>
-
-                  <button class="view-button">
-                    View
-                    <i class="fa-solid fa-arrow-right"></i>
-                  </button>
+                  <span>
+                    <i class="fa-solid fa-user-group"></i>
+                    28 Volunteers
+                  </span>
                 </div>
+              </div>
+
+              <div class="event-footer">
+                <span>
+                  <i class="fa-regular fa-calendar"></i>
+                  Aug 28, 2026
+                </span>
+
+                <button class="view-button">
+                  View Event
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
               </div>
             </article>
 
@@ -607,19 +596,17 @@
               data-name="Web Development Bootcamp"
             >
               <div class="event-cover webdev">
-                <div class="cover-pattern"></div>
-
                 <div class="event-date">
-                  <span>JUL</span>
                   <strong>15</strong>
+                  <span>JUL</span>
                 </div>
 
-                <div class="event-status completed">
+                <span class="event-status completed">
                   <span>
                     <i class="fa-solid fa-check"></i>
                   </span>
                   Completed
-                </div>
+                </span>
 
                 <button class="event-menu">
                   <i class="fa-solid fa-ellipsis"></i>
@@ -631,136 +618,144 @@
 
                 <h2>Web Development Bootcamp</h2>
 
-                <p class="event-description">
-                  Five-day intensive bootcamp covering modern frontend and
-                  backend development.
+                <p>
+                  Practical web development training covering modern frontend
+                  and backend technologies.
                 </p>
 
-                <div class="event-meta">
-                  <span>
-                    <i class="fa-regular fa-clock"></i>
-                    15 Jul · 9:30 AM
-                  </span>
-
-                  <span>
-                    <i class="fa-solid fa-location-dot"></i>
-                    Computer Lab
-                  </span>
+                <div class="event-location">
+                  <i class="fa-solid fa-location-dot"></i>
+                  Computer Lab
                 </div>
 
-                <div class="progress-section">
+                <div class="event-progress">
                   <div class="progress-label">
-                    <span>Event progress</span>
+                    <span>Event Progress</span>
                     <strong>100%</strong>
                   </div>
 
                   <div class="progress">
-                    <div style="width: 100%"></div>
+                    <div
+                      class="progress-bar completed-bar"
+                      style="width: 100%"
+                    ></div>
                   </div>
                 </div>
 
-                <div class="event-footer">
-                  <div class="event-stats">
-                    <span>
-                      <i class="fa-solid fa-list-check"></i>
-                      20 tasks
-                    </span>
+                <div class="event-meta">
+                  <span>
+                    <i class="fa-solid fa-list-check"></i>
+                    20 Tasks
+                  </span>
 
-                    <span>
-                      <i class="fa-solid fa-users"></i>
-                      22 volunteers
-                    </span>
-                  </div>
-
-                  <button class="view-button">
-                    View
-                    <i class="fa-solid fa-arrow-right"></i>
-                  </button>
+                  <span>
+                    <i class="fa-solid fa-user-group"></i>
+                    22 Volunteers
+                  </span>
                 </div>
+              </div>
+
+              <div class="event-footer">
+                <span>
+                  <i class="fa-regular fa-calendar"></i>
+                  Jul 15, 2026
+                </span>
+
+                <button class="view-button">
+                  View Event
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
               </div>
             </article>
 
-            <!-- CREATE EVENT CARD -->
+            <!-- CREATE EVENT -->
 
             <button class="create-event-card" id="createEventCard">
-              <div class="create-icon">
+              <div class="create-event-icon">
                 <i class="fa-solid fa-plus"></i>
               </div>
 
-              <h3>Create a new event</h3>
+              <strong>Create New Event</strong>
 
-              <p>Start planning your next club event with ClubOps AI.</p>
-
-              <span>
-                Create Event
-                <i class="fa-solid fa-arrow-right"></i>
-              </span>
+              <span> Start planning your next club event </span>
             </button>
           </div>
         </section>
       </main>
     </div>
 
-    <!-- ================= CREATE EVENT MODAL ================= -->
+    <!-- =========================================================
+         CREATE EVENT MODAL
+    ========================================================= -->
 
     <div class="modal-overlay" id="eventModal">
       <div class="modal">
-        <button class="close-modal" id="closeModal">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <div class="modal-header">
+          <div>
+            <p class="modal-eyebrow">EVENT MANAGEMENT</p>
+            <h2>Create New Event</h2>
+          </div>
 
-        <div class="modal-icon">
-          <i class="fa-regular fa-calendar-plus"></i>
+          <button class="close-modal" id="closeModal">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
-
-        <h2>Create New Event</h2>
-
-        <p>Tell ClubOps about your event and start organizing it.</p>
 
         <form id="eventForm">
           <div class="form-group">
-            <label>Event Name</label>
+            <label for="eventName"> Event Name </label>
 
             <input
-              type="text"
+              class="form-input"
               id="eventName"
-              placeholder="e.g. Annual Hackathon"
+              type="text"
+              placeholder="Enter event name"
               required
             />
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label>Date</label>
+              <label for="eventDate"> Date </label>
 
-              <input type="date" required />
+              <input class="form-input" id="eventDate" type="date" required />
             </div>
 
             <div class="form-group">
-              <label>Time</label>
+              <label for="eventTime"> Time </label>
 
-              <input type="time" required />
+              <input class="form-input" id="eventTime" type="time" required />
             </div>
           </div>
 
           <div class="form-group">
-            <label>Location</label>
+            <label for="eventLocation"> Location </label>
 
-            <input type="text" placeholder="e.g. Main Auditorium" />
+            <input
+              class="form-input"
+              id="eventLocation"
+              type="text"
+              placeholder="Enter event location"
+              required
+            />
           </div>
 
           <div class="form-group">
-            <label>Event Description</label>
+            <label for="eventDescription"> Description </label>
 
-            <textarea rows="3" placeholder="Describe your event..."></textarea>
+            <textarea
+              class="form-textarea"
+              id="eventDescription"
+              placeholder="Describe your event..."
+            ></textarea>
           </div>
 
-          <div class="modal-actions">
-            <button type="button" class="cancel-button" id="cancelModal">
+          <div class="modal-footer">
+            <button type="button" class="cancel-btn" id="cancelModal">
               Cancel
             </button>
 
-            <button type="submit" class="primary-button">
+            <button type="submit" class="save-btn">
               <i class="fa-solid fa-plus"></i>
               Create Event
             </button>
@@ -769,49 +764,59 @@
       </div>
     </div>
 
-    <!-- AI MODAL -->
+    <!-- =========================================================
+         AI PLAN MODAL
+    ========================================================= -->
 
     <div class="modal-overlay" id="aiModal">
       <div class="modal ai-modal">
-        <button class="close-modal" id="closeAiModal">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <div class="modal-header">
+          <div>
+            <p class="modal-eyebrow">CLUBOPS AI</p>
+            <h2>AI Event Planner</h2>
+          </div>
 
-        <div class="ai-modal-icon">
-          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <button class="close-modal" id="closeAiModal">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
 
-        <div class="ai-label">CLUBOPS AI</div>
-
-        <h2>Plan an Event with AI</h2>
-
-        <p>
-          Describe your event and AI will create tasks, deadlines, volunteer
-          roles and a suggested timeline.
-        </p>
-
-        <textarea
-          id="aiPrompt"
-          rows="5"
-          placeholder="Example: Plan a 24-hour college hackathon for 100 students..."
-        >
-        </textarea>
-
-        <button class="ai-generate-button" id="generatePlan">
-          <i class="fa-solid fa-wand-magic-sparkles"></i>
-
-          Generate Event Plan
-        </button>
-
-        <div class="ai-result" id="aiResult">
-          <div class="result-loading">
-            <i class="fa-solid fa-circle-notch fa-spin"></i>
-            Creating your event plan...
+        <div class="ai-intro">
+          <div class="ai-icon">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
           </div>
+
+          <p>
+            Describe your event and ClubOps AI will suggest tasks, volunteers,
+            timeline and preparation steps.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="aiPrompt"> What are you planning? </label>
+
+          <textarea
+            class="form-textarea ai-textarea"
+            id="aiPrompt"
+            placeholder="Example: Plan a 2-day college hackathon for 100 students..."
+          ></textarea>
+        </div>
+
+        <div id="aiResult" class="ai-result"></div>
+
+        <div class="modal-footer">
+          <button type="button" class="cancel-btn" id="closeAiModalBottom">
+            Cancel
+          </button>
+
+          <button type="button" class="save-btn" id="generatePlan">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            Generate Plan
+          </button>
         </div>
       </div>
     </div>
 
-    <script src="./js/events.js"></script>
+    <script src="js/events.js"></script>
   </body>
 </html>
