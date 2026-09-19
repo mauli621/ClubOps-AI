@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>ClubOps AI - Tasks</title>
+    <title>ClubOps AI — Tasks</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Font Awesome -->
     <link
@@ -13,16 +20,18 @@
     />
 
     <style>
-      /* =========================================================
-           ROOT
-        ========================================================= */
+      /* =========================================
+       CLUBOPS AI — TASKS PAGE
+    ========================================= */
 
       :root {
         --paper: #fbfaf6;
         --paper-dim: #f1efe7;
+        --white: #ffffff;
 
         --ink: #1c2333;
         --ink-soft: #5b6072;
+        --muted: #858999;
 
         --line: #e3ded0;
 
@@ -30,28 +39,21 @@
         --student-soft: #e4efee;
 
         --head: #b88952;
+        --head-soft: #f2e7d8;
 
-        --white: #ffffff;
+        --volunteer: #7564a8;
+        --volunteer-soft: #ebe7f5;
 
-        --blue: #4b7bec;
-        --blue-soft: #eaf0ff;
+        --danger: #b94a48;
+        --danger-soft: #f7e5e4;
 
-        --purple: #8067c7;
-        --purple-soft: #f0ecfb;
+        --success: #4d7b58;
+        --success-soft: #e5efe7;
 
-        --orange: #d58a3a;
-        --orange-soft: #fbf0e3;
+        --shadow: 0 10px 30px rgba(28, 35, 51, 0.06);
 
-        --red: #c85b5b;
-        --red-soft: #f9e9e9;
-
-        --green: #4f8a68;
-        --green-soft: #e8f3ec;
+        --sidebar-width: 250px;
       }
-
-      /* =========================================================
-           RESET
-        ========================================================= */
 
       * {
         margin: 0;
@@ -59,21 +61,18 @@
         box-sizing: border-box;
       }
 
-      html {
-        scroll-behavior: smooth;
-      }
-
       body {
-        font-family: Inter, Arial, Helvetica, sans-serif;
+        min-height: 100vh;
         background: var(--paper);
         color: var(--ink);
+        font-family: "Inter", sans-serif;
       }
 
       button,
       input,
       select,
       textarea {
-        font-family: inherit;
+        font: inherit;
       }
 
       button {
@@ -81,1443 +80,1146 @@
       }
 
       a {
-        text-decoration: none;
         color: inherit;
+        text-decoration: none;
       }
 
-      /* =========================================================
-           APP
-        ========================================================= */
+      /* =========================================
+       APP
+    ========================================= */
 
       .app {
         min-height: 100vh;
         display: flex;
       }
 
-      /* =========================================================
-           SIDEBAR
-        ========================================================= */
+      /* =========================================
+       SIDEBAR
+    ========================================= */
 
       .sidebar {
+        width: var(--sidebar-width);
+        height: 100vh;
         position: fixed;
-        top: 0;
         left: 0;
-        bottom: 0;
-
-        width: 250px;
-
-        background: var(--white);
-
-        border-right: 1px solid var(--line);
-
-        padding: 25px 16px;
+        top: 0;
 
         display: flex;
         flex-direction: column;
 
-        z-index: 1000;
+        background: #f5f2ea;
+        border-right: 1px solid var(--line);
 
-        transition: 0.3s ease;
+        z-index: 50;
       }
 
-      /* LOGO */
+      .brand {
+        height: 78px;
+        padding: 0 24px;
 
-      .logo {
         display: flex;
         align-items: center;
 
-        gap: 11px;
-
-        padding: 0 9px;
-
-        margin-bottom: 27px;
+        border-bottom: 1px solid var(--line);
       }
 
-      .logo-icon {
-        width: 40px;
-        height: 40px;
-
-        border-radius: 10px;
-
-        background: var(--student);
-
-        color: white;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 17px;
+      .brand-name {
+        font-family: "Fraunces", serif;
+        font-size: 27px;
+        font-weight: 600;
+        letter-spacing: -1px;
       }
 
-      .logo h2 {
-        font-size: 19px;
-        line-height: 20px;
-        letter-spacing: -0.3px;
-      }
+      .brand-ai {
+        margin-left: 5px;
 
-      .logo span {
-        display: block;
-
-        color: var(--ink-soft);
-
-        font-size: 8px;
+        font-family: "Inter", sans-serif;
+        font-size: 11px;
         font-weight: 700;
+        letter-spacing: 1px;
 
-        letter-spacing: 1.3px;
-
-        margin-top: 3px;
+        color: var(--student);
       }
-
-      /* WORKSPACE */
 
       .workspace {
-        border: 1px solid var(--line);
+        padding: 18px 16px;
+      }
 
-        background: var(--paper);
+      .workspace-label {
+        padding: 0 8px 8px;
 
-        border-radius: 10px;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.3px;
+        text-transform: uppercase;
+      }
 
-        padding: 11px;
+      .workspace-box {
+        height: 48px;
+        padding: 0 12px;
 
         display: flex;
         align-items: center;
+        justify-content: space-between;
 
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 9px;
+      }
+
+      .workspace-left {
+        display: flex;
+        align-items: center;
         gap: 10px;
 
-        margin-bottom: 27px;
+        font-size: 13px;
+        font-weight: 600;
       }
 
       .workspace-icon {
-        width: 32px;
-        height: 32px;
+        width: 27px;
+        height: 27px;
 
-        border-radius: 8px;
+        display: grid;
+        place-items: center;
 
         background: var(--student-soft);
-
         color: var(--student);
+        border-radius: 7px;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 13px;
-      }
-
-      .workspace small {
-        display: block;
-
-        font-size: 8px;
-        font-weight: 700;
-
-        color: var(--ink-soft);
-
-        letter-spacing: 1px;
-      }
-
-      .workspace p {
         font-size: 12px;
-        font-weight: 600;
-
-        margin-top: 3px;
       }
 
-      .workspace-arrow {
-        margin-left: auto;
-
-        font-size: 10px;
-
-        color: var(--ink-soft);
+      .workspace-box i {
+        color: var(--muted);
+        font-size: 11px;
       }
 
-      /* NAVIGATION */
-
-      .navigation {
+      .nav {
         flex: 1;
+        padding: 0 12px;
+        overflow-y: auto;
       }
 
-      .nav-title {
-        color: #999;
+      .nav-section {
+        margin: 15px 8px 7px;
 
+        color: var(--muted);
         font-size: 9px;
         font-weight: 700;
-
-        letter-spacing: 1.2px;
-
-        padding: 0 11px;
-
-        margin: 17px 0 8px;
-      }
-
-      .nav-title:first-child {
-        margin-top: 0;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
       }
 
       .nav-link {
-        position: relative;
+        height: 42px;
+        margin-bottom: 3px;
+        padding: 0 12px;
 
         display: flex;
         align-items: center;
-
         gap: 12px;
-
-        width: 100%;
-
-        padding: 10px 11px;
-
-        margin-bottom: 3px;
 
         border-radius: 8px;
 
         color: var(--ink-soft);
+        font-size: 13px;
+        font-weight: 500;
 
-        font-size: 12px;
-
-        transition: 0.2s;
+        transition: 0.2s ease;
       }
 
       .nav-link i {
-        width: 18px;
-
+        width: 17px;
         text-align: center;
-
-        font-size: 13px;
+        font-size: 14px;
       }
 
       .nav-link:hover {
-        background: var(--paper-dim);
+        background: #ebe8df;
         color: var(--ink);
       }
 
       .nav-link.active {
         background: var(--student-soft);
         color: var(--student);
-
-        font-weight: 600;
-      }
-
-      .nav-count,
-      .risk-count,
-      .ai-badge {
-        margin-left: auto;
-
-        font-size: 9px;
-
-        padding: 3px 7px;
-
-        border-radius: 20px;
-      }
-
-      .nav-count {
-        background: var(--student);
-
-        color: white;
-      }
-
-      .risk-count {
-        background: var(--red-soft);
-
-        color: var(--red);
-      }
-
-      .ai-link {
-        background: #f8f4fc;
-      }
-
-      .ai-link:hover {
-        background: #f0eafa;
-      }
-
-      .ai-badge {
-        background: var(--purple);
-
-        color: white;
-
         font-weight: 700;
       }
 
-      /* SIDEBAR BOTTOM */
+      .nav-badge {
+        margin-left: auto;
+        min-width: 22px;
+        height: 20px;
+        padding: 0 6px;
 
-      .sidebar-bottom {
-        border-top: 1px solid var(--line);
+        display: grid;
+        place-items: center;
 
-        padding-top: 13px;
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+
+        color: var(--ink-soft);
+        font-size: 10px;
       }
 
-      .user-profile {
+      .sidebar-bottom {
+        padding: 14px 12px;
+
+        border-top: 1px solid var(--line);
+      }
+
+      .profile {
+        padding: 10px;
+
         display: flex;
         align-items: center;
+        gap: 10px;
 
-        gap: 9px;
+        border-radius: 9px;
+      }
 
-        padding: 9px 7px;
-
-        margin-top: 5px;
+      .profile:hover {
+        background: #ebe8df;
       }
 
       .avatar {
         width: 34px;
         height: 34px;
+        flex-shrink: 0;
+
+        display: grid;
+        place-items: center;
+
+        background: var(--student);
+        color: white;
 
         border-radius: 50%;
 
-        background: var(--head);
-
-        color: white;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 10px;
+        font-size: 11px;
         font-weight: 700;
       }
 
-      .user-info {
-        flex: 1;
+      .profile-info {
+        min-width: 0;
       }
 
-      .user-info strong {
-        display: block;
+      .profile-name {
+        font-size: 12px;
+        font-weight: 700;
+      }
 
+      .profile-role {
+        margin-top: 2px;
+
+        color: var(--muted);
         font-size: 10px;
       }
 
-      .user-info span {
-        display: block;
-
-        color: var(--ink-soft);
-
-        font-size: 9px;
-
-        margin-top: 2px;
+      .profile-more {
+        margin-left: auto;
+        color: var(--muted);
       }
 
-      .user-profile > i {
-        color: var(--ink-soft);
+      /* =========================================
+       MAIN
+    ========================================= */
 
-        font-size: 12px;
-      }
-
-      /* =========================================================
-           MAIN CONTENT
-        ========================================================= */
-
-      .main-content {
-        width: calc(100% - 250px);
-
-        margin-left: 250px;
-
+      .main {
+        width: calc(100% - var(--sidebar-width));
         min-height: 100vh;
+        margin-left: var(--sidebar-width);
       }
 
-      /* =========================================================
-           TOP BAR
-        ========================================================= */
+      /* =========================================
+       TOPBAR
+    ========================================= */
 
       .topbar {
-        height: 68px;
-
-        background: rgba(255, 255, 255, 0.92);
-
-        border-bottom: 1px solid var(--line);
-
-        display: flex;
-        align-items: center;
-
+        height: 78px;
         padding: 0 32px;
 
-        position: sticky;
-        top: 0;
-
-        z-index: 100;
-      }
-
-      .menu-btn {
-        display: none;
-
-        border: 0;
-
-        background: transparent;
-
-        font-size: 18px;
-
-        margin-right: 15px;
-
-        color: var(--ink);
-      }
-
-      .search-box {
-        width: 370px;
-
-        height: 38px;
-
-        border: 1px solid var(--line);
-
-        border-radius: 8px;
-
-        background: var(--paper);
-
         display: flex;
         align-items: center;
+        justify-content: space-between;
 
-        padding: 0 11px;
-
-        color: var(--ink-soft);
+        border-bottom: 1px solid var(--line);
+        background: rgba(251, 250, 246, 0.96);
       }
 
-      .search-box i {
+      .page-location {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        color: var(--muted);
         font-size: 12px;
-
-        margin-right: 8px;
       }
 
-      .search-box input {
-        border: 0;
-        outline: 0;
-
-        background: transparent;
-
-        width: 100%;
-
-        font-size: 11px;
-
+      .page-location span:last-child {
         color: var(--ink);
-      }
-
-      .shortcut {
-        white-space: nowrap;
-
-        border: 1px solid var(--line);
-
-        background: white;
-
-        border-radius: 5px;
-
-        padding: 3px 6px;
-
-        font-size: 8px;
-
-        color: var(--ink-soft);
+        font-weight: 600;
       }
 
       .top-actions {
-        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .search {
+        width: 235px;
+        height: 38px;
 
         display: flex;
         align-items: center;
 
-        gap: 13px;
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 8px;
       }
 
-      .icon-btn {
-        border: 0;
+      .search i {
+        margin-left: 12px;
+        color: var(--muted);
+        font-size: 12px;
+      }
 
+      .search input {
+        width: 100%;
+        height: 100%;
+        padding: 0 10px;
+
+        border: none;
+        outline: none;
         background: transparent;
 
+        color: var(--ink);
+        font-size: 12px;
+      }
+
+      .top-icon {
+        width: 38px;
+        height: 38px;
+
+        display: grid;
+        place-items: center;
+
+        border: 1px solid var(--line);
+        background: var(--white);
+        border-radius: 8px;
+
         color: var(--ink-soft);
-
-        width: 32px;
-        height: 32px;
-
-        border-radius: 7px;
-
-        position: relative;
       }
 
-      .icon-btn:hover {
-        background: var(--paper-dim);
+      .top-icon:hover {
+        color: var(--student);
       }
 
-      .notification-btn span {
-        position: absolute;
+      /* =========================================
+       CONTENT
+    ========================================= */
 
-        width: 6px;
-        height: 6px;
-
-        border-radius: 50%;
-
-        background: var(--red);
-
-        top: 6px;
-        right: 6px;
-
-        border: 1px solid white;
+      .content {
+        padding: 34px 34px 50px;
       }
 
-      .top-avatar {
-        width: 34px;
-        height: 34px;
-
-        border-radius: 50%;
-
-        background: var(--head);
-
-        color: white;
-
+      .heading-row {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+      }
 
+      .eyebrow {
+        margin-bottom: 7px;
+
+        color: var(--student);
         font-size: 10px;
         font-weight: 700;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
       }
 
-      /* =========================================================
-           PAGE
-        ========================================================= */
-
-      .tasks-page {
-        padding: 30px 34px 45px;
-      }
-
-      .page-header {
-        display: flex;
-        align-items: flex-end;
-
-        justify-content: space-between;
-
-        margin-bottom: 24px;
-      }
-
-      .greeting {
-        color: var(--ink-soft);
-
-        font-size: 10px;
-
-        margin-bottom: 6px;
-      }
-
-      .page-header h1 {
-        font-size: 27px;
-
-        letter-spacing: -0.7px;
-      }
-
-      .subtitle {
-        color: var(--ink-soft);
-
-        font-size: 12px;
-
-        margin-top: 7px;
-      }
-
-      .primary-btn {
-        border: 0;
-
-        background: var(--student);
-
-        color: white;
-
-        padding: 10px 15px;
-
-        border-radius: 7px;
-
-        font-size: 11px;
+      .heading-row h1 {
+        font-family: "Fraunces", serif;
+        font-size: 38px;
         font-weight: 600;
+        letter-spacing: -1.4px;
+      }
+
+      .heading-row p {
+        margin-top: 7px;
+
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+
+      .add-task-btn {
+        height: 42px;
+        padding: 0 17px;
 
         display: flex;
         align-items: center;
+        gap: 8px;
 
-        gap: 7px;
+        border: none;
+        border-radius: 8px;
 
-        transition: 0.2s;
+        background: var(--ink);
+        color: white;
+
+        font-size: 12px;
+        font-weight: 700;
+
+        transition: 0.2s ease;
       }
 
-      .primary-btn:hover {
+      .add-task-btn:hover {
         transform: translateY(-1px);
-        opacity: 0.92;
+        background: var(--student);
       }
 
-      /* =========================================================
-           STATISTICS
-        ========================================================= */
+      /* =========================================
+       STATS
+    ========================================= */
 
-      .stats-grid {
+      .stats {
+        margin-top: 28px;
+
         display: grid;
-
         grid-template-columns: repeat(4, 1fr);
-
         gap: 14px;
-
-        margin-bottom: 22px;
       }
 
       .stat-card {
-        background: white;
+        min-height: 108px;
+        padding: 18px;
 
+        background: var(--white);
         border: 1px solid var(--line);
-
         border-radius: 11px;
 
-        padding: 17px;
+        box-shadow: var(--shadow);
       }
 
       .stat-top {
         display: flex;
         align-items: center;
-
         justify-content: space-between;
       }
 
-      .stat-icon {
-        width: 35px;
-        height: 35px;
-
-        border-radius: 8px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 13px;
-      }
-
-      .stat-icon.blue {
-        background: var(--blue-soft);
-        color: var(--blue);
-      }
-
-      .stat-icon.purple {
-        background: var(--purple-soft);
-        color: var(--purple);
-      }
-
-      .stat-icon.orange {
-        background: var(--orange-soft);
-        color: var(--orange);
-      }
-
-      .stat-icon.red {
-        background: var(--red-soft);
-        color: var(--red);
-      }
-
-      .stat-card h3 {
-        font-size: 25px;
-
-        margin-top: 13px;
-      }
-
-      .stat-card > p {
-        color: var(--ink-soft);
-
-        font-size: 10px;
-
-        margin-top: 3px;
-      }
-
-      .stat-description {
-        color: var(--ink-soft);
-
-        font-size: 9px;
-
-        margin-top: 8px;
-      }
-
-      .trend {
-        font-size: 8px;
-
-        padding: 4px 6px;
-
-        border-radius: 5px;
-      }
-
-      .trend.positive {
-        background: var(--green-soft);
-        color: var(--green);
-      }
-
-      .trend.warning {
-        background: var(--orange-soft);
-        color: var(--orange);
-      }
-
-      .trend.danger {
-        background: var(--red-soft);
-        color: var(--red);
-      }
-
-      .mini-progress {
-        width: 100%;
-        height: 5px;
-
-        background: var(--paper-dim);
-
-        border-radius: 10px;
-
-        overflow: hidden;
-
-        margin-top: 12px;
-      }
-
-      .mini-progress div {
-        height: 100%;
-
-        background: var(--student);
-
-        border-radius: 10px;
-      }
-
-      .orange-progress div {
-        background: var(--orange);
-      }
-
-      /* =========================================================
-           TASK TOOLBAR
-        ========================================================= */
-
-      .task-toolbar {
-        background: white;
-
-        border: 1px solid var(--line);
-
-        border-radius: 11px;
-
-        padding: 13px;
-
-        display: flex;
-        align-items: center;
-
-        justify-content: space-between;
-
-        gap: 15px;
-
-        margin-bottom: 17px;
-      }
-
-      .filter-group {
-        display: flex;
-        align-items: center;
-
-        gap: 6px;
-
-        flex-wrap: wrap;
-      }
-
-      .filter-btn {
-        border: 1px solid var(--line);
-
-        background: white;
-
-        color: var(--ink-soft);
-
-        padding: 8px 12px;
-
-        border-radius: 6px;
-
-        font-size: 10px;
-
-        transition: 0.2s;
-      }
-
-      .filter-btn:hover {
-        border-color: var(--student);
-
-        color: var(--student);
-      }
-
-      .filter-btn.active {
-        background: var(--student-soft);
-
-        border-color: var(--student);
-
-        color: var(--student);
-
+      .stat-title {
+        color: var(--muted);
+        font-size: 11px;
         font-weight: 600;
       }
 
-      .toolbar-right {
+      .stat-icon {
+        width: 30px;
+        height: 30px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 7px;
+
+        color: var(--student);
+        background: var(--student-soft);
+
+        font-size: 12px;
+      }
+
+      .stat-number {
+        margin-top: 12px;
+
+        font-family: "Fraunces", serif;
+        font-size: 27px;
+        font-weight: 600;
+      }
+
+      .stat-small {
+        margin-left: 5px;
+
+        color: var(--muted);
+        font-family: "Inter", sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+      }
+
+      /* =========================================
+       TOOLBAR
+    ========================================= */
+
+      .toolbar {
+        margin-top: 28px;
+        padding: 12px;
+
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        gap: 15px;
 
-        gap: 8px;
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 10px;
       }
 
       .task-search {
-        height: 34px;
+        width: 280px;
+        height: 38px;
 
-        width: 210px;
+        display: flex;
+        align-items: center;
 
         border: 1px solid var(--line);
-
+        border-radius: 7px;
         background: var(--paper);
+      }
 
-        border-radius: 6px;
+      .task-search i {
+        margin-left: 11px;
 
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .task-search input {
+        width: 100%;
+        height: 100%;
         padding: 0 10px;
 
+        border: none;
         outline: none;
+        background: transparent;
 
-        font-size: 10px;
+        font-size: 11px;
       }
 
-      .task-search:focus {
-        border-color: var(--student);
+      .filters {
+        display: flex;
+        gap: 8px;
       }
 
-      .view-btn {
-        width: 34px;
-        height: 34px;
+      .filter {
+        height: 38px;
+        padding: 0 11px;
 
         border: 1px solid var(--line);
+        border-radius: 7px;
 
-        background: white;
-
-        border-radius: 6px;
-
+        background: var(--white);
         color: var(--ink-soft);
+
+        font-size: 11px;
+        outline: none;
       }
 
-      .view-btn.active {
-        color: var(--student);
-
-        background: var(--student-soft);
-
+      .filter:focus {
         border-color: var(--student);
       }
 
-      /* =========================================================
-           KANBAN
-        ========================================================= */
+      /* =========================================
+       BOARD
+    ========================================= */
 
-      .kanban {
+      .board {
+        margin-top: 20px;
+
         display: grid;
-
         grid-template-columns: repeat(3, 1fr);
-
-        gap: 15px;
+        gap: 16px;
 
         align-items: start;
       }
 
-      .kanban-column {
-        background: #f5f3ed;
-
-        border: 1px solid var(--line);
-
-        border-radius: 11px;
+      .column {
+        min-height: 420px;
 
         padding: 12px;
 
-        min-height: 480px;
+        background: #f5f3ed;
+        border: 1px solid var(--line);
+        border-radius: 11px;
+      }
+
+      .column.drag-over {
+        background: var(--student-soft);
+        border-color: var(--student);
       }
 
       .column-header {
+        padding: 4px 4px 12px;
+
         display: flex;
         align-items: center;
-
         justify-content: space-between;
-
-        padding: 3px 4px 12px;
       }
 
       .column-title {
         display: flex;
         align-items: center;
-
         gap: 8px;
-      }
 
-      .column-dot {
-        width: 7px;
-        height: 7px;
-
-        border-radius: 50%;
-      }
-
-      .todo-dot {
-        background: var(--orange);
-      }
-
-      .progress-dot {
-        background: var(--blue);
-      }
-
-      .done-dot {
-        background: var(--green);
-      }
-
-      .column-title h2 {
         font-size: 12px;
-      }
-
-      .column-count {
-        background: white;
-
-        border: 1px solid var(--line);
-
-        min-width: 24px;
-        height: 22px;
-
-        padding: 0 6px;
-
-        border-radius: 20px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        color: var(--ink-soft);
-
-        font-size: 9px;
-      }
-
-      /* =========================================================
-           TASK CARD
-        ========================================================= */
-
-      .task-card {
-        background: white;
-
-        border: 1px solid var(--line);
-
-        border-radius: 9px;
-
-        padding: 14px;
-
-        margin-bottom: 9px;
-
-        cursor: grab;
-
-        transition: 0.2s;
-      }
-
-      .task-card:hover {
-        border-color: #cfc8b9;
-
-        transform: translateY(-1px);
-
-        box-shadow: 0 5px 15px rgba(28, 35, 51, 0.06);
-      }
-
-      .task-card.dragging {
-        opacity: 0.45;
-      }
-
-      .task-card.hidden {
-        display: none;
-      }
-
-      .task-top {
-        display: flex;
-        align-items: flex-start;
-
-        justify-content: space-between;
-
-        gap: 10px;
-      }
-
-      .task-title {
-        font-size: 12px;
-
-        line-height: 1.4;
-
         font-weight: 700;
       }
 
-      .priority {
-        font-size: 8px;
+      .column-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--ink-soft);
+      }
 
-        padding: 4px 6px;
+      .column:nth-child(2) .column-dot {
+        background: var(--head);
+      }
+
+      .column:nth-child(3) .column-dot {
+        background: var(--success);
+      }
+
+      .count {
+        min-width: 23px;
+        height: 21px;
+        padding: 0 6px;
+
+        display: grid;
+        place-items: center;
+
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      .task-list {
+        min-height: 350px;
+      }
+
+      /* =========================================
+       TASK CARD
+    ========================================= */
+
+      .task-card {
+        margin-bottom: 10px;
+        padding: 14px;
+
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 9px;
+
+        cursor: grab;
+
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          border-color 0.18s ease;
+      }
+
+      .task-card:hover {
+        transform: translateY(-2px);
+        border-color: #d4cdbc;
+        box-shadow: 0 8px 22px rgba(28, 35, 51, 0.07);
+      }
+
+      .task-card.dragging {
+        opacity: 0.5;
+      }
+
+      .task-card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .priority {
+        padding: 4px 7px;
 
         border-radius: 5px;
 
-        white-space: nowrap;
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
       }
 
       .priority.high {
-        background: var(--red-soft);
-        color: var(--red);
+        color: var(--danger);
+        background: var(--danger-soft);
       }
 
       .priority.medium {
-        background: var(--orange-soft);
-        color: var(--orange);
+        color: #946b25;
+        background: #f5ecd9;
       }
 
       .priority.low {
-        background: var(--green-soft);
-        color: var(--green);
+        color: var(--success);
+        background: var(--success-soft);
+      }
+
+      .task-menu {
+        border: none;
+        background: transparent;
+
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .task-title {
+        margin-top: 11px;
+
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.45;
       }
 
       .task-description {
+        margin-top: 5px;
+
         color: var(--ink-soft);
-
-        font-size: 9px;
-
+        font-size: 10px;
         line-height: 1.5;
-
-        margin: 8px 0;
       }
 
       .task-event {
+        margin-top: 11px;
+
         display: inline-flex;
         align-items: center;
-
         gap: 5px;
 
         color: var(--student);
-
-        background: var(--student-soft);
-
-        padding: 4px 6px;
-
-        border-radius: 4px;
-
-        font-size: 8px;
-
-        margin-bottom: 11px;
+        font-size: 9px;
+        font-weight: 600;
       }
-
-      .task-event i {
-        font-size: 7px;
-      }
-
-      /* PROGRESS */
-
-      .progress-label {
-        display: flex;
-        justify-content: space-between;
-
-        color: var(--ink-soft);
-
-        font-size: 8px;
-
-        margin-bottom: 5px;
-      }
-
-      .progress {
-        height: 4px;
-
-        background: var(--paper-dim);
-
-        border-radius: 10px;
-
-        overflow: hidden;
-      }
-
-      .progress-bar {
-        height: 100%;
-
-        background: var(--student);
-
-        border-radius: 10px;
-      }
-
-      /* TASK FOOTER */
 
       .task-footer {
-        border-top: 1px solid var(--line);
-
-        margin-top: 12px;
-
-        padding-top: 10px;
+        margin-top: 14px;
+        padding-top: 11px;
 
         display: flex;
         align-items: center;
-
         justify-content: space-between;
+
+        border-top: 1px solid #eeeae1;
       }
 
       .assignee {
         display: flex;
         align-items: center;
-
         gap: 6px;
+
+        color: var(--ink-soft);
+        font-size: 9px;
       }
 
       .mini-avatar {
-        width: 24px;
-        height: 24px;
+        width: 23px;
+        height: 23px;
+
+        display: grid;
+        place-items: center;
 
         border-radius: 50%;
 
-        background: var(--head);
+        background: var(--student-soft);
+        color: var(--student);
 
-        color: white;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 7px;
+        font-size: 8px;
         font-weight: 700;
       }
 
-      .assignee-name {
-        color: var(--ink-soft);
-
-        font-size: 8px;
-      }
-
-      .deadline {
-        color: var(--ink-soft);
-
-        font-size: 8px;
-
+      .due {
         display: flex;
         align-items: center;
+        gap: 5px;
 
-        gap: 4px;
-      }
-
-      .deadline.overdue {
-        color: var(--red);
-
-        font-weight: 600;
-      }
-
-      /* =========================================================
-           ADD TASK COLUMN BUTTON
-        ========================================================= */
-
-      .add-task-column {
-        width: 100%;
-
-        border: 1px dashed #cfc9ba;
-
-        background: transparent;
-
-        color: var(--ink-soft);
-
-        padding: 9px;
-
-        border-radius: 7px;
-
+        color: var(--muted);
         font-size: 9px;
-
-        margin-top: 3px;
-
-        transition: 0.2s;
       }
 
-      .add-task-column:hover {
-        background: white;
-
-        border-color: var(--student);
-
-        color: var(--student);
+      .due.overdue {
+        color: var(--danger);
+        font-weight: 700;
       }
 
-      /* =========================================================
-           MODAL
-        ========================================================= */
+      /* =========================================
+       EMPTY
+    ========================================= */
 
-      .modal-overlay {
+      .empty {
+        min-height: 120px;
+
+        display: grid;
+        place-items: center;
+
+        border: 1px dashed #d8d2c4;
+        border-radius: 8px;
+
+        color: var(--muted);
+        font-size: 10px;
+        text-align: center;
+      }
+
+      .empty i {
+        margin-bottom: 7px;
+        display: block;
+        font-size: 18px;
+      }
+
+      /* =========================================
+       MODAL
+    ========================================= */
+
+      .modal {
         position: fixed;
-
         inset: 0;
 
-        background: rgba(20, 26, 38, 0.42);
-
         display: none;
-
         align-items: center;
         justify-content: center;
 
-        z-index: 2000;
-
         padding: 20px;
+
+        background: rgba(28, 35, 51, 0.38);
+
+        z-index: 100;
       }
 
-      .modal-overlay.show {
+      .modal.show {
         display: flex;
       }
 
-      .modal {
-        width: 500px;
+      .modal-box {
+        width: min(500px, 100%);
 
-        max-width: 100%;
-
-        background: white;
-
+        background: var(--paper);
+        border: 1px solid var(--line);
         border-radius: 13px;
 
-        border: 1px solid var(--line);
+        box-shadow: 0 25px 70px rgba(28, 35, 51, 0.2);
 
-        padding: 23px;
-
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-
-        animation: modalIn 0.2s ease;
-      }
-
-      @keyframes modalIn {
-        from {
-          opacity: 0;
-          transform: translateY(8px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        overflow: hidden;
       }
 
       .modal-header {
+        padding: 20px 22px;
+
         display: flex;
         align-items: center;
-
         justify-content: space-between;
 
-        margin-bottom: 20px;
+        border-bottom: 1px solid var(--line);
       }
 
       .modal-header h2 {
-        font-size: 17px;
+        font-family: "Fraunces", serif;
+        font-size: 23px;
       }
 
       .close-modal {
-        width: 30px;
-        height: 30px;
+        width: 32px;
+        height: 32px;
 
-        border: 0;
+        display: grid;
+        place-items: center;
 
-        background: var(--paper-dim);
+        border: 1px solid var(--line);
+        border-radius: 7px;
 
-        border-radius: 50%;
-
+        background: var(--white);
         color: var(--ink-soft);
       }
 
+      .modal-body {
+        padding: 22px;
+      }
+
       .form-group {
-        margin-bottom: 13px;
+        margin-bottom: 16px;
       }
 
       .form-group label {
         display: block;
-
-        font-size: 9px;
-
-        font-weight: 600;
-
-        color: var(--ink-soft);
-
-        margin-bottom: 5px;
-      }
-
-      .form-input,
-      .form-select,
-      .form-textarea {
-        width: 100%;
-
-        border: 1px solid var(--line);
-
-        background: var(--paper);
-
-        border-radius: 7px;
-
-        padding: 9px 10px;
-
-        outline: none;
-
-        font-size: 10px;
+        margin-bottom: 6px;
 
         color: var(--ink);
+        font-size: 11px;
+        font-weight: 700;
       }
 
-      .form-textarea {
-        height: 75px;
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
 
+        padding: 11px 12px;
+
+        border: 1px solid var(--line);
+        border-radius: 7px;
+
+        outline: none;
+        background: var(--white);
+
+        color: var(--ink);
+        font-size: 11px;
+      }
+
+      .form-group textarea {
+        min-height: 80px;
         resize: vertical;
       }
 
-      .form-input:focus,
-      .form-select:focus,
-      .form-textarea:focus {
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
         border-color: var(--student);
+        box-shadow: 0 0 0 3px var(--student-soft);
       }
 
-      .form-row {
+      .form-grid {
         display: grid;
-
         grid-template-columns: 1fr 1fr;
-
         gap: 12px;
       }
 
       .modal-footer {
+        padding: 15px 22px;
+
         display: flex;
-
         justify-content: flex-end;
-
         gap: 8px;
 
-        margin-top: 20px;
+        border-top: 1px solid var(--line);
+      }
+
+      .cancel-btn,
+      .save-btn {
+        height: 38px;
+        padding: 0 15px;
+
+        border-radius: 7px;
+
+        font-size: 11px;
+        font-weight: 700;
       }
 
       .cancel-btn {
+        background: var(--white);
         border: 1px solid var(--line);
-
-        background: white;
-
         color: var(--ink-soft);
-
-        padding: 9px 14px;
-
-        border-radius: 7px;
-
-        font-size: 10px;
       }
 
       .save-btn {
-        border: 0;
-
-        background: var(--student);
-
+        border: none;
+        background: var(--ink);
         color: white;
-
-        padding: 9px 15px;
-
-        border-radius: 7px;
-
-        font-size: 10px;
-
-        font-weight: 600;
       }
 
-      /* =========================================================
-           TOAST
-        ========================================================= */
+      .save-btn:hover {
+        background: var(--student);
+      }
+
+      /* =========================================
+       TOAST
+    ========================================= */
 
       .toast {
         position: fixed;
-
         right: 25px;
         bottom: 25px;
 
-        background: var(--ink);
-
-        color: white;
-
-        padding: 11px 15px;
-
-        border-radius: 7px;
-
-        font-size: 10px;
+        padding: 13px 16px;
 
         display: flex;
         align-items: center;
+        gap: 9px;
 
-        gap: 8px;
+        background: var(--ink);
+        color: white;
 
+        border-radius: 8px;
+
+        box-shadow: var(--shadow);
+
+        font-size: 11px;
+
+        transform: translateY(100px);
         opacity: 0;
 
-        transform: translateY(15px);
+        transition: 0.25s ease;
 
-        pointer-events: none;
-
-        transition: 0.25s;
-
-        z-index: 3000;
+        z-index: 200;
       }
 
       .toast.show {
-        opacity: 1;
-
         transform: translateY(0);
+        opacity: 1;
       }
 
-      /* =========================================================
-           RESPONSIVE
-        ========================================================= */
+      .toast i {
+        color: #8fc2b4;
+      }
 
-      @media (max-width: 1150px) {
-        .stats-grid {
+      /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+      @media (max-width: 1100px) {
+        .stats {
           grid-template-columns: repeat(2, 1fr);
         }
 
-        .kanban {
+        .board {
           grid-template-columns: 1fr;
         }
 
-        .kanban-column {
+        .column {
           min-height: auto;
+        }
+
+        .task-list {
+          min-height: 100px;
         }
       }
 
       @media (max-width: 800px) {
-        .sidebar {
-          transform: translateX(-100%);
+        :root {
+          --sidebar-width: 70px;
         }
 
-        .sidebar.open {
-          transform: translateX(0);
+        .brand {
+          justify-content: center;
+          padding: 0;
         }
 
-        .main-content {
-          width: 100%;
-
-          margin-left: 0;
+        .brand-name {
+          font-size: 0;
         }
 
-        .menu-btn {
-          display: block;
+        .brand-name::before {
+          content: "C";
+          font-size: 25px;
+        }
+
+        .brand-ai {
+          display: none;
+        }
+
+        .workspace,
+        .nav-section,
+        .profile-info,
+        .profile-more {
+          display: none;
+        }
+
+        .nav {
+          padding: 10px;
+        }
+
+        .nav-link {
+          justify-content: center;
+          padding: 0;
+        }
+
+        .nav-link span {
+          display: none;
+        }
+
+        .sidebar-bottom {
+          padding: 10px;
+        }
+
+        .profile {
+          justify-content: center;
+          padding: 5px;
+        }
+
+        .main {
+          width: calc(100% - var(--sidebar-width));
         }
 
         .topbar {
           padding: 0 18px;
         }
 
-        .search-box {
-          width: 100%;
+        .search {
+          width: 180px;
         }
 
-        .shortcut {
-          display: none;
+        .content {
+          padding: 25px 18px;
         }
 
-        .tasks-page {
-          padding: 22px 18px 40px;
-        }
-
-        .task-toolbar {
+        .toolbar {
           flex-direction: column;
-
           align-items: stretch;
         }
 
-        .toolbar-right {
+        .task-search {
           width: 100%;
         }
 
-        .task-search {
+        .filters {
+          width: 100%;
+        }
+
+        .filter {
           flex: 1;
         }
       }
 
-      @media (max-width: 600px) {
-        .stats-grid {
-          grid-template-columns: 1fr;
+      @media (max-width: 560px) {
+        .topbar {
+          height: 65px;
         }
 
-        .page-header {
-          align-items: flex-start;
-
-          gap: 15px;
-
-          flex-direction: column;
-        }
-
-        .top-actions .icon-btn:first-child {
+        .page-location {
           display: none;
         }
 
-        .filter-group {
-          display: grid;
-
-          grid-template-columns: repeat(2, 1fr);
-
+        .top-actions {
           width: 100%;
         }
 
-        .filter-btn {
+        .search {
+          flex: 1;
+        }
+
+        .heading-row {
+          flex-direction: column;
+        }
+
+        .heading-row h1 {
+          font-size: 32px;
+        }
+
+        .add-task-btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .filters {
+          flex-direction: column;
+        }
+
+        .filter {
           width: 100%;
         }
 
-        .form-row {
+        .form-grid {
           grid-template-columns: 1fr;
         }
       }
@@ -1526,1044 +1228,1080 @@
 
   <body>
     <div class="app">
-      <!-- =========================================================
-         SIDEBAR
-    ========================================================= -->
+      <!-- =========================================
+       SIDEBAR
+  ========================================== -->
 
-      <aside class="sidebar" id="sidebar">
-        <!-- LOGO -->
-
-        <div class="logo">
-          <div class="logo-icon">
-            <i class="fa-solid fa-bolt"></i>
-          </div>
-
-          <div>
-            <h2>ClubOps</h2>
-            <span>AI OPERATIONS</span>
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-name">
+            ClubOps
+            <span class="brand-ai">AI</span>
           </div>
         </div>
-
-        <!-- WORKSPACE -->
 
         <div class="workspace">
-          <div class="workspace-icon">
-            <i class="fa-solid fa-users"></i>
-          </div>
+          <div class="workspace-label">Workspace</div>
 
-          <div>
-            <small>WORKSPACE</small>
-            <p>Tech Club</p>
-          </div>
+          <div class="workspace-box">
+            <div class="workspace-left">
+              <div class="workspace-icon">
+                <i class="fa-solid fa-microchip"></i>
+              </div>
 
-          <i class="fa-solid fa-chevron-down workspace-arrow"></i>
+              <span>Tech Club</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
         </div>
 
-        <!-- NAVIGATION -->
+        <nav class="nav">
+          <div class="nav-section">Main</div>
 
-        <nav class="navigation">
-          <p class="nav-title">MAIN</p>
-
-          <a href="dashboard.html" class="nav-link">
-            <i class="fa-solid fa-chart-pie"></i>
-
+          <a href="./dashboard.html" class="nav-link">
+            <i class="fa-solid fa-grid-2"></i>
             <span>Dashboard</span>
           </a>
 
-          <a href="events.html" class="nav-link">
-            <i class="fa-solid fa-calendar-days"></i>
-
+          <a href="./events.html" class="nav-link">
+            <i class="fa-regular fa-calendar"></i>
             <span>Events</span>
           </a>
 
-          <a href="tasks.html" class="nav-link active">
+          <a href="./tasks.html" class="nav-link active">
             <i class="fa-solid fa-list-check"></i>
-
             <span>Tasks</span>
-
-            <span class="nav-count"> 12 </span>
+            <span class="nav-badge">12</span>
           </a>
 
-          <a href="volunteers.html" class="nav-link">
-            <i class="fa-solid fa-user-group"></i>
-
+          <a href="./volunteers.html" class="nav-link">
+            <i class="fa-solid fa-users"></i>
             <span>Volunteers</span>
           </a>
 
-          <p class="nav-title">COLLABORATE</p>
+          <div class="nav-section">Collaborate</div>
 
           <a href="#" class="nav-link">
-            <i class="fa-solid fa-video"></i>
-
+            <i class="fa-regular fa-comments"></i>
             <span>Meetings</span>
           </a>
 
           <a href="#" class="nav-link">
-            <i class="fa-solid fa-bullhorn"></i>
-
+            <i class="fa-regular fa-bell"></i>
             <span>Announcements</span>
           </a>
 
           <a href="#" class="nav-link">
-            <i class="fa-solid fa-file-lines"></i>
-
+            <i class="fa-regular fa-folder"></i>
             <span>Documents</span>
           </a>
 
-          <p class="nav-title">INTELLIGENCE</p>
+          <div class="nav-section">Intelligence</div>
 
           <a href="#" class="nav-link">
             <i class="fa-solid fa-triangle-exclamation"></i>
-
             <span>Risks</span>
-
-            <span class="risk-count"> 3 </span>
           </a>
 
-          <a href="#" class="nav-link ai-link">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-sparkles"></i>
             <span>ClubOps AI</span>
+          </a>
 
-            <span class="ai-badge"> AI </span>
+          <div class="nav-section">Settings</div>
+
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
           </a>
         </nav>
 
-        <!-- SIDEBAR BOTTOM -->
-
         <div class="sidebar-bottom">
-          <a href="#" class="nav-link">
-            <i class="fa-solid fa-gear"></i>
-
-            <span>Settings</span>
-          </a>
-
-          <div class="user-profile">
+          <div class="profile">
             <div class="avatar">MB</div>
 
-            <div class="user-info">
-              <strong> Mauli Bhanderi </strong>
+            <div class="profile-info">
+              <div class="profile-name">Mauli Bhanderi</div>
 
-              <span> Admin </span>
+              <div class="profile-role">Admin</div>
             </div>
 
-            <i class="fa-solid fa-ellipsis"></i>
+            <div class="profile-more">
+              <i class="fa-solid fa-ellipsis"></i>
+            </div>
           </div>
         </div>
       </aside>
 
-      <!-- =========================================================
-         MAIN CONTENT
-    ========================================================= -->
+      <!-- =========================================
+       MAIN
+  ========================================== -->
 
-      <main class="main-content">
-        <!-- TOP BAR -->
+      <main class="main">
+        <!-- TOPBAR -->
 
         <header class="topbar">
-          <button class="menu-btn" id="menuBtn">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-
-          <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-
-            <input
-              type="text"
-              id="globalSearch"
-              placeholder="Search tasks, people, documents..."
-            />
-
-            <span class="shortcut"> Ctrl K </span>
+          <div class="page-location">
+            <span>Tech Club</span>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span>Tasks</span>
           </div>
 
           <div class="top-actions">
-            <button class="icon-btn">
+            <div class="search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+
+              <input type="text" placeholder="Search..." id="globalSearch" />
+            </div>
+
+            <button class="top-icon">
               <i class="fa-regular fa-circle-question"></i>
             </button>
 
-            <button class="icon-btn notification-btn">
+            <button class="top-icon">
               <i class="fa-regular fa-bell"></i>
-
-              <span></span>
             </button>
-
-            <div class="top-avatar">MB</div>
           </div>
         </header>
 
-        <!-- =====================================================
-             TASK PAGE
-        ===================================================== -->
+        <!-- CONTENT -->
 
-        <section class="tasks-page">
-          <!-- PAGE HEADER -->
+        <section class="content">
+          <!-- PAGE HEADING -->
 
-          <div class="page-header">
+          <div class="heading-row">
             <div>
-              <p class="greeting">Saturday, September 19, 2026</p>
+              <div class="eyebrow">Operations</div>
 
               <h1>Tasks</h1>
 
-              <p class="subtitle">
-                Manage responsibilities, deadlines and team progress.
+              <p>
+                Plan, assign, and track everything your club needs to get done.
               </p>
             </div>
 
-            <button class="primary-btn" id="createTaskBtn">
+            <button class="add-task-btn" id="addTaskBtn">
               <i class="fa-solid fa-plus"></i>
-
-              Create Task
+              Add task
             </button>
           </div>
 
-          <!-- =================================================
-                 STAT CARDS
-            ================================================= -->
+          <!-- STATS -->
 
-          <div class="stats-grid">
-            <!-- TOTAL -->
+          <div class="stats">
+            <div class="stat-card">
+              <div class="stat-top">
+                <span class="stat-title"> Total tasks </span>
+
+                <div class="stat-icon">
+                  <i class="fa-solid fa-list-check"></i>
+                </div>
+              </div>
+
+              <div class="stat-number">24</div>
+            </div>
 
             <div class="stat-card">
               <div class="stat-top">
-                <div class="stat-icon blue">
-                  <i class="fa-solid fa-list-check"></i>
+                <span class="stat-title"> In progress </span>
+
+                <div class="stat-icon">
+                  <i class="fa-solid fa-spinner"></i>
+                </div>
+              </div>
+
+              <div class="stat-number">7</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-top">
+                <span class="stat-title"> Completed </span>
+
+                <div class="stat-icon">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+              </div>
+
+              <div class="stat-number">13</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-top">
+                <span class="stat-title"> Overdue </span>
+
+                <div class="stat-icon">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+              </div>
+
+              <div class="stat-number">4</div>
+            </div>
+          </div>
+
+          <!-- TOOLBAR -->
+
+          <div class="toolbar">
+            <div class="task-search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+
+              <input
+                type="text"
+                id="taskSearch"
+                placeholder="Search tasks..."
+              />
+            </div>
+
+            <div class="filters">
+              <select class="filter" id="priorityFilter">
+                <option value="all">All priorities</option>
+
+                <option value="high">High priority</option>
+
+                <option value="medium">Medium priority</option>
+
+                <option value="low">Low priority</option>
+              </select>
+
+              <select class="filter" id="assigneeFilter">
+                <option value="all">Everyone</option>
+
+                <option value="mauli">Mauli</option>
+
+                <option value="ananya">Ananya</option>
+
+                <option value="rahul">Rahul</option>
+              </select>
+
+              <select class="filter" id="eventFilter">
+                <option value="all">All events</option>
+
+                <option value="hackathon">Hackathon 2026</option>
+
+                <option value="workshop">AI Workshop</option>
+
+                <option value="orientation">Orientation</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- TASK BOARD -->
+
+          <div class="board">
+            <!-- TO DO -->
+
+            <div class="column" data-column="todo">
+              <div class="column-header">
+                <div class="column-title">
+                  <span class="column-dot"></span>
+
+                  To Do
+
+                  <span class="count" data-count="todo"> 4 </span>
                 </div>
 
-                <span class="trend positive">
-                  <i class="fa-solid fa-arrow-up"></i>
-
-                  12%
-                </span>
+                <button class="task-menu">
+                  <i class="fa-solid fa-ellipsis"></i>
+                </button>
               </div>
 
-              <h3 id="totalTasks">12</h3>
+              <div class="task-list" data-list="todo">
+                <article
+                  class="task-card"
+                  draggable="true"
+                  data-priority="high"
+                  data-assignee="mauli"
+                  data-event="hackathon"
+                >
+                  <div class="task-card-top">
+                    <span class="priority high"> High </span>
 
-              <p>Total Tasks</p>
+                    <button class="task-menu">
+                      <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                  </div>
 
-              <div class="mini-progress">
-                <div style="width: 72%"></div>
+                  <h3 class="task-title">
+                    Finalize hackathon registration form
+                  </h3>
+
+                  <p class="task-description">
+                    Review fields, payment details and submission flow.
+                  </p>
+
+                  <div class="task-event">
+                    <i class="fa-regular fa-calendar"></i>
+                    Hackathon 2026
+                  </div>
+
+                  <div class="task-footer">
+                    <div class="assignee">
+                      <div class="mini-avatar">MB</div>
+
+                      Mauli
+                    </div>
+
+                    <div class="due">
+                      <i class="fa-regular fa-clock"></i>
+                      Sep 21
+                    </div>
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  draggable="true"
+                  data-priority="medium"
+                  data-assignee="ananya"
+                  data-event="workshop"
+                >
+                  <div class="task-card-top">
+                    <span class="priority medium"> Medium </span>
+
+                    <button class="task-menu">
+                      <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                  </div>
+
+                  <h3 class="task-title">Prepare workshop poster</h3>
+
+                  <p class="task-description">
+                    Create social media and notice-board versions.
+                  </p>
+
+                  <div class="task-event">
+                    <i class="fa-regular fa-calendar"></i>
+                    AI Workshop
+                  </div>
+
+                  <div class="task-footer">
+                    <div class="assignee">
+                      <div class="mini-avatar">AS</div>
+
+                      Ananya
+                    </div>
+
+                    <div class="due">
+                      <i class="fa-regular fa-clock"></i>
+                      Sep 23
+                    </div>
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  draggable="true"
+                  data-priority="low"
+                  data-assignee="rahul"
+                  data-event="orientation"
+                >
+                  <div class="task-card-top">
+                    <span class="priority low"> Low </span>
+
+                    <button class="task-menu">
+                      <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                  </div>
+
+                  <h3 class="task-title">Update club member list</h3>
+
+                  <p class="task-description">
+                    Add new members from the orientation drive.
+                  </p>
+
+                  <div class="task-event">
+                    <i class="fa-regular fa-calendar"></i>
+                    Orientation
+                  </div>
+
+                  <div class="task-footer">
+                    <div class="assignee">
+                      <div class="mini-avatar">RK</div>
+
+                      Rahul
+                    </div>
+
+                    <div class="due">
+                      <i class="fa-regular fa-clock"></i>
+                      Sep 26
+                    </div>
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  draggable="true"
+                  data-priority="high"
+                  data-assignee="mauli"
+                  data-event="hackathon"
+                >
+                  <div class="task-card-top">
+                    <span class="priority high"> High </span>
+
+                    <button class="task-menu">
+                      <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                  </div>
+
+                  <h3 class="task-title">Confirm event venue</h3>
+
+                  <p class="task-description">
+                    Get final confirmation from the administration.
+                  </p>
+
+                  <div class="task-event">
+                    <i class="fa-regular fa-calendar"></i>
+                    Hackathon 2026
+                  </div>
+
+                  <div class="task-footer">
+                    <div class="assignee">
+                      <div class="mini-avatar">MB</div>
+
+                      Mauli
+                    </div>
+
+                    <div class="due overdue">
+                      <i class="fa-regular fa-clock"></i>
+                      Sep 19
+                    </div>
+                  </div>
+                </article>
               </div>
-
-              <div class="stat-description">Across all active events</div>
             </div>
 
             <!-- IN PROGRESS -->
 
-            <div class="stat-card">
-              <div class="stat-top">
-                <div class="stat-icon purple">
-                  <i class="fa-solid fa-spinner"></i>
+            <div class="column" data-column="progress">
+              <div class="column-header">
+                <div class="column-title">
+                  <span class="column-dot"></span>
+
+                  In Progress
+
+                  <span class="count" data-count="progress"> 3 </span>
                 </div>
 
-                <span class="trend positive"> Active </span>
+                <button class="task-menu">
+                  <i class="fa-solid fa-ellipsis"></i>
+                </button>
               </div>
 
-              <h3 id="progressTasks">4</h3>
+              <div class="task-list" data-list="progress">
+                <article
+                  class="task-card"
+                  draggable="true"
+                  data-priority="high"
+                  data-assignee="mauli"
+                  data-event="hackathon"
+                >
+                  <div class="task-card-top">
+                    <span class="priority high"> High </span>
 
-              <p>In Progress</p>
+                    <button class="task-menu">
+                      <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                  </div>
 
-              <div class="mini-progress">
-                <div style="width: 55%; background: var(--purple)"></div>
+                  <h3 class="task-title">Build event landing page</h3>
+
+                  <p class="task-description">
+                    Complete hero section, registration CTA and event details.
+                  </p>
+
+                  <div class="task-event">
+                    <i class="fa-regular fa-calendar"></i>
+                    Hackathon 2026
+                  </div>
+
+                  <div class="task-footer">
+                    <div class="assignee">
+                      <div class="mini-avatar">MB</div>
+
+                      Mauli
+                    </div>
+
+                    <div class="due">
+                      <i class="fa-regular fa-clock"></i>
+                      Sep 22
+                    </div>
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  draggable="true"
+                  data-priority="medium"
+                  data-assignee="rahul"
+                  data-event="workshop"
+                >
+                  <div class="task-card-top">
+                    <span class="priority medium"> Medium </span>
+
+                    <button class="task-menu">
+                      <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                  </div>
+
+                  <h3 class="task-title">Contact workshop speakers</h3>
+
+                  <p class="task-description">
+                    Confirm speaker availability and presentation requirements.
+                  </p>
+
+                  <div class="task-event">
+                    <i class="fa-regular fa-calendar"></i>
+                    AI Workshop
+                  </div>
+
+                  <div class="task-footer">
+                    <div class="assignee">
+                      <div class="mini-avatar">RK</div>
+
+                      Rahul
+                    </div>
+
+                    <div class="due">
+                      <i class="fa-regular fa-clock"></i>
+                      Sep 24
+                    </div>
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  draggable="true"
+                  data-priority="low"
+                  data-assignee="ananya"
+                  data-event="orientation"
+                >
+                  <div class="task-card-top">
+                    <span class="priority low"> Low </span>
+
+                    <button class="task-menu">
+                      <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                  </div>
+
+                  <h3 class="task-title">Prepare volunteer badges</h3>
+
+                  <p class="task-description">
+                    Print and organize badges for the orientation team.
+                  </p>
+
+                  <div class="task-event">
+                    <i class="fa-regular fa-calendar"></i>
+                    Orientation
+                  </div>
+
+                  <div class="task-footer">
+                    <div class="assignee">
+                      <div class="mini-avatar">AS</div>
+
+                      Ananya
+                    </div>
+
+                    <div class="due">
+                      <i class="fa-regular fa-clock"></i>
+                      Sep 25
+                    </div>
+                  </div>
+                </article>
               </div>
-
-              <div class="stat-description">Currently being worked on</div>
             </div>
 
             <!-- COMPLETED -->
 
-            <div class="stat-card">
-              <div class="stat-top">
-                <div class="stat-icon orange">
-                  <i class="fa-solid fa-circle-check"></i>
-                </div>
-
-                <span class="trend positive"> 58% </span>
-              </div>
-
-              <h3 id="completedTasks">5</h3>
-
-              <p>Completed</p>
-
-              <div class="mini-progress">
-                <div style="width: 58%; background: var(--green)"></div>
-              </div>
-
-              <div class="stat-description">Completion rate</div>
-            </div>
-
-            <!-- OVERDUE -->
-
-            <div class="stat-card">
-              <div class="stat-top">
-                <div class="stat-icon red">
-                  <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
-
-                <span class="trend danger"> Attention </span>
-              </div>
-
-              <h3 id="overdueTasks">3</h3>
-
-              <p>Overdue</p>
-
-              <div class="mini-progress">
-                <div style="width: 25%; background: var(--red)"></div>
-              </div>
-
-              <div class="stat-description">Tasks need attention</div>
-            </div>
-          </div>
-
-          <!-- =================================================
-                 TOOLBAR
-            ================================================= -->
-
-          <div class="task-toolbar">
-            <div class="filter-group">
-              <button class="filter-btn active" data-filter="all">
-                All Tasks
-              </button>
-
-              <button class="filter-btn" data-filter="high">
-                High Priority
-              </button>
-
-              <button class="filter-btn" data-filter="mine">My Tasks</button>
-
-              <button class="filter-btn" data-filter="overdue">Overdue</button>
-            </div>
-
-            <div class="toolbar-right">
-              <input
-                class="task-search"
-                id="taskSearch"
-                type="text"
-                placeholder="Search tasks..."
-              />
-
-              <button class="view-btn active" title="Board View">
-                <i class="fa-solid fa-table-columns"></i>
-              </button>
-
-              <button class="view-btn" title="List View" id="listViewBtn">
-                <i class="fa-solid fa-list"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- =================================================
-                 KANBAN BOARD
-            ================================================= -->
-
-          <div class="kanban">
-            <!-- =================================================
-                     TODO
-                ================================================= -->
-
-            <div class="kanban-column" data-status="todo">
+            <div class="column" data-column="completed">
               <div class="column-header">
                 <div class="column-title">
-                  <span class="column-dot todo-dot"></span>
+                  <span class="column-dot"></span>
 
-                  <h2>To Do</h2>
+                  Completed
+
+                  <span class="count" data-count="completed"> 3 </span>
                 </div>
 
-                <span class="column-count"> 4 </span>
+                <button class="task-menu">
+                  <i class="fa-solid fa-ellipsis"></i>
+                </button>
               </div>
 
-              <!-- TASK 1 -->
+              <div class="task-list" data-list="completed">
+                <article
+                  class="task-card"
+                  draggable="true"
+                  data-priority="high"
+                  data-assignee="mauli"
+                  data-event="hackathon"
+                >
+                  <div class="task-card-top">
+                    <span class="priority high"> High </span>
 
-              <div
-                class="task-card"
-                draggable="true"
-                data-priority="high"
-                data-assignee="other"
-                data-overdue="false"
-              >
-                <div class="task-top">
-                  <div class="task-title">Finalize event venue</div>
-
-                  <span class="priority high"> High </span>
-                </div>
-
-                <p class="task-description">
-                  Confirm the auditorium booking and collect the required
-                  documents.
-                </p>
-
-                <span class="task-event">
-                  <i class="fa-solid fa-calendar"></i>
-
-                  TechFest 2026
-                </span>
-
-                <div class="progress-label">
-                  <span> Progress </span>
-
-                  <span> 0% </span>
-                </div>
-
-                <div class="progress">
-                  <div class="progress-bar" style="width: 0%"></div>
-                </div>
-
-                <div class="task-footer">
-                  <div class="assignee">
-                    <div class="mini-avatar">AK</div>
-
-                    <span class="assignee-name"> Aarav </span>
+                    <button class="task-menu">
+                      <i class="fa-solid fa-ellipsis"></i>
+                    </button>
                   </div>
 
-                  <span class="deadline">
+                  <h3 class="task-title">Create event timeline</h3>
+
+                  <p class="task-description">
+                    Final event schedule and activity timeline completed.
+                  </p>
+
+                  <div class="task-event">
                     <i class="fa-regular fa-calendar"></i>
-
-                    Sep 21
-                  </span>
-                </div>
-              </div>
-
-              <!-- TASK 2 -->
-
-              <div
-                class="task-card"
-                draggable="true"
-                data-priority="medium"
-                data-assignee="mine"
-                data-overdue="false"
-              >
-                <div class="task-top">
-                  <div class="task-title">Prepare event poster</div>
-
-                  <span class="priority medium"> Medium </span>
-                </div>
-
-                <p class="task-description">
-                  Create the final promotional poster for social media.
-                </p>
-
-                <span class="task-event">
-                  <i class="fa-solid fa-calendar"></i>
-
-                  Orientation
-                </span>
-
-                <div class="progress-label">
-                  <span> Progress </span>
-
-                  <span> 10% </span>
-                </div>
-
-                <div class="progress">
-                  <div class="progress-bar" style="width: 10%"></div>
-                </div>
-
-                <div class="task-footer">
-                  <div class="assignee">
-                    <div class="mini-avatar">MB</div>
-
-                    <span class="assignee-name"> Mauli </span>
+                    Hackathon 2026
                   </div>
 
-                  <span class="deadline">
+                  <div class="task-footer">
+                    <div class="assignee">
+                      <div class="mini-avatar">MB</div>
+
+                      Mauli
+                    </div>
+
+                    <div class="due">
+                      <i class="fa-solid fa-check"></i>
+                      Done
+                    </div>
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  draggable="true"
+                  data-priority="medium"
+                  data-assignee="rahul"
+                  data-event="workshop"
+                >
+                  <div class="task-card-top">
+                    <span class="priority medium"> Medium </span>
+
+                    <button class="task-menu">
+                      <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                  </div>
+
+                  <h3 class="task-title">Book projector</h3>
+
+                  <p class="task-description">
+                    Projector and audio equipment successfully reserved.
+                  </p>
+
+                  <div class="task-event">
                     <i class="fa-regular fa-calendar"></i>
-
-                    Sep 23
-                  </span>
-                </div>
-              </div>
-
-              <!-- TASK 3 -->
-
-              <div
-                class="task-card"
-                draggable="true"
-                data-priority="low"
-                data-assignee="other"
-                data-overdue="false"
-              >
-                <div class="task-top">
-                  <div class="task-title">Prepare volunteer list</div>
-
-                  <span class="priority low"> Low </span>
-                </div>
-
-                <p class="task-description">
-                  Collect names and availability of students interested in
-                  volunteering.
-                </p>
-
-                <span class="task-event">
-                  <i class="fa-solid fa-calendar"></i>
-
-                  Workshop
-                </span>
-
-                <div class="progress-label">
-                  <span> Progress </span>
-
-                  <span> 0% </span>
-                </div>
-
-                <div class="progress">
-                  <div class="progress-bar" style="width: 0%"></div>
-                </div>
-
-                <div class="task-footer">
-                  <div class="assignee">
-                    <div class="mini-avatar">RS</div>
-
-                    <span class="assignee-name"> Riya </span>
+                    AI Workshop
                   </div>
 
-                  <span class="deadline">
+                  <div class="task-footer">
+                    <div class="assignee">
+                      <div class="mini-avatar">RK</div>
+
+                      Rahul
+                    </div>
+
+                    <div class="due">
+                      <i class="fa-solid fa-check"></i>
+                      Done
+                    </div>
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  draggable="true"
+                  data-priority="low"
+                  data-assignee="ananya"
+                  data-event="orientation"
+                >
+                  <div class="task-card-top">
+                    <span class="priority low"> Low </span>
+
+                    <button class="task-menu">
+                      <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                  </div>
+
+                  <h3 class="task-title">Publish orientation notice</h3>
+
+                  <p class="task-description">
+                    Orientation announcement published across club channels.
+                  </p>
+
+                  <div class="task-event">
                     <i class="fa-regular fa-calendar"></i>
-
-                    Sep 25
-                  </span>
-                </div>
-              </div>
-
-              <button class="add-task-column" onclick="openCreateModal()">
-                <i class="fa-solid fa-plus"></i>
-
-                Add task
-              </button>
-            </div>
-
-            <!-- =================================================
-                     IN PROGRESS
-                ================================================= -->
-
-            <div class="kanban-column" data-status="progress">
-              <div class="column-header">
-                <div class="column-title">
-                  <span class="column-dot progress-dot"></span>
-
-                  <h2>In Progress</h2>
-                </div>
-
-                <span class="column-count"> 4 </span>
-              </div>
-
-              <!-- TASK -->
-
-              <div
-                class="task-card"
-                draggable="true"
-                data-priority="high"
-                data-assignee="mine"
-                data-overdue="false"
-              >
-                <div class="task-top">
-                  <div class="task-title">Contact sponsors</div>
-
-                  <span class="priority high"> High </span>
-                </div>
-
-                <p class="task-description">
-                  Reach out to potential sponsors and finalize sponsorship
-                  packages.
-                </p>
-
-                <span class="task-event">
-                  <i class="fa-solid fa-calendar"></i>
-
-                  TechFest 2026
-                </span>
-
-                <div class="progress-label">
-                  <span> Progress </span>
-
-                  <span> 65% </span>
-                </div>
-
-                <div class="progress">
-                  <div class="progress-bar" style="width: 65%"></div>
-                </div>
-
-                <div class="task-footer">
-                  <div class="assignee">
-                    <div class="mini-avatar">MB</div>
-
-                    <span class="assignee-name"> Mauli </span>
+                    Orientation
                   </div>
 
-                  <span class="deadline">
-                    <i class="fa-regular fa-calendar"></i>
+                  <div class="task-footer">
+                    <div class="assignee">
+                      <div class="mini-avatar">AS</div>
 
-                    Sep 20
-                  </span>
-                </div>
-              </div>
+                      Ananya
+                    </div>
 
-              <!-- TASK -->
-
-              <div
-                class="task-card"
-                draggable="true"
-                data-priority="medium"
-                data-assignee="other"
-                data-overdue="false"
-              >
-                <div class="task-top">
-                  <div class="task-title">Design registration form</div>
-
-                  <span class="priority medium"> Medium </span>
-                </div>
-
-                <p class="task-description">
-                  Build and test the online registration form for participants.
-                </p>
-
-                <span class="task-event">
-                  <i class="fa-solid fa-calendar"></i>
-
-                  Workshop
-                </span>
-
-                <div class="progress-label">
-                  <span> Progress </span>
-
-                  <span> 45% </span>
-                </div>
-
-                <div class="progress">
-                  <div class="progress-bar" style="width: 45%"></div>
-                </div>
-
-                <div class="task-footer">
-                  <div class="assignee">
-                    <div class="mini-avatar">KP</div>
-
-                    <span class="assignee-name"> Kunal </span>
+                    <div class="due">
+                      <i class="fa-solid fa-check"></i>
+                      Done
+                    </div>
                   </div>
-
-                  <span class="deadline">
-                    <i class="fa-regular fa-calendar"></i>
-
-                    Sep 22
-                  </span>
-                </div>
+                </article>
               </div>
-
-              <!-- TASK -->
-
-              <div
-                class="task-card"
-                draggable="true"
-                data-priority="medium"
-                data-assignee="other"
-                data-overdue="true"
-              >
-                <div class="task-top">
-                  <div class="task-title">Arrange equipment</div>
-
-                  <span class="priority medium"> Medium </span>
-                </div>
-
-                <p class="task-description">
-                  Check microphones, projectors, speakers and extension boards.
-                </p>
-
-                <span class="task-event">
-                  <i class="fa-solid fa-calendar"></i>
-
-                  Orientation
-                </span>
-
-                <div class="progress-label">
-                  <span> Progress </span>
-
-                  <span> 70% </span>
-                </div>
-
-                <div class="progress">
-                  <div class="progress-bar" style="width: 70%"></div>
-                </div>
-
-                <div class="task-footer">
-                  <div class="assignee">
-                    <div class="mini-avatar">VD</div>
-
-                    <span class="assignee-name"> Ved </span>
-                  </div>
-
-                  <span class="deadline overdue">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-
-                    Overdue
-                  </span>
-                </div>
-              </div>
-
-              <button class="add-task-column" onclick="openCreateModal()">
-                <i class="fa-solid fa-plus"></i>
-
-                Add task
-              </button>
-            </div>
-
-            <!-- =================================================
-                     COMPLETED
-                ================================================= -->
-
-            <div class="kanban-column" data-status="completed">
-              <div class="column-header">
-                <div class="column-title">
-                  <span class="column-dot done-dot"></span>
-
-                  <h2>Completed</h2>
-                </div>
-
-                <span class="column-count"> 5 </span>
-              </div>
-
-              <!-- TASK -->
-
-              <div
-                class="task-card"
-                draggable="true"
-                data-priority="high"
-                data-assignee="other"
-                data-overdue="false"
-              >
-                <div class="task-top">
-                  <div class="task-title">Confirm speakers</div>
-
-                  <span class="priority high"> High </span>
-                </div>
-
-                <p class="task-description">
-                  Finalize guest speaker availability and session timings.
-                </p>
-
-                <span class="task-event">
-                  <i class="fa-solid fa-calendar"></i>
-
-                  TechFest 2026
-                </span>
-
-                <div class="progress-label">
-                  <span> Progress </span>
-
-                  <span> 100% </span>
-                </div>
-
-                <div class="progress">
-                  <div
-                    class="progress-bar"
-                    style="width: 100%; background: var(--green)"
-                  ></div>
-                </div>
-
-                <div class="task-footer">
-                  <div class="assignee">
-                    <div class="mini-avatar">AK</div>
-
-                    <span class="assignee-name"> Aarav </span>
-                  </div>
-
-                  <span class="deadline">
-                    <i class="fa-solid fa-circle-check"></i>
-
-                    Completed
-                  </span>
-                </div>
-              </div>
-
-              <!-- TASK -->
-
-              <div
-                class="task-card"
-                draggable="true"
-                data-priority="medium"
-                data-assignee="mine"
-                data-overdue="false"
-              >
-                <div class="task-top">
-                  <div class="task-title">Create social media plan</div>
-
-                  <span class="priority medium"> Medium </span>
-                </div>
-
-                <p class="task-description">
-                  Prepare the posting schedule and promotional content.
-                </p>
-
-                <span class="task-event">
-                  <i class="fa-solid fa-calendar"></i>
-
-                  Orientation
-                </span>
-
-                <div class="progress-label">
-                  <span> Progress </span>
-
-                  <span> 100% </span>
-                </div>
-
-                <div class="progress">
-                  <div
-                    class="progress-bar"
-                    style="width: 100%; background: var(--green)"
-                  ></div>
-                </div>
-
-                <div class="task-footer">
-                  <div class="assignee">
-                    <div class="mini-avatar">MB</div>
-
-                    <span class="assignee-name"> Mauli </span>
-                  </div>
-
-                  <span class="deadline">
-                    <i class="fa-solid fa-circle-check"></i>
-
-                    Completed
-                  </span>
-                </div>
-              </div>
-
-              <!-- TASK -->
-
-              <div
-                class="task-card"
-                draggable="true"
-                data-priority="low"
-                data-assignee="other"
-                data-overdue="false"
-              >
-                <div class="task-top">
-                  <div class="task-title">Book photography team</div>
-
-                  <span class="priority low"> Low </span>
-                </div>
-
-                <p class="task-description">
-                  Confirm photographer and collect contact details.
-                </p>
-
-                <span class="task-event">
-                  <i class="fa-solid fa-calendar"></i>
-
-                  Workshop
-                </span>
-
-                <div class="progress-label">
-                  <span> Progress </span>
-
-                  <span> 100% </span>
-                </div>
-
-                <div class="progress">
-                  <div
-                    class="progress-bar"
-                    style="width: 100%; background: var(--green)"
-                  ></div>
-                </div>
-
-                <div class="task-footer">
-                  <div class="assignee">
-                    <div class="mini-avatar">RS</div>
-
-                    <span class="assignee-name"> Riya </span>
-                  </div>
-
-                  <span class="deadline">
-                    <i class="fa-solid fa-circle-check"></i>
-
-                    Completed
-                  </span>
-                </div>
-              </div>
-
-              <button class="add-task-column" onclick="openCreateModal()">
-                <i class="fa-solid fa-plus"></i>
-
-                Add task
-              </button>
             </div>
           </div>
         </section>
       </main>
     </div>
 
-    <!-- =========================================================
-     CREATE TASK MODAL
-========================================================= -->
+    <!-- =========================================
+     ADD TASK MODAL
+========================================== -->
 
-    <div class="modal-overlay" id="createModal">
-      <div class="modal">
+    <div class="modal" id="taskModal">
+      <div class="modal-box">
         <div class="modal-header">
-          <h2>Create New Task</h2>
+          <h2>Add a task</h2>
 
-          <button class="close-modal" onclick="closeCreateModal()">
+          <button class="close-modal" id="closeModal">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
 
-        <div class="form-group">
-          <label> Task Name </label>
+        <form id="taskForm">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="taskTitle"> Task title </label>
 
-          <input
-            class="form-input"
-            id="newTaskName"
-            type="text"
-            placeholder="Enter task name"
-          />
-        </div>
+              <input
+                type="text"
+                id="taskTitle"
+                placeholder="e.g. Confirm event speakers"
+                required
+              />
+            </div>
 
-        <div class="form-group">
-          <label> Description </label>
+            <div class="form-group">
+              <label for="taskDescription"> Description </label>
 
-          <textarea
-            class="form-textarea"
-            id="newTaskDescription"
-            placeholder="Describe the task..."
-          ></textarea>
-        </div>
+              <textarea
+                id="taskDescription"
+                placeholder="What needs to be done?"
+              ></textarea>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label> Priority </label>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="taskPriority"> Priority </label>
 
-            <select class="form-select" id="newTaskPriority">
-              <option value="low">Low</option>
+                <select id="taskPriority">
+                  <option value="high">High</option>
 
-              <option value="medium" selected>Medium</option>
+                  <option value="medium" selected>Medium</option>
 
-              <option value="high">High</option>
-            </select>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="taskAssignee"> Assignee </label>
+
+                <select id="taskAssignee">
+                  <option value="mauli">Mauli</option>
+
+                  <option value="ananya">Ananya</option>
+
+                  <option value="rahul">Rahul</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="taskEvent"> Event </label>
+
+                <select id="taskEvent">
+                  <option value="hackathon">Hackathon 2026</option>
+
+                  <option value="workshop">AI Workshop</option>
+
+                  <option value="orientation">Orientation</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="taskDue"> Due date </label>
+
+                <input type="date" id="taskDue" />
+              </div>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label> Assign To </label>
+          <div class="modal-footer">
+            <button type="button" class="cancel-btn" id="cancelModal">
+              Cancel
+            </button>
 
-            <select class="form-select" id="newTaskAssignee">
-              <option>Mauli</option>
-
-              <option>Aarav</option>
-
-              <option>Riya</option>
-
-              <option>Kunal</option>
-
-              <option>Ved</option>
-            </select>
+            <button type="submit" class="save-btn">Create task</button>
           </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label> Event </label>
-
-            <select class="form-select" id="newTaskEvent">
-              <option>TechFest 2026</option>
-
-              <option>Orientation</option>
-
-              <option>Workshop</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label> Due Date </label>
-
-            <input class="form-input" id="newTaskDate" type="date" />
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button class="cancel-btn" onclick="closeCreateModal()">
-            Cancel
-          </button>
-
-          <button class="save-btn" onclick="createTask()">
-            <i class="fa-solid fa-plus"></i>
-
-            Create Task
-          </button>
-        </div>
+        </form>
       </div>
     </div>
 
-    <!-- =========================================================
-     TOAST
-========================================================= -->
+    <!-- TOAST -->
 
     <div class="toast" id="toast">
       <i class="fa-solid fa-circle-check"></i>
-
       <span id="toastMessage"> Task created successfully </span>
     </div>
 
     <script>
-      /* =========================================================
-       SIDEBAR
-    ========================================================= */
+      /* =========================================
+     ELEMENTS
+  ========================================= */
 
-      const menuBtn = document.getElementById("menuBtn");
+      const addTaskBtn = document.getElementById("addTaskBtn");
 
-      const sidebar = document.getElementById("sidebar");
+      const modal = document.getElementById("taskModal");
 
-      menuBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
-      });
+      const closeModal = document.getElementById("closeModal");
 
-      /* =========================================================
-       CREATE MODAL
-    ========================================================= */
+      const cancelModal = document.getElementById("cancelModal");
 
-      const createModal = document.getElementById("createModal");
+      const taskForm = document.getElementById("taskForm");
 
-      const createTaskBtn = document.getElementById("createTaskBtn");
+      const taskSearch = document.getElementById("taskSearch");
 
-      createTaskBtn.addEventListener("click", openCreateModal);
+      const priorityFilter = document.getElementById("priorityFilter");
 
-      function openCreateModal() {
-        createModal.classList.add("show");
+      const assigneeFilter = document.getElementById("assigneeFilter");
 
-        document.getElementById("newTaskName").focus();
+      const eventFilter = document.getElementById("eventFilter");
+
+      const toast = document.getElementById("toast");
+
+      const toastMessage = document.getElementById("toastMessage");
+
+      /* =========================================
+     MODAL
+  ========================================= */
+
+      function openModal() {
+        modal.classList.add("show");
+
+        setTimeout(() => {
+          document.getElementById("taskTitle").focus();
+        }, 100);
       }
 
-      function closeCreateModal() {
-        createModal.classList.remove("show");
+      function hideModal() {
+        modal.classList.remove("show");
       }
 
-      /* CLOSE MODAL WHEN CLICKING OUTSIDE */
+      addTaskBtn.addEventListener("click", openModal);
 
-      createModal.addEventListener("click", function (event) {
-        if (event.target === createModal) {
-          closeCreateModal();
+      closeModal.addEventListener("click", hideModal);
+
+      cancelModal.addEventListener("click", hideModal);
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          hideModal();
         }
       });
 
-      /* =========================================================
-       CREATE TASK
-    ========================================================= */
+      /* =========================================
+     TOAST
+  ========================================= */
 
-      function createTask() {
-        const name = document.getElementById("newTaskName").value.trim();
+      function showToast(message) {
+        toastMessage.textContent = message;
+
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2500);
+      }
+
+      /* =========================================
+     FILTER TASKS
+  ========================================= */
+
+      function filterTasks() {
+        const search = taskSearch.value.toLowerCase().trim();
+
+        const priority = priorityFilter.value;
+
+        const assignee = assigneeFilter.value;
+
+        const event = eventFilter.value;
+
+        const cards = document.querySelectorAll(".task-card");
+
+        cards.forEach((card) => {
+          const text = card.textContent.toLowerCase();
+
+          const cardPriority = card.dataset.priority;
+
+          const cardAssignee = card.dataset.assignee;
+
+          const cardEvent = card.dataset.event;
+
+          const matchesSearch = !search || text.includes(search);
+
+          const matchesPriority =
+            priority === "all" || cardPriority === priority;
+
+          const matchesAssignee =
+            assignee === "all" || cardAssignee === assignee;
+
+          const matchesEvent = event === "all" || cardEvent === event;
+
+          card.style.display =
+            matchesSearch && matchesPriority && matchesAssignee && matchesEvent
+              ? ""
+              : "none";
+        });
+
+        updateCounts();
+      }
+
+      taskSearch.addEventListener("input", filterTasks);
+
+      priorityFilter.addEventListener("change", filterTasks);
+
+      assigneeFilter.addEventListener("change", filterTasks);
+
+      eventFilter.addEventListener("change", filterTasks);
+
+      /* =========================================
+     UPDATE COLUMN COUNTS
+  ========================================= */
+
+      function updateCounts() {
+        document.querySelectorAll(".column").forEach((column) => {
+          const list = column.querySelector(".task-list");
+
+          const visibleCards = [...list.querySelectorAll(".task-card")].filter(
+            (card) => card.style.display !== "none",
+          );
+
+          const count = column.querySelector(".count");
+
+          count.textContent = visibleCards.length;
+        });
+      }
+
+      /* =========================================
+     DRAG & DROP
+  ========================================= */
+
+      let draggedCard = null;
+
+      function wireDrag(card) {
+        card.addEventListener("dragstart", () => {
+          draggedCard = card;
+
+          card.classList.add("dragging");
+        });
+
+        card.addEventListener("dragend", () => {
+          card.classList.remove("dragging");
+
+          draggedCard = null;
+
+          updateCounts();
+        });
+      }
+
+      document.querySelectorAll(".task-card").forEach(wireDrag);
+
+      document.querySelectorAll(".column").forEach((column) => {
+        column.addEventListener("dragover", (e) => {
+          e.preventDefault();
+
+          column.classList.add("drag-over");
+        });
+
+        column.addEventListener("dragleave", () => {
+          column.classList.remove("drag-over");
+        });
+
+        column.addEventListener("drop", (e) => {
+          e.preventDefault();
+
+          column.classList.remove("drag-over");
+
+          if (!draggedCard) {
+            return;
+          }
+
+          const list = column.querySelector(".task-list");
+
+          list.appendChild(draggedCard);
+
+          updateCounts();
+
+          showToast("Task status updated");
+        });
+      });
+
+      /* =========================================
+     CREATE TASK
+  ========================================= */
+
+      taskForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const title = document.getElementById("taskTitle").value.trim();
 
         const description = document
-          .getElementById("newTaskDescription")
+          .getElementById("taskDescription")
           .value.trim();
 
-        const priority = document.getElementById("newTaskPriority").value;
+        const priority = document.getElementById("taskPriority").value;
 
-        if (!name) {
-          showToast("Please enter a task name");
+        const assignee = document.getElementById("taskAssignee").value;
 
+        const event = document.getElementById("taskEvent").value;
+
+        const due = document.getElementById("taskDue").value;
+
+        if (!title) {
           return;
         }
 
-        const todoColumn = document.querySelector(
-          '.kanban-column[data-status="todo"]',
-        );
+        const names = {
+          mauli: {
+            name: "Mauli",
+            initials: "MB",
+          },
 
-        const addButton = todoColumn.querySelector(".add-task-column");
+          ananya: {
+            name: "Ananya",
+            initials: "AS",
+          },
 
-        const card = document.createElement("div");
+          rahul: {
+            name: "Rahul",
+            initials: "RK",
+          },
+        };
+
+        const events = {
+          hackathon: "Hackathon 2026",
+          workshop: "AI Workshop",
+          orientation: "Orientation",
+        };
+
+        const priorityLabels = {
+          high: "High",
+          medium: "Medium",
+          low: "Low",
+        };
+
+        const card = document.createElement("article");
 
         card.className = "task-card";
 
@@ -2571,303 +2309,110 @@
 
         card.dataset.priority = priority;
 
-        card.dataset.assignee = "mine";
+        card.dataset.assignee = assignee;
 
-        card.dataset.overdue = "false";
-
-        const priorityText =
-          priority.charAt(0).toUpperCase() + priority.slice(1);
+        card.dataset.event = event;
 
         card.innerHTML = `
 
-            <div class="task-top">
+        <div class="task-card-top">
 
-                <div class="task-title">
-                    ${escapeHtml(name)}
-                </div>
+          <span class="priority ${priority}">
+            ${priorityLabels[priority]}
+          </span>
 
-                <span class="priority ${priority}">
-                    ${priorityText}
-                </span>
+          <button class="task-menu">
+            <i class="fa-solid fa-ellipsis"></i>
+          </button>
 
+        </div>
+
+        <h3 class="task-title">
+          ${escapeHtml(title)}
+        </h3>
+
+        <p class="task-description">
+          ${escapeHtml(description || "No description added.")}
+        </p>
+
+        <div class="task-event">
+          <i class="fa-regular fa-calendar"></i>
+          ${events[event]}
+        </div>
+
+        <div class="task-footer">
+
+          <div class="assignee">
+
+            <div class="mini-avatar">
+              ${names[assignee].initials}
             </div>
 
-            <p class="task-description">
-                ${escapeHtml(description || "No description provided.")}
-            </p>
+            ${names[assignee].name}
 
-            <span class="task-event">
+          </div>
 
-                <i class="fa-solid fa-calendar"></i>
+          <div class="due">
 
-                New Task
+            <i class="fa-regular fa-clock"></i>
 
-            </span>
+            ${due || "No date"}
 
-            <div class="progress-label">
+          </div>
 
-                <span>
-                    Progress
-                </span>
+        </div>
+      `;
 
-                <span>
-                    0%
-                </span>
+        const todoList = document.querySelector('[data-list="todo"]');
 
-            </div>
+        todoList.prepend(card);
 
-            <div class="progress">
+        wireDrag(card);
 
-                <div
-                    class="progress-bar"
-                    style="width:0%"
-                ></div>
+        hideModal();
 
-            </div>
-
-            <div class="task-footer">
-
-                <div class="assignee">
-
-                    <div class="mini-avatar">
-                        MB
-                    </div>
-
-                    <span class="assignee-name">
-                        Mauli
-                    </span>
-
-                </div>
-
-                <span class="deadline">
-
-                    <i class="fa-regular fa-calendar"></i>
-
-                    New
-
-                </span>
-
-            </div>
-
-        `;
-
-        todoColumn.insertBefore(card, addButton);
-
-        setupDrag(card);
+        taskForm.reset();
 
         updateCounts();
 
-        closeCreateModal();
-
-        document.getElementById("newTaskName").value = "";
-
-        document.getElementById("newTaskDescription").value = "";
-
         showToast("Task created successfully");
-      }
+      });
 
-      /* =========================================================
-       HTML ESCAPE
-    ========================================================= */
+      /* =========================================
+     BASIC HTML ESCAPE
+  ========================================= */
 
-      function escapeHtml(text) {
+      function escapeHtml(value) {
         const div = document.createElement("div");
 
-        div.textContent = text;
+        div.textContent = value;
 
         return div.innerHTML;
       }
 
-      /* =========================================================
-       FILTERS
-    ========================================================= */
-
-      const filterButtons = document.querySelectorAll(".filter-btn");
-
-      let currentFilter = "all";
-
-      filterButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          filterButtons.forEach((btn) => {
-            btn.classList.remove("active");
-          });
-
-          button.classList.add("active");
-
-          currentFilter = button.dataset.filter;
-
-          applyFilters();
-        });
-      });
-
-      /* =========================================================
-       SEARCH
-    ========================================================= */
-
-      const taskSearch = document.getElementById("taskSearch");
+      /* =========================================
+     GLOBAL SEARCH
+  ========================================= */
 
       const globalSearch = document.getElementById("globalSearch");
 
-      taskSearch.addEventListener("input", applyFilters);
-
       globalSearch.addEventListener("input", () => {
-        taskSearch.value = globalSearch.value;
+        const value = globalSearch.value.toLowerCase().trim();
 
-        applyFilters();
-      });
-
-      function applyFilters() {
-        const searchText = taskSearch.value.toLowerCase().trim();
-
-        const cards = document.querySelectorAll(".task-card");
-
-        cards.forEach((card) => {
-          const title = card
-            .querySelector(".task-title")
-            .textContent.toLowerCase();
-
-          const description = card
-            .querySelector(".task-description")
-            .textContent.toLowerCase();
-
-          const priority = card.dataset.priority;
-
-          const assignee = card.dataset.assignee;
-
-          const overdue = card.dataset.overdue;
-
-          let filterMatch = true;
-
-          if (currentFilter === "high") {
-            filterMatch = priority === "high";
-          }
-
-          if (currentFilter === "mine") {
-            filterMatch = assignee === "mine";
-          }
-
-          if (currentFilter === "overdue") {
-            filterMatch = overdue === "true";
-          }
-
-          const searchMatch =
-            title.includes(searchText) || description.includes(searchText);
-
-          if (filterMatch && searchMatch) {
-            card.classList.remove("hidden");
-          } else {
-            card.classList.add("hidden");
-          }
-        });
-      }
-
-      /* =========================================================
-       DRAG AND DROP
-    ========================================================= */
-
-      const columns = document.querySelectorAll(".kanban-column");
-
-      function setupDrag(card) {
-        card.addEventListener("dragstart", () => {
-          card.classList.add("dragging");
-        });
-
-        card.addEventListener("dragend", () => {
-          card.classList.remove("dragging");
-
-          updateCounts();
-
-          showToast("Task status updated");
-        });
-      }
-
-      document.querySelectorAll(".task-card").forEach(setupDrag);
-
-      columns.forEach((column) => {
-        column.addEventListener("dragover", (event) => {
-          event.preventDefault();
-
-          const dragging = document.querySelector(".dragging");
-
-          if (!dragging) {
-            return;
-          }
-
-          const addButton = column.querySelector(".add-task-column");
-
-          column.insertBefore(dragging, addButton);
-        });
-      });
-
-      /* =========================================================
-       UPDATE COLUMN COUNTS
-    ========================================================= */
-
-      function updateCounts() {
-        columns.forEach((column) => {
-          const count = column.querySelectorAll(".task-card").length;
-
-          column.querySelector(".column-count").textContent = count;
-        });
-      }
-
-      /* =========================================================
-       ESC KEY
-    ========================================================= */
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          closeCreateModal();
+        if (!value) {
+          return;
         }
 
-        if (event.ctrlKey && event.key.toLowerCase() === "k") {
-          event.preventDefault();
+        taskSearch.value = value;
 
-          globalSearch.focus();
-        }
+        filterTasks();
       });
 
-      /* =========================================================
-       TOAST
-    ========================================================= */
+      /* =========================================
+     INITIAL COUNT
+  ========================================= */
 
-      let toastTimer;
-
-      function showToast(message) {
-        const toast = document.getElementById("toast");
-
-        const messageElement = document.getElementById("toastMessage");
-
-        messageElement.textContent = message;
-
-        toast.classList.add("show");
-
-        clearTimeout(toastTimer);
-
-        toastTimer = setTimeout(() => {
-          toast.classList.remove("show");
-        }, 2500);
-      }
-
-      /* =========================================================
-       VIEW BUTTONS
-    ========================================================= */
-
-      const viewButtons = document.querySelectorAll(".view-btn");
-
-      viewButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          viewButtons.forEach((btn) => {
-            btn.classList.remove("active");
-          });
-
-          button.classList.add("active");
-
-          if (button.id === "listViewBtn") {
-            showToast("List view is ready for integration");
-          }
-        });
-      });
+      updateCounts();
     </script>
   </body>
 </html>
