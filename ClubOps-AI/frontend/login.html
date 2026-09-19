@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClubOps AI — Sign in</title>
+<link rel="stylesheet" href="./css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="page">
+
+  <!-- LEFT: brand / membership card panel -->
+  <aside class="brand-panel">
+    <div class="card-punch" aria-hidden="true"></div>
+    <div class="brand-top">
+      <div class="wordmark">
+        <span class="wordmark-main">ClubOps</span><span class="wordmark-ai">AI</span>
+      </div>
+      <p class="tagline">One place to run the club — tasks, volunteers, meetings, and everything in between.</p>
+    </div>
+
+    <div class="member-strip">
+      <div class="member-strip-row">
+        <span class="member-label">Access level</span>
+        <span id="brandRoleLabel" class="member-value">Student</span>
+      </div>
+      <div class="member-strip-row">
+        <span class="member-label">Status</span>
+        <span class="member-value member-value--dot">Ready to check in</span>
+      </div>
+    </div>
+
+    <ul class="brand-features">
+      <li><span class="feat-mark" data-role="student">•</span> See your assigned tasks and deadlines</li>
+      <li><span class="feat-mark" data-role="head">•</span> Run the whole event from one dashboard</li>
+      <li><span class="feat-mark" data-role="volunteer">•</span> Pick up shifts and get reminders</li>
+    </ul>
+  </aside>
+
+  <!-- RIGHT: form panel -->
+  <main class="form-panel">
+    <div class="form-wrap">
+
+      <div class="form-header">
+        <h1>Sign in to your club</h1>
+        <p>Choose how you're joining in, then enter your details.</p>
+      </div>
+
+      <!-- Role tabs styled as patches -->
+      <div class="role-tabs" role="tablist" aria-label="Choose login type">
+        <button class="role-tab is-active" data-role="student" role="tab" aria-selected="true" type="button">
+          <span class="role-tab-title">Student</span>
+          <span class="role-tab-sub">Club member</span>
+        </button>
+        <button class="role-tab" data-role="head" role="tab" aria-selected="false" type="button">
+          <span class="role-tab-title">Club Head</span>
+          <span class="role-tab-sub">Runs the club</span>
+        </button>
+        <button class="role-tab" data-role="volunteer" role="tab" aria-selected="false" type="button">
+          <span class="role-tab-title">Volunteer</span>
+          <span class="role-tab-sub">Event support</span>
+        </button>
+      </div>
+
+      <form id="loginForm" novalidate>
+
+        <!-- Student-only field -->
+        <div class="field field--conditional" data-for="student">
+          <label for="rollNo">Roll number</label>
+          <input type="text" id="rollNo" name="rollNo" placeholder="e.g. 22CS1042" autocomplete="off">
+          <p class="field-error" data-error-for="rollNo"></p>
+        </div>
+
+        <!-- Club Head-only field -->
+        <div class="field field--conditional" data-for="head" hidden>
+          <label for="clubName">Club name</label>
+          <input type="text" id="clubName" name="clubName" placeholder="e.g. Robotics Club" autocomplete="off">
+          <p class="field-error" data-error-for="clubName"></p>
+        </div>
+
+        <!-- Volunteer-only field -->
+        <div class="field field--conditional" data-for="volunteer" hidden>
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="e.g. 98765 43210" autocomplete="off">
+          <p class="field-error" data-error-for="phone"></p>
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@college.edu" autocomplete="username">
+          <p class="field-error" data-error-for="email"></p>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="password-wrap">
+            <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password">
+            <button type="button" class="toggle-pw" id="togglePw" aria-label="Show password">Show</button>
+          </div>
+          <p class="field-error" data-error-for="password"></p>
+        </div>
+
+        <div class="field-row">
+          <label class="remember">
+            <input type="checkbox" id="remember" name="remember">
+            <span>Keep me signed in</span>
+          </label>
+          <a href="#" class="link-quiet" id="forgotLink">Forgot password?</a>
+        </div>
+
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span id="submitLabel">Sign in as Student</span>
+        </button>
+      </form>
+
+      <p class="signup-line">New to your club? <a href="#" id="signupLink">Create an account</a></p>
+    </div>
+  </main>
+
+</div>
+
+<script src="./js/script.js"></script>
+</body>
+</html>
