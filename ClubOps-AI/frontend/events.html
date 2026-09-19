@@ -27,124 +27,112 @@
     <div class="app">
       <!-- ================= SIDEBAR ================= -->
 
-      <aside class="sidebar">
-        <div class="sidebar-top">
-          <!-- Logo -->
-          <div class="brand">
-            <div class="brand-icon">
-              <i class="fa-solid fa-sparkles"></i>
-            </div>
+      <!-- ================= SIDEBAR ================= -->
 
-            <div>
-              <h2>ClubOps</h2>
-              <span>AI Operations</span>
-            </div>
+      <aside class="sidebar" id="sidebar">
+        <!-- LOGO -->
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fa-solid fa-bolt"></i>
           </div>
 
-          <!-- Workspace -->
-          <div class="workspace">
-            <div class="workspace-icon">
-              <i class="fa-solid fa-users"></i>
-            </div>
-
-            <div class="workspace-info">
-              <strong>Tech Club</strong>
-              <span>College Workspace</span>
-            </div>
-
-            <i class="fa-solid fa-chevron-down workspace-arrow"></i>
+          <div>
+            <h2>ClubOps</h2>
+            <span>AI OPERATIONS</span>
           </div>
-
-          <!-- Navigation -->
-          <nav class="navigation">
-            <p class="nav-title">WORKSPACE</p>
-
-            <a href="dashboard.html" class="nav-link">
-              <i class="fa-solid fa-grid-2"></i>
-              <span>Dashboard</span>
-            </a>
-
-            <a href="events.html" class="nav-link active">
-              <i class="fa-regular fa-calendar-days"></i>
-              <span>Events</span>
-              <span class="nav-badge">4</span>
-            </a>
-
-            <a href="tasks.html" class="nav-link">
-              <i class="fa-solid fa-list-check"></i>
-              <span>Tasks</span>
-              <span class="nav-badge orange">12</span>
-            </a>
-
-            <a href="volunteers.html" class="nav-link">
-              <i class="fa-solid fa-people-group"></i>
-              <span>Volunteers</span>
-            </a>
-
-            <p class="nav-title second">COLLABORATE</p>
-
-            <a href="#" class="nav-link">
-              <i class="fa-regular fa-comments"></i>
-              <span>Meetings</span>
-            </a>
-
-            <a href="#" class="nav-link">
-              <i class="fa-regular fa-folder-open"></i>
-              <span>Documents</span>
-            </a>
-
-            <a href="#" class="nav-link">
-              <i class="fa-solid fa-bullhorn"></i>
-              <span>Announcements</span>
-            </a>
-
-            <p class="nav-title second">INTELLIGENCE</p>
-
-            <a href="#" class="nav-link ai-link">
-              <i class="fa-solid fa-wand-magic-sparkles"></i>
-              <span>AI Assistant</span>
-              <span class="ai-dot"></span>
-            </a>
-
-            <a href="#" class="nav-link">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <span>Risks</span>
-              <span class="risk-badge">3</span>
-            </a>
-          </nav>
         </div>
 
-        <!-- Sidebar Bottom -->
-
-        <div class="sidebar-bottom">
-          <div class="help-card">
-            <div class="help-icon">
-              <i class="fa-solid fa-lightbulb"></i>
-            </div>
-
-            <div>
-              <strong>Need help?</strong>
-              <p>Ask ClubOps AI</p>
-            </div>
-
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        <!-- WORKSPACE -->
+        <div class="workspace">
+          <div class="workspace-icon">
+            <i class="fa-solid fa-users"></i>
           </div>
+
+          <div>
+            <small>WORKSPACE</small>
+            <p>Tech Club</p>
+          </div>
+
+          <i class="fa-solid fa-chevron-down workspace-arrow"></i>
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav class="navigation">
+          <p class="nav-title">MAIN</p>
+
+          <a href="dashboard.html" class="nav-link">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="events.html" class="nav-link active">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>Events</span>
+            <span class="nav-count">4</span>
+          </a>
+
+          <a href="tasks.html" class="nav-link">
+            <i class="fa-solid fa-list-check"></i>
+            <span>Tasks</span>
+            <span class="nav-count">12</span>
+          </a>
+
+          <a href="volunteers.html" class="nav-link">
+            <i class="fa-solid fa-user-group"></i>
+            <span>Volunteers</span>
+          </a>
+
+          <p class="nav-title">COLLABORATE</p>
+
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-video"></i>
+            <span>Meetings</span>
+          </a>
+
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>Announcements</span>
+          </a>
+
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Documents</span>
+          </a>
+
+          <p class="nav-title">INTELLIGENCE</p>
+
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>Risks</span>
+            <span class="risk-count">3</span>
+          </a>
+
+          <a href="#" class="nav-link ai-link">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>ClubOps AI</span>
+            <span class="ai-badge">AI</span>
+          </a>
+        </nav>
+
+        <!-- SIDEBAR BOTTOM -->
+        <div class="sidebar-bottom">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
 
           <div class="user-profile">
             <div class="avatar">MB</div>
 
             <div class="user-info">
               <strong>Mauli Bhanderi</strong>
-              <span>Club Admin</span>
+              <span>Admin</span>
             </div>
 
-            <button class="profile-menu">
-              <i class="fa-solid fa-ellipsis"></i>
-            </button>
+            <i class="fa-solid fa-ellipsis"></i>
           </div>
         </div>
       </aside>
-
       <!-- ================= MAIN ================= -->
 
       <main class="main">
