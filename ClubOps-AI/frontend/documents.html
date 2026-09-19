@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ClubOps AI - Documents</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="css/documents.css" />
+  </head>
+
+  <body>
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-cubes"></i>
+        </div>
+
+        <div>
+          <h2>ClubOps <span>AI</span></h2>
+          <small>Event Operations</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <p class="nav-title">MAIN</p>
+
+        <a href="dashboard.html">
+          <i class="fa-solid fa-house"></i>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="events.html">
+          <i class="fa-solid fa-calendar-days"></i>
+          <span>Events</span>
+        </a>
+
+        <a href="tasks.html">
+          <i class="fa-solid fa-list-check"></i>
+          <span>Tasks</span>
+        </a>
+
+        <a href="volunteers.html">
+          <i class="fa-solid fa-users"></i>
+          <span>Volunteers</span>
+        </a>
+
+        <a href="meetings.html">
+          <i class="fa-solid fa-comments"></i>
+          <span>Meetings</span>
+        </a>
+
+        <p class="nav-title">MANAGEMENT</p>
+
+        <a href="deadlines.html">
+          <i class="fa-solid fa-clock"></i>
+          <span>Deadlines</span>
+        </a>
+
+        <a href="documents.html" class="active">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>Documents</span>
+        </a>
+
+        <a href="risks.html">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>Risks</span>
+        </a>
+
+        <a href="announcements.html">
+          <i class="fa-solid fa-bullhorn"></i>
+          <span>Announcements</span>
+        </a>
+
+        <p class="nav-title">AI</p>
+
+        <a href="ai-assistant.html">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>AI Assistant</span>
+        </a>
+
+        <a href="knowledge.html">
+          <i class="fa-solid fa-brain"></i>
+          <span>Knowledge</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="user-card">
+          <div class="avatar">MB</div>
+
+          <div class="user-info">
+            <strong>Mauli Bhanderi</strong>
+            <span>Club Admin</span>
+          </div>
+
+          <i class="fa-solid fa-ellipsis"></i>
+        </div>
+
+        <a href="login.html" class="logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+      <!-- TOPBAR -->
+
+      <header class="topbar">
+        <div>
+          <h1>Documents</h1>
+          <p>Manage event files, meeting notes and club knowledge.</p>
+        </div>
+
+        <div class="top-actions">
+          <button class="icon-btn" title="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notification-dot"></span>
+          </button>
+
+          <button class="ai-button" onclick="openAI()">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            AI Assistant
+          </button>
+        </div>
+      </header>
+
+      <!-- ================= AI BANNER ================= -->
+
+      <section class="ai-banner">
+        <div class="ai-banner-icon">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+
+        <div class="ai-banner-content">
+          <h3>AI Document Intelligence</h3>
+          <p>
+            Upload documents and let ClubOps AI summarize content, extract
+            action items, identify deadlines and answer questions.
+          </p>
+        </div>
+
+        <button onclick="uploadDocument()" class="ai-banner-btn">
+          <i class="fa-solid fa-upload"></i>
+          Upload Document
+        </button>
+      </section>
+
+      <!-- ================= STATS ================= -->
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <i class="fa-solid fa-file"></i>
+          </div>
+
+          <div>
+            <span>Total Documents</span>
+            <strong>48</strong>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <i class="fa-solid fa-file-circle-check"></i>
+          </div>
+
+          <div>
+            <span>Processed by AI</span>
+            <strong>36</strong>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon orange">
+            <i class="fa-solid fa-list-check"></i>
+          </div>
+
+          <div>
+            <span>Action Items Found</span>
+            <strong>27</strong>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon purple">
+            <i class="fa-solid fa-database"></i>
+          </div>
+
+          <div>
+            <span>Knowledge Items</span>
+            <strong>19</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTENT ================= -->
+
+      <section class="documents-section">
+        <div class="section-header">
+          <div>
+            <h2>Document Repository</h2>
+            <p>All important club and event documents in one place.</p>
+          </div>
+
+          <button class="upload-btn" onclick="uploadDocument()">
+            <i class="fa-solid fa-plus"></i>
+            Add Document
+          </button>
+        </div>
+
+        <!-- SEARCH + FILTER -->
+
+        <div class="toolbar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search documents..."
+              onkeyup="searchDocuments()"
+            />
+          </div>
+
+          <select id="typeFilter" onchange="filterDocuments()">
+            <option value="all">All Types</option>
+            <option value="pdf">PDF</option>
+            <option value="doc">Documents</option>
+            <option value="sheet">Spreadsheets</option>
+            <option value="image">Images</option>
+          </select>
+
+          <select id="eventFilter" onchange="filterDocuments()">
+            <option value="all">All Events</option>
+            <option value="techfest">TechFest 2026</option>
+            <option value="hackathon">Hackathon</option>
+            <option value="orientation">Orientation</option>
+          </select>
+        </div>
+
+        <!-- ================= DOCUMENT TABLE ================= -->
+
+        <div class="table-card">
+          <table>
+            <thead>
+              <tr>
+                <th>Document</th>
+                <th>Event</th>
+                <th>Type</th>
+                <th>Uploaded By</th>
+                <th>AI Status</th>
+                <th>Updated</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody id="documentTable">
+              <tr data-type="pdf" data-event="techfest">
+                <td>
+                  <div class="document-info">
+                    <div class="file-icon pdf">
+                      <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+
+                    <div>
+                      <strong>TechFest Event Plan</strong>
+                      <span>Event planning document</span>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <span class="event-tag">TechFest 2026</span>
+                </td>
+
+                <td>PDF</td>
+
+                <td>Mauli</td>
+
+                <td>
+                  <span class="status processed">
+                    <i class="fa-solid fa-check"></i>
+                    Processed
+                  </span>
+                </td>
+
+                <td>Today, 10:42 AM</td>
+
+                <td>
+                  <button class="more-btn">
+                    <i class="fa-solid fa-ellipsis"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <tr data-type="doc" data-event="techfest">
+                <td>
+                  <div class="document-info">
+                    <div class="file-icon doc">
+                      <i class="fa-solid fa-file-word"></i>
+                    </div>
+
+                    <div>
+                      <strong>Volunteer Guidelines</strong>
+                      <span>Volunteer instructions</span>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <span class="event-tag">TechFest 2026</span>
+                </td>
+
+                <td>DOCX</td>
+
+                <td>Rahul</td>
+
+                <td>
+                  <span class="status processed">
+                    <i class="fa-solid fa-check"></i>
+                    Processed
+                  </span>
+                </td>
+
+                <td>Yesterday</td>
+
+                <td>
+                  <button class="more-btn">
+                    <i class="fa-solid fa-ellipsis"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <tr data-type="sheet" data-event="hackathon">
+                <td>
+                  <div class="document-info">
+                    <div class="file-icon sheet">
+                      <i class="fa-solid fa-file-excel"></i>
+                    </div>
+
+                    <div>
+                      <strong>Volunteer Allocation</strong>
+                      <span>Volunteer assignment sheet</span>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <span class="event-tag">Hackathon</span>
+                </td>
+
+                <td>XLSX</td>
+
+                <td>Priya</td>
+
+                <td>
+                  <span class="status processing">
+                    <i class="fa-solid fa-spinner"></i>
+                    Processing
+                  </span>
+                </td>
+
+                <td>Sep 18, 2026</td>
+
+                <td>
+                  <button class="more-btn">
+                    <i class="fa-solid fa-ellipsis"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <tr data-type="pdf" data-event="orientation">
+                <td>
+                  <div class="document-info">
+                    <div class="file-icon pdf">
+                      <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+
+                    <div>
+                      <strong>Orientation Meeting Notes</strong>
+                      <span>Meeting notes and decisions</span>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <span class="event-tag">Orientation</span>
+                </td>
+
+                <td>PDF</td>
+
+                <td>Mauli</td>
+
+                <td>
+                  <span class="status processed">
+                    <i class="fa-solid fa-check"></i>
+                    Processed
+                  </span>
+                </td>
+
+                <td>Sep 17, 2026</td>
+
+                <td>
+                  <button class="more-btn">
+                    <i class="fa-solid fa-ellipsis"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <tr data-type="image" data-event="techfest">
+                <td>
+                  <div class="document-info">
+                    <div class="file-icon image">
+                      <i class="fa-solid fa-image"></i>
+                    </div>
+
+                    <div>
+                      <strong>Event Poster</strong>
+                      <span>Official event poster</span>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <span class="event-tag">TechFest 2026</span>
+                </td>
+
+                <td>PNG</td>
+
+                <td>Aarav</td>
+
+                <td>
+                  <span class="status not-processed"> Not Processed </span>
+                </td>
+
+                <td>Sep 16, 2026</td>
+
+                <td>
+                  <button class="more-btn">
+                    <i class="fa-solid fa-ellipsis"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= AI INSIGHTS ================= -->
+
+      <section class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-header">
+            <div class="insight-icon">
+              <i class="fa-solid fa-list-check"></i>
+            </div>
+
+            <div>
+              <h3>AI Action Items</h3>
+              <span>Extracted from documents</span>
+            </div>
+          </div>
+
+          <div class="action-item">
+            <div class="check-circle"></div>
+
+            <div>
+              <strong>Confirm auditorium booking</strong>
+              <span>Owner: Mauli • Due Sep 21</span>
+            </div>
+          </div>
+
+          <div class="action-item">
+            <div class="check-circle"></div>
+
+            <div>
+              <strong>Finalize volunteer list</strong>
+              <span>Owner: Priya • Due Sep 22</span>
+            </div>
+          </div>
+
+          <div class="action-item">
+            <div class="check-circle"></div>
+
+            <div>
+              <strong>Send sponsor proposal</strong>
+              <span>Owner: Rahul • Due Sep 24</span>
+            </div>
+          </div>
+
+          <button class="view-link">
+            View all action items
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-header">
+            <div class="insight-icon knowledge">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+
+            <div>
+              <h3>Knowledge Insights</h3>
+              <span>AI-generated understanding</span>
+            </div>
+          </div>
+
+          <div class="knowledge-box">
+            <strong>
+              <i class="fa-solid fa-lightbulb"></i>
+              Important finding
+            </strong>
+
+            <p>
+              The latest meeting notes mention that the main auditorium requires
+              confirmation before September 21.
+            </p>
+          </div>
+
+          <div class="knowledge-box">
+            <strong>
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              Potential risk
+            </strong>
+
+            <p>
+              Volunteer coverage for the registration desk is currently below
+              the required number.
+            </p>
+          </div>
+
+          <button class="view-link">
+            Ask AI about documents
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= UPLOAD MODAL ================= -->
+
+    <div class="modal" id="uploadModal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeUpload()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-icon">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+        </div>
+
+        <h2>Upload Document</h2>
+
+        <p>Upload meeting notes, PDFs, spreadsheets or other event files.</p>
+
+        <label class="drop-zone">
+          <i class="fa-solid fa-file-arrow-up"></i>
+
+          <strong>Choose a file</strong>
+
+          <span>PDF, DOCX, XLSX, PNG or JPG</span>
+
+          <input type="file" id="fileInput" />
+        </label>
+
+        <button class="process-btn" onclick="processDocument()">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          Upload & Process with AI
+        </button>
+      </div>
+    </div>
+
+    <script src="js/documents.js"></script>
+  </body>
+</html>
