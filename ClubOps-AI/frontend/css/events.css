@@ -1,7 +1,7 @@
 :root {
   --paper: #fbfaf6;
   --paper-dim: #f1efe7;
-  --paper-white: #ffffff;
+  --paper-white: #fffefa;
 
   --ink: #1c2333;
   --ink-soft: #5b6072;
@@ -18,14 +18,17 @@
 
   --purple: #69568f;
 
-  --radius-card: 22px;
+  --radius-card: 20px;
+  --radius-small: 12px;
   --radius-field: 10px;
 
-  --sidebar-width: 260px;
+  --sidebar-width: 250px;
+  --topbar-height: 74px;
 
-  --shadow-panel: 0 30px 60px -30px rgba(28, 35, 51, 0.35);
+  --shadow-panel: 0 25px 60px -35px rgba(28, 35, 51, 0.35);
 
-  --shadow-card: 0 12px 30px -20px rgba(28, 35, 51, 0.25);
+  --shadow-card: 0 8px 25px -18px rgba(28, 35, 51, 0.35);
+  --transition: 0.2s ease;
 }
 
 * {
@@ -36,8 +39,11 @@
 
 body {
   font-family: "Inter", sans-serif;
-  background: var(--paper);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(42, 111, 111, 0.05), transparent 35%),
+    var(--paper-dim);
   color: var(--ink);
+  -webkit-font-smoothing: antialiased;
 }
 
 button,
@@ -61,7 +67,7 @@ button {
   width: var(--sidebar-width);
   height: 100vh;
 
-  background: #f5f2e9;
+  background: var(--paper);
 
   border-right: 1px solid var(--line);
 
@@ -365,7 +371,7 @@ button {
 /* TOPBAR */
 
 .topbar {
-  height: 72px;
+  height: var(--topbar-height);
 
   padding: 0 35px;
 
@@ -739,12 +745,12 @@ button {
 
   box-shadow: var(--shadow-card);
 
-  transition: 0.25s;
+  transition: var(--transition);
 }
 
 .event-card:hover {
-  transform: translateY(-4px);
-
+  transform: translateY(-3px);
+  border-color: #d9d4c7;
   box-shadow: var(--shadow-panel);
 }
 
@@ -1165,7 +1171,7 @@ button {
 
   background: var(--paper);
 
-  border-radius: 22px;
+  border-radius: var(--radius-card);
 
   padding: 30px;
 
@@ -1504,5 +1510,223 @@ button {
 
   .form-row {
     grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   DASHBOARD DESIGN SYSTEM OVERRIDES
+   These overrides keep the Event page HTML unchanged while
+   matching the Dashboard page's visual language.
+   ========================================================= */
+
+.sidebar {
+  box-shadow: 8px 0 30px -28px rgba(28, 35, 51, 0.35);
+}
+
+.workspace,
+.search,
+.icon-button,
+.event-overview,
+.event-card,
+.modal {
+  background: var(--paper-white);
+}
+
+.workspace,
+.search,
+.icon-button,
+.filter-button,
+.cancel-button,
+.form-group input,
+.form-group textarea,
+.ai-modal textarea {
+  transition: var(--transition);
+}
+
+.search:focus-within {
+  border-color: var(--student);
+  box-shadow: 0 0 0 3px var(--student-soft);
+}
+
+.icon-button:hover,
+.filter-button:hover,
+.cancel-button:hover,
+.event-menu:hover,
+.close-modal:hover {
+  background: var(--paper-dim);
+  color: var(--ink);
+}
+
+.primary-button,
+.ai-button,
+.filter-tab,
+.view-button,
+.create-event-card,
+.event-card,
+.nav-link {
+  transition: var(--transition);
+}
+
+.primary-button:hover {
+  background: #245f60;
+  box-shadow: 0 10px 25px -12px rgba(42, 111, 111, 0.55);
+}
+
+.ai-button:hover {
+  background: #f1e6ca;
+  color: #8f6b20;
+}
+
+.filter-tab:not(.active):hover {
+  background: var(--paper-dim);
+  color: var(--ink);
+}
+
+.event-cover {
+  background-blend-mode: multiply;
+}
+
+.event-body h2,
+.create-event-card h3,
+.modal h2,
+.page-header h1,
+.event-date strong {
+  letter-spacing: -0.01em;
+}
+
+.progress div {
+  transition: width 0.35s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.search input::placeholder {
+  color: var(--ink-light, #858998);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.ai-modal textarea:focus {
+  border-color: var(--student);
+  box-shadow: 0 0 0 3px var(--student-soft);
+}
+
+.create-event-card:hover {
+  box-shadow: var(--shadow-small, 0 8px 25px -18px rgba(28, 35, 51, 0.35));
+}
+
+@media (max-width: 1150px) {
+  .page-content {
+    padding: 30px 27px 50px;
+  }
+
+  .events-grid {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+  }
+
+  .event-overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .overview-item:nth-child(2) {
+    border-right: 0;
+  }
+
+  .overview-item:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 850px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .topbar {
+    height: 64px;
+    padding: 0 20px;
+  }
+
+  .page-content {
+    padding: 27px 20px 45px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-content {
+    padding: 20px 16px 40px;
+  }
+
+  .page-header h1 {
+    font-size: 27px;
+  }
+
+  .event-overview {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-item {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .overview-item:last-child {
+    border-bottom: 0;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .header-actions button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-bar {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 400px) {
+  .top-avatar {
+    display: none;
+  }
+
+  .page-header h1 {
+    font-size: 25px;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--student);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
