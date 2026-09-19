@@ -1,0 +1,2873 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ClubOps AI - Tasks</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+      /* =========================================================
+           ROOT
+        ========================================================= */
+
+      :root {
+        --paper: #fbfaf6;
+        --paper-dim: #f1efe7;
+
+        --ink: #1c2333;
+        --ink-soft: #5b6072;
+
+        --line: #e3ded0;
+
+        --student: #2a6f6f;
+        --student-soft: #e4efee;
+
+        --head: #b88952;
+
+        --white: #ffffff;
+
+        --blue: #4b7bec;
+        --blue-soft: #eaf0ff;
+
+        --purple: #8067c7;
+        --purple-soft: #f0ecfb;
+
+        --orange: #d58a3a;
+        --orange-soft: #fbf0e3;
+
+        --red: #c85b5b;
+        --red-soft: #f9e9e9;
+
+        --green: #4f8a68;
+        --green-soft: #e8f3ec;
+      }
+
+      /* =========================================================
+           RESET
+        ========================================================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Inter, Arial, Helvetica, sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font-family: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* =========================================================
+           APP
+        ========================================================= */
+
+      .app {
+        min-height: 100vh;
+        display: flex;
+      }
+
+      /* =========================================================
+           SIDEBAR
+        ========================================================= */
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        width: 250px;
+
+        background: var(--white);
+
+        border-right: 1px solid var(--line);
+
+        padding: 25px 16px;
+
+        display: flex;
+        flex-direction: column;
+
+        z-index: 1000;
+
+        transition: 0.3s ease;
+      }
+
+      /* LOGO */
+
+      .logo {
+        display: flex;
+        align-items: center;
+
+        gap: 11px;
+
+        padding: 0 9px;
+
+        margin-bottom: 27px;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 10px;
+
+        background: var(--student);
+
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 17px;
+      }
+
+      .logo h2 {
+        font-size: 19px;
+        line-height: 20px;
+        letter-spacing: -0.3px;
+      }
+
+      .logo span {
+        display: block;
+
+        color: var(--ink-soft);
+
+        font-size: 8px;
+        font-weight: 700;
+
+        letter-spacing: 1.3px;
+
+        margin-top: 3px;
+      }
+
+      /* WORKSPACE */
+
+      .workspace {
+        border: 1px solid var(--line);
+
+        background: var(--paper);
+
+        border-radius: 10px;
+
+        padding: 11px;
+
+        display: flex;
+        align-items: center;
+
+        gap: 10px;
+
+        margin-bottom: 27px;
+      }
+
+      .workspace-icon {
+        width: 32px;
+        height: 32px;
+
+        border-radius: 8px;
+
+        background: var(--student-soft);
+
+        color: var(--student);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 13px;
+      }
+
+      .workspace small {
+        display: block;
+
+        font-size: 8px;
+        font-weight: 700;
+
+        color: var(--ink-soft);
+
+        letter-spacing: 1px;
+      }
+
+      .workspace p {
+        font-size: 12px;
+        font-weight: 600;
+
+        margin-top: 3px;
+      }
+
+      .workspace-arrow {
+        margin-left: auto;
+
+        font-size: 10px;
+
+        color: var(--ink-soft);
+      }
+
+      /* NAVIGATION */
+
+      .navigation {
+        flex: 1;
+      }
+
+      .nav-title {
+        color: #999;
+
+        font-size: 9px;
+        font-weight: 700;
+
+        letter-spacing: 1.2px;
+
+        padding: 0 11px;
+
+        margin: 17px 0 8px;
+      }
+
+      .nav-title:first-child {
+        margin-top: 0;
+      }
+
+      .nav-link {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+
+        gap: 12px;
+
+        width: 100%;
+
+        padding: 10px 11px;
+
+        margin-bottom: 3px;
+
+        border-radius: 8px;
+
+        color: var(--ink-soft);
+
+        font-size: 12px;
+
+        transition: 0.2s;
+      }
+
+      .nav-link i {
+        width: 18px;
+
+        text-align: center;
+
+        font-size: 13px;
+      }
+
+      .nav-link:hover {
+        background: var(--paper-dim);
+        color: var(--ink);
+      }
+
+      .nav-link.active {
+        background: var(--student-soft);
+        color: var(--student);
+
+        font-weight: 600;
+      }
+
+      .nav-count,
+      .risk-count,
+      .ai-badge {
+        margin-left: auto;
+
+        font-size: 9px;
+
+        padding: 3px 7px;
+
+        border-radius: 20px;
+      }
+
+      .nav-count {
+        background: var(--student);
+
+        color: white;
+      }
+
+      .risk-count {
+        background: var(--red-soft);
+
+        color: var(--red);
+      }
+
+      .ai-link {
+        background: #f8f4fc;
+      }
+
+      .ai-link:hover {
+        background: #f0eafa;
+      }
+
+      .ai-badge {
+        background: var(--purple);
+
+        color: white;
+
+        font-weight: 700;
+      }
+
+      /* SIDEBAR BOTTOM */
+
+      .sidebar-bottom {
+        border-top: 1px solid var(--line);
+
+        padding-top: 13px;
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+
+        gap: 9px;
+
+        padding: 9px 7px;
+
+        margin-top: 5px;
+      }
+
+      .avatar {
+        width: 34px;
+        height: 34px;
+
+        border-radius: 50%;
+
+        background: var(--head);
+
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .user-info {
+        flex: 1;
+      }
+
+      .user-info strong {
+        display: block;
+
+        font-size: 10px;
+      }
+
+      .user-info span {
+        display: block;
+
+        color: var(--ink-soft);
+
+        font-size: 9px;
+
+        margin-top: 2px;
+      }
+
+      .user-profile > i {
+        color: var(--ink-soft);
+
+        font-size: 12px;
+      }
+
+      /* =========================================================
+           MAIN CONTENT
+        ========================================================= */
+
+      .main-content {
+        width: calc(100% - 250px);
+
+        margin-left: 250px;
+
+        min-height: 100vh;
+      }
+
+      /* =========================================================
+           TOP BAR
+        ========================================================= */
+
+      .topbar {
+        height: 68px;
+
+        background: rgba(255, 255, 255, 0.92);
+
+        border-bottom: 1px solid var(--line);
+
+        display: flex;
+        align-items: center;
+
+        padding: 0 32px;
+
+        position: sticky;
+        top: 0;
+
+        z-index: 100;
+      }
+
+      .menu-btn {
+        display: none;
+
+        border: 0;
+
+        background: transparent;
+
+        font-size: 18px;
+
+        margin-right: 15px;
+
+        color: var(--ink);
+      }
+
+      .search-box {
+        width: 370px;
+
+        height: 38px;
+
+        border: 1px solid var(--line);
+
+        border-radius: 8px;
+
+        background: var(--paper);
+
+        display: flex;
+        align-items: center;
+
+        padding: 0 11px;
+
+        color: var(--ink-soft);
+      }
+
+      .search-box i {
+        font-size: 12px;
+
+        margin-right: 8px;
+      }
+
+      .search-box input {
+        border: 0;
+        outline: 0;
+
+        background: transparent;
+
+        width: 100%;
+
+        font-size: 11px;
+
+        color: var(--ink);
+      }
+
+      .shortcut {
+        white-space: nowrap;
+
+        border: 1px solid var(--line);
+
+        background: white;
+
+        border-radius: 5px;
+
+        padding: 3px 6px;
+
+        font-size: 8px;
+
+        color: var(--ink-soft);
+      }
+
+      .top-actions {
+        margin-left: auto;
+
+        display: flex;
+        align-items: center;
+
+        gap: 13px;
+      }
+
+      .icon-btn {
+        border: 0;
+
+        background: transparent;
+
+        color: var(--ink-soft);
+
+        width: 32px;
+        height: 32px;
+
+        border-radius: 7px;
+
+        position: relative;
+      }
+
+      .icon-btn:hover {
+        background: var(--paper-dim);
+      }
+
+      .notification-btn span {
+        position: absolute;
+
+        width: 6px;
+        height: 6px;
+
+        border-radius: 50%;
+
+        background: var(--red);
+
+        top: 6px;
+        right: 6px;
+
+        border: 1px solid white;
+      }
+
+      .top-avatar {
+        width: 34px;
+        height: 34px;
+
+        border-radius: 50%;
+
+        background: var(--head);
+
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      /* =========================================================
+           PAGE
+        ========================================================= */
+
+      .tasks-page {
+        padding: 30px 34px 45px;
+      }
+
+      .page-header {
+        display: flex;
+        align-items: flex-end;
+
+        justify-content: space-between;
+
+        margin-bottom: 24px;
+      }
+
+      .greeting {
+        color: var(--ink-soft);
+
+        font-size: 10px;
+
+        margin-bottom: 6px;
+      }
+
+      .page-header h1 {
+        font-size: 27px;
+
+        letter-spacing: -0.7px;
+      }
+
+      .subtitle {
+        color: var(--ink-soft);
+
+        font-size: 12px;
+
+        margin-top: 7px;
+      }
+
+      .primary-btn {
+        border: 0;
+
+        background: var(--student);
+
+        color: white;
+
+        padding: 10px 15px;
+
+        border-radius: 7px;
+
+        font-size: 11px;
+        font-weight: 600;
+
+        display: flex;
+        align-items: center;
+
+        gap: 7px;
+
+        transition: 0.2s;
+      }
+
+      .primary-btn:hover {
+        transform: translateY(-1px);
+        opacity: 0.92;
+      }
+
+      /* =========================================================
+           STATISTICS
+        ========================================================= */
+
+      .stats-grid {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 14px;
+
+        margin-bottom: 22px;
+      }
+
+      .stat-card {
+        background: white;
+
+        border: 1px solid var(--line);
+
+        border-radius: 11px;
+
+        padding: 17px;
+      }
+
+      .stat-top {
+        display: flex;
+        align-items: center;
+
+        justify-content: space-between;
+      }
+
+      .stat-icon {
+        width: 35px;
+        height: 35px;
+
+        border-radius: 8px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 13px;
+      }
+
+      .stat-icon.blue {
+        background: var(--blue-soft);
+        color: var(--blue);
+      }
+
+      .stat-icon.purple {
+        background: var(--purple-soft);
+        color: var(--purple);
+      }
+
+      .stat-icon.orange {
+        background: var(--orange-soft);
+        color: var(--orange);
+      }
+
+      .stat-icon.red {
+        background: var(--red-soft);
+        color: var(--red);
+      }
+
+      .stat-card h3 {
+        font-size: 25px;
+
+        margin-top: 13px;
+      }
+
+      .stat-card > p {
+        color: var(--ink-soft);
+
+        font-size: 10px;
+
+        margin-top: 3px;
+      }
+
+      .stat-description {
+        color: var(--ink-soft);
+
+        font-size: 9px;
+
+        margin-top: 8px;
+      }
+
+      .trend {
+        font-size: 8px;
+
+        padding: 4px 6px;
+
+        border-radius: 5px;
+      }
+
+      .trend.positive {
+        background: var(--green-soft);
+        color: var(--green);
+      }
+
+      .trend.warning {
+        background: var(--orange-soft);
+        color: var(--orange);
+      }
+
+      .trend.danger {
+        background: var(--red-soft);
+        color: var(--red);
+      }
+
+      .mini-progress {
+        width: 100%;
+        height: 5px;
+
+        background: var(--paper-dim);
+
+        border-radius: 10px;
+
+        overflow: hidden;
+
+        margin-top: 12px;
+      }
+
+      .mini-progress div {
+        height: 100%;
+
+        background: var(--student);
+
+        border-radius: 10px;
+      }
+
+      .orange-progress div {
+        background: var(--orange);
+      }
+
+      /* =========================================================
+           TASK TOOLBAR
+        ========================================================= */
+
+      .task-toolbar {
+        background: white;
+
+        border: 1px solid var(--line);
+
+        border-radius: 11px;
+
+        padding: 13px;
+
+        display: flex;
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+        margin-bottom: 17px;
+      }
+
+      .filter-group {
+        display: flex;
+        align-items: center;
+
+        gap: 6px;
+
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        border: 1px solid var(--line);
+
+        background: white;
+
+        color: var(--ink-soft);
+
+        padding: 8px 12px;
+
+        border-radius: 6px;
+
+        font-size: 10px;
+
+        transition: 0.2s;
+      }
+
+      .filter-btn:hover {
+        border-color: var(--student);
+
+        color: var(--student);
+      }
+
+      .filter-btn.active {
+        background: var(--student-soft);
+
+        border-color: var(--student);
+
+        color: var(--student);
+
+        font-weight: 600;
+      }
+
+      .toolbar-right {
+        display: flex;
+        align-items: center;
+
+        gap: 8px;
+      }
+
+      .task-search {
+        height: 34px;
+
+        width: 210px;
+
+        border: 1px solid var(--line);
+
+        background: var(--paper);
+
+        border-radius: 6px;
+
+        padding: 0 10px;
+
+        outline: none;
+
+        font-size: 10px;
+      }
+
+      .task-search:focus {
+        border-color: var(--student);
+      }
+
+      .view-btn {
+        width: 34px;
+        height: 34px;
+
+        border: 1px solid var(--line);
+
+        background: white;
+
+        border-radius: 6px;
+
+        color: var(--ink-soft);
+      }
+
+      .view-btn.active {
+        color: var(--student);
+
+        background: var(--student-soft);
+
+        border-color: var(--student);
+      }
+
+      /* =========================================================
+           KANBAN
+        ========================================================= */
+
+      .kanban {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 15px;
+
+        align-items: start;
+      }
+
+      .kanban-column {
+        background: #f5f3ed;
+
+        border: 1px solid var(--line);
+
+        border-radius: 11px;
+
+        padding: 12px;
+
+        min-height: 480px;
+      }
+
+      .column-header {
+        display: flex;
+        align-items: center;
+
+        justify-content: space-between;
+
+        padding: 3px 4px 12px;
+      }
+
+      .column-title {
+        display: flex;
+        align-items: center;
+
+        gap: 8px;
+      }
+
+      .column-dot {
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+      }
+
+      .todo-dot {
+        background: var(--orange);
+      }
+
+      .progress-dot {
+        background: var(--blue);
+      }
+
+      .done-dot {
+        background: var(--green);
+      }
+
+      .column-title h2 {
+        font-size: 12px;
+      }
+
+      .column-count {
+        background: white;
+
+        border: 1px solid var(--line);
+
+        min-width: 24px;
+        height: 22px;
+
+        padding: 0 6px;
+
+        border-radius: 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: var(--ink-soft);
+
+        font-size: 9px;
+      }
+
+      /* =========================================================
+           TASK CARD
+        ========================================================= */
+
+      .task-card {
+        background: white;
+
+        border: 1px solid var(--line);
+
+        border-radius: 9px;
+
+        padding: 14px;
+
+        margin-bottom: 9px;
+
+        cursor: grab;
+
+        transition: 0.2s;
+      }
+
+      .task-card:hover {
+        border-color: #cfc8b9;
+
+        transform: translateY(-1px);
+
+        box-shadow: 0 5px 15px rgba(28, 35, 51, 0.06);
+      }
+
+      .task-card.dragging {
+        opacity: 0.45;
+      }
+
+      .task-card.hidden {
+        display: none;
+      }
+
+      .task-top {
+        display: flex;
+        align-items: flex-start;
+
+        justify-content: space-between;
+
+        gap: 10px;
+      }
+
+      .task-title {
+        font-size: 12px;
+
+        line-height: 1.4;
+
+        font-weight: 700;
+      }
+
+      .priority {
+        font-size: 8px;
+
+        padding: 4px 6px;
+
+        border-radius: 5px;
+
+        white-space: nowrap;
+      }
+
+      .priority.high {
+        background: var(--red-soft);
+        color: var(--red);
+      }
+
+      .priority.medium {
+        background: var(--orange-soft);
+        color: var(--orange);
+      }
+
+      .priority.low {
+        background: var(--green-soft);
+        color: var(--green);
+      }
+
+      .task-description {
+        color: var(--ink-soft);
+
+        font-size: 9px;
+
+        line-height: 1.5;
+
+        margin: 8px 0;
+      }
+
+      .task-event {
+        display: inline-flex;
+        align-items: center;
+
+        gap: 5px;
+
+        color: var(--student);
+
+        background: var(--student-soft);
+
+        padding: 4px 6px;
+
+        border-radius: 4px;
+
+        font-size: 8px;
+
+        margin-bottom: 11px;
+      }
+
+      .task-event i {
+        font-size: 7px;
+      }
+
+      /* PROGRESS */
+
+      .progress-label {
+        display: flex;
+        justify-content: space-between;
+
+        color: var(--ink-soft);
+
+        font-size: 8px;
+
+        margin-bottom: 5px;
+      }
+
+      .progress {
+        height: 4px;
+
+        background: var(--paper-dim);
+
+        border-radius: 10px;
+
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+
+        background: var(--student);
+
+        border-radius: 10px;
+      }
+
+      /* TASK FOOTER */
+
+      .task-footer {
+        border-top: 1px solid var(--line);
+
+        margin-top: 12px;
+
+        padding-top: 10px;
+
+        display: flex;
+        align-items: center;
+
+        justify-content: space-between;
+      }
+
+      .assignee {
+        display: flex;
+        align-items: center;
+
+        gap: 6px;
+      }
+
+      .mini-avatar {
+        width: 24px;
+        height: 24px;
+
+        border-radius: 50%;
+
+        background: var(--head);
+
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 7px;
+        font-weight: 700;
+      }
+
+      .assignee-name {
+        color: var(--ink-soft);
+
+        font-size: 8px;
+      }
+
+      .deadline {
+        color: var(--ink-soft);
+
+        font-size: 8px;
+
+        display: flex;
+        align-items: center;
+
+        gap: 4px;
+      }
+
+      .deadline.overdue {
+        color: var(--red);
+
+        font-weight: 600;
+      }
+
+      /* =========================================================
+           ADD TASK COLUMN BUTTON
+        ========================================================= */
+
+      .add-task-column {
+        width: 100%;
+
+        border: 1px dashed #cfc9ba;
+
+        background: transparent;
+
+        color: var(--ink-soft);
+
+        padding: 9px;
+
+        border-radius: 7px;
+
+        font-size: 9px;
+
+        margin-top: 3px;
+
+        transition: 0.2s;
+      }
+
+      .add-task-column:hover {
+        background: white;
+
+        border-color: var(--student);
+
+        color: var(--student);
+      }
+
+      /* =========================================================
+           MODAL
+        ========================================================= */
+
+      .modal-overlay {
+        position: fixed;
+
+        inset: 0;
+
+        background: rgba(20, 26, 38, 0.42);
+
+        display: none;
+
+        align-items: center;
+        justify-content: center;
+
+        z-index: 2000;
+
+        padding: 20px;
+      }
+
+      .modal-overlay.show {
+        display: flex;
+      }
+
+      .modal {
+        width: 500px;
+
+        max-width: 100%;
+
+        background: white;
+
+        border-radius: 13px;
+
+        border: 1px solid var(--line);
+
+        padding: 23px;
+
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+
+        animation: modalIn 0.2s ease;
+      }
+
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-bottom: 20px;
+      }
+
+      .modal-header h2 {
+        font-size: 17px;
+      }
+
+      .close-modal {
+        width: 30px;
+        height: 30px;
+
+        border: 0;
+
+        background: var(--paper-dim);
+
+        border-radius: 50%;
+
+        color: var(--ink-soft);
+      }
+
+      .form-group {
+        margin-bottom: 13px;
+      }
+
+      .form-group label {
+        display: block;
+
+        font-size: 9px;
+
+        font-weight: 600;
+
+        color: var(--ink-soft);
+
+        margin-bottom: 5px;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+
+        border: 1px solid var(--line);
+
+        background: var(--paper);
+
+        border-radius: 7px;
+
+        padding: 9px 10px;
+
+        outline: none;
+
+        font-size: 10px;
+
+        color: var(--ink);
+      }
+
+      .form-textarea {
+        height: 75px;
+
+        resize: vertical;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        border-color: var(--student);
+      }
+
+      .form-row {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px;
+      }
+
+      .modal-footer {
+        display: flex;
+
+        justify-content: flex-end;
+
+        gap: 8px;
+
+        margin-top: 20px;
+      }
+
+      .cancel-btn {
+        border: 1px solid var(--line);
+
+        background: white;
+
+        color: var(--ink-soft);
+
+        padding: 9px 14px;
+
+        border-radius: 7px;
+
+        font-size: 10px;
+      }
+
+      .save-btn {
+        border: 0;
+
+        background: var(--student);
+
+        color: white;
+
+        padding: 9px 15px;
+
+        border-radius: 7px;
+
+        font-size: 10px;
+
+        font-weight: 600;
+      }
+
+      /* =========================================================
+           TOAST
+        ========================================================= */
+
+      .toast {
+        position: fixed;
+
+        right: 25px;
+        bottom: 25px;
+
+        background: var(--ink);
+
+        color: white;
+
+        padding: 11px 15px;
+
+        border-radius: 7px;
+
+        font-size: 10px;
+
+        display: flex;
+        align-items: center;
+
+        gap: 8px;
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+        pointer-events: none;
+
+        transition: 0.25s;
+
+        z-index: 3000;
+      }
+
+      .toast.show {
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+
+      /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+      @media (max-width: 1150px) {
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .kanban {
+          grid-template-columns: 1fr;
+        }
+
+        .kanban-column {
+          min-height: auto;
+        }
+      }
+
+      @media (max-width: 800px) {
+        .sidebar {
+          transform: translateX(-100%);
+        }
+
+        .sidebar.open {
+          transform: translateX(0);
+        }
+
+        .main-content {
+          width: 100%;
+
+          margin-left: 0;
+        }
+
+        .menu-btn {
+          display: block;
+        }
+
+        .topbar {
+          padding: 0 18px;
+        }
+
+        .search-box {
+          width: 100%;
+        }
+
+        .shortcut {
+          display: none;
+        }
+
+        .tasks-page {
+          padding: 22px 18px 40px;
+        }
+
+        .task-toolbar {
+          flex-direction: column;
+
+          align-items: stretch;
+        }
+
+        .toolbar-right {
+          width: 100%;
+        }
+
+        .task-search {
+          flex: 1;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .page-header {
+          align-items: flex-start;
+
+          gap: 15px;
+
+          flex-direction: column;
+        }
+
+        .top-actions .icon-btn:first-child {
+          display: none;
+        }
+
+        .filter-group {
+          display: grid;
+
+          grid-template-columns: repeat(2, 1fr);
+
+          width: 100%;
+        }
+
+        .filter-btn {
+          width: 100%;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- =========================================================
+         SIDEBAR
+    ========================================================= -->
+
+      <aside class="sidebar" id="sidebar">
+        <!-- LOGO -->
+
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+
+          <div>
+            <h2>ClubOps</h2>
+            <span>AI OPERATIONS</span>
+          </div>
+        </div>
+
+        <!-- WORKSPACE -->
+
+        <div class="workspace">
+          <div class="workspace-icon">
+            <i class="fa-solid fa-users"></i>
+          </div>
+
+          <div>
+            <small>WORKSPACE</small>
+            <p>Tech Club</p>
+          </div>
+
+          <i class="fa-solid fa-chevron-down workspace-arrow"></i>
+        </div>
+
+        <!-- NAVIGATION -->
+
+        <nav class="navigation">
+          <p class="nav-title">MAIN</p>
+
+          <a href="dashboard.html" class="nav-link">
+            <i class="fa-solid fa-chart-pie"></i>
+
+            <span>Dashboard</span>
+          </a>
+
+          <a href="events.html" class="nav-link">
+            <i class="fa-solid fa-calendar-days"></i>
+
+            <span>Events</span>
+          </a>
+
+          <a href="tasks.html" class="nav-link active">
+            <i class="fa-solid fa-list-check"></i>
+
+            <span>Tasks</span>
+
+            <span class="nav-count"> 12 </span>
+          </a>
+
+          <a href="volunteers.html" class="nav-link">
+            <i class="fa-solid fa-user-group"></i>
+
+            <span>Volunteers</span>
+          </a>
+
+          <p class="nav-title">COLLABORATE</p>
+
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-video"></i>
+
+            <span>Meetings</span>
+          </a>
+
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-bullhorn"></i>
+
+            <span>Announcements</span>
+          </a>
+
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-file-lines"></i>
+
+            <span>Documents</span>
+          </a>
+
+          <p class="nav-title">INTELLIGENCE</p>
+
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+            <span>Risks</span>
+
+            <span class="risk-count"> 3 </span>
+          </a>
+
+          <a href="#" class="nav-link ai-link">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            <span>ClubOps AI</span>
+
+            <span class="ai-badge"> AI </span>
+          </a>
+        </nav>
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+          </a>
+
+          <div class="user-profile">
+            <div class="avatar">MB</div>
+
+            <div class="user-info">
+              <strong> Mauli Bhanderi </strong>
+
+              <span> Admin </span>
+            </div>
+
+            <i class="fa-solid fa-ellipsis"></i>
+          </div>
+        </div>
+      </aside>
+
+      <!-- =========================================================
+         MAIN CONTENT
+    ========================================================= -->
+
+      <main class="main-content">
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+          <button class="menu-btn" id="menuBtn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+              type="text"
+              id="globalSearch"
+              placeholder="Search tasks, people, documents..."
+            />
+
+            <span class="shortcut"> Ctrl K </span>
+          </div>
+
+          <div class="top-actions">
+            <button class="icon-btn">
+              <i class="fa-regular fa-circle-question"></i>
+            </button>
+
+            <button class="icon-btn notification-btn">
+              <i class="fa-regular fa-bell"></i>
+
+              <span></span>
+            </button>
+
+            <div class="top-avatar">MB</div>
+          </div>
+        </header>
+
+        <!-- =====================================================
+             TASK PAGE
+        ===================================================== -->
+
+        <section class="tasks-page">
+          <!-- PAGE HEADER -->
+
+          <div class="page-header">
+            <div>
+              <p class="greeting">Saturday, September 19, 2026</p>
+
+              <h1>Tasks</h1>
+
+              <p class="subtitle">
+                Manage responsibilities, deadlines and team progress.
+              </p>
+            </div>
+
+            <button class="primary-btn" id="createTaskBtn">
+              <i class="fa-solid fa-plus"></i>
+
+              Create Task
+            </button>
+          </div>
+
+          <!-- =================================================
+                 STAT CARDS
+            ================================================= -->
+
+          <div class="stats-grid">
+            <!-- TOTAL -->
+
+            <div class="stat-card">
+              <div class="stat-top">
+                <div class="stat-icon blue">
+                  <i class="fa-solid fa-list-check"></i>
+                </div>
+
+                <span class="trend positive">
+                  <i class="fa-solid fa-arrow-up"></i>
+
+                  12%
+                </span>
+              </div>
+
+              <h3 id="totalTasks">12</h3>
+
+              <p>Total Tasks</p>
+
+              <div class="mini-progress">
+                <div style="width: 72%"></div>
+              </div>
+
+              <div class="stat-description">Across all active events</div>
+            </div>
+
+            <!-- IN PROGRESS -->
+
+            <div class="stat-card">
+              <div class="stat-top">
+                <div class="stat-icon purple">
+                  <i class="fa-solid fa-spinner"></i>
+                </div>
+
+                <span class="trend positive"> Active </span>
+              </div>
+
+              <h3 id="progressTasks">4</h3>
+
+              <p>In Progress</p>
+
+              <div class="mini-progress">
+                <div style="width: 55%; background: var(--purple)"></div>
+              </div>
+
+              <div class="stat-description">Currently being worked on</div>
+            </div>
+
+            <!-- COMPLETED -->
+
+            <div class="stat-card">
+              <div class="stat-top">
+                <div class="stat-icon orange">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <span class="trend positive"> 58% </span>
+              </div>
+
+              <h3 id="completedTasks">5</h3>
+
+              <p>Completed</p>
+
+              <div class="mini-progress">
+                <div style="width: 58%; background: var(--green)"></div>
+              </div>
+
+              <div class="stat-description">Completion rate</div>
+            </div>
+
+            <!-- OVERDUE -->
+
+            <div class="stat-card">
+              <div class="stat-top">
+                <div class="stat-icon red">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+
+                <span class="trend danger"> Attention </span>
+              </div>
+
+              <h3 id="overdueTasks">3</h3>
+
+              <p>Overdue</p>
+
+              <div class="mini-progress">
+                <div style="width: 25%; background: var(--red)"></div>
+              </div>
+
+              <div class="stat-description">Tasks need attention</div>
+            </div>
+          </div>
+
+          <!-- =================================================
+                 TOOLBAR
+            ================================================= -->
+
+          <div class="task-toolbar">
+            <div class="filter-group">
+              <button class="filter-btn active" data-filter="all">
+                All Tasks
+              </button>
+
+              <button class="filter-btn" data-filter="high">
+                High Priority
+              </button>
+
+              <button class="filter-btn" data-filter="mine">My Tasks</button>
+
+              <button class="filter-btn" data-filter="overdue">Overdue</button>
+            </div>
+
+            <div class="toolbar-right">
+              <input
+                class="task-search"
+                id="taskSearch"
+                type="text"
+                placeholder="Search tasks..."
+              />
+
+              <button class="view-btn active" title="Board View">
+                <i class="fa-solid fa-table-columns"></i>
+              </button>
+
+              <button class="view-btn" title="List View" id="listViewBtn">
+                <i class="fa-solid fa-list"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- =================================================
+                 KANBAN BOARD
+            ================================================= -->
+
+          <div class="kanban">
+            <!-- =================================================
+                     TODO
+                ================================================= -->
+
+            <div class="kanban-column" data-status="todo">
+              <div class="column-header">
+                <div class="column-title">
+                  <span class="column-dot todo-dot"></span>
+
+                  <h2>To Do</h2>
+                </div>
+
+                <span class="column-count"> 4 </span>
+              </div>
+
+              <!-- TASK 1 -->
+
+              <div
+                class="task-card"
+                draggable="true"
+                data-priority="high"
+                data-assignee="other"
+                data-overdue="false"
+              >
+                <div class="task-top">
+                  <div class="task-title">Finalize event venue</div>
+
+                  <span class="priority high"> High </span>
+                </div>
+
+                <p class="task-description">
+                  Confirm the auditorium booking and collect the required
+                  documents.
+                </p>
+
+                <span class="task-event">
+                  <i class="fa-solid fa-calendar"></i>
+
+                  TechFest 2026
+                </span>
+
+                <div class="progress-label">
+                  <span> Progress </span>
+
+                  <span> 0% </span>
+                </div>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 0%"></div>
+                </div>
+
+                <div class="task-footer">
+                  <div class="assignee">
+                    <div class="mini-avatar">AK</div>
+
+                    <span class="assignee-name"> Aarav </span>
+                  </div>
+
+                  <span class="deadline">
+                    <i class="fa-regular fa-calendar"></i>
+
+                    Sep 21
+                  </span>
+                </div>
+              </div>
+
+              <!-- TASK 2 -->
+
+              <div
+                class="task-card"
+                draggable="true"
+                data-priority="medium"
+                data-assignee="mine"
+                data-overdue="false"
+              >
+                <div class="task-top">
+                  <div class="task-title">Prepare event poster</div>
+
+                  <span class="priority medium"> Medium </span>
+                </div>
+
+                <p class="task-description">
+                  Create the final promotional poster for social media.
+                </p>
+
+                <span class="task-event">
+                  <i class="fa-solid fa-calendar"></i>
+
+                  Orientation
+                </span>
+
+                <div class="progress-label">
+                  <span> Progress </span>
+
+                  <span> 10% </span>
+                </div>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 10%"></div>
+                </div>
+
+                <div class="task-footer">
+                  <div class="assignee">
+                    <div class="mini-avatar">MB</div>
+
+                    <span class="assignee-name"> Mauli </span>
+                  </div>
+
+                  <span class="deadline">
+                    <i class="fa-regular fa-calendar"></i>
+
+                    Sep 23
+                  </span>
+                </div>
+              </div>
+
+              <!-- TASK 3 -->
+
+              <div
+                class="task-card"
+                draggable="true"
+                data-priority="low"
+                data-assignee="other"
+                data-overdue="false"
+              >
+                <div class="task-top">
+                  <div class="task-title">Prepare volunteer list</div>
+
+                  <span class="priority low"> Low </span>
+                </div>
+
+                <p class="task-description">
+                  Collect names and availability of students interested in
+                  volunteering.
+                </p>
+
+                <span class="task-event">
+                  <i class="fa-solid fa-calendar"></i>
+
+                  Workshop
+                </span>
+
+                <div class="progress-label">
+                  <span> Progress </span>
+
+                  <span> 0% </span>
+                </div>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 0%"></div>
+                </div>
+
+                <div class="task-footer">
+                  <div class="assignee">
+                    <div class="mini-avatar">RS</div>
+
+                    <span class="assignee-name"> Riya </span>
+                  </div>
+
+                  <span class="deadline">
+                    <i class="fa-regular fa-calendar"></i>
+
+                    Sep 25
+                  </span>
+                </div>
+              </div>
+
+              <button class="add-task-column" onclick="openCreateModal()">
+                <i class="fa-solid fa-plus"></i>
+
+                Add task
+              </button>
+            </div>
+
+            <!-- =================================================
+                     IN PROGRESS
+                ================================================= -->
+
+            <div class="kanban-column" data-status="progress">
+              <div class="column-header">
+                <div class="column-title">
+                  <span class="column-dot progress-dot"></span>
+
+                  <h2>In Progress</h2>
+                </div>
+
+                <span class="column-count"> 4 </span>
+              </div>
+
+              <!-- TASK -->
+
+              <div
+                class="task-card"
+                draggable="true"
+                data-priority="high"
+                data-assignee="mine"
+                data-overdue="false"
+              >
+                <div class="task-top">
+                  <div class="task-title">Contact sponsors</div>
+
+                  <span class="priority high"> High </span>
+                </div>
+
+                <p class="task-description">
+                  Reach out to potential sponsors and finalize sponsorship
+                  packages.
+                </p>
+
+                <span class="task-event">
+                  <i class="fa-solid fa-calendar"></i>
+
+                  TechFest 2026
+                </span>
+
+                <div class="progress-label">
+                  <span> Progress </span>
+
+                  <span> 65% </span>
+                </div>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 65%"></div>
+                </div>
+
+                <div class="task-footer">
+                  <div class="assignee">
+                    <div class="mini-avatar">MB</div>
+
+                    <span class="assignee-name"> Mauli </span>
+                  </div>
+
+                  <span class="deadline">
+                    <i class="fa-regular fa-calendar"></i>
+
+                    Sep 20
+                  </span>
+                </div>
+              </div>
+
+              <!-- TASK -->
+
+              <div
+                class="task-card"
+                draggable="true"
+                data-priority="medium"
+                data-assignee="other"
+                data-overdue="false"
+              >
+                <div class="task-top">
+                  <div class="task-title">Design registration form</div>
+
+                  <span class="priority medium"> Medium </span>
+                </div>
+
+                <p class="task-description">
+                  Build and test the online registration form for participants.
+                </p>
+
+                <span class="task-event">
+                  <i class="fa-solid fa-calendar"></i>
+
+                  Workshop
+                </span>
+
+                <div class="progress-label">
+                  <span> Progress </span>
+
+                  <span> 45% </span>
+                </div>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 45%"></div>
+                </div>
+
+                <div class="task-footer">
+                  <div class="assignee">
+                    <div class="mini-avatar">KP</div>
+
+                    <span class="assignee-name"> Kunal </span>
+                  </div>
+
+                  <span class="deadline">
+                    <i class="fa-regular fa-calendar"></i>
+
+                    Sep 22
+                  </span>
+                </div>
+              </div>
+
+              <!-- TASK -->
+
+              <div
+                class="task-card"
+                draggable="true"
+                data-priority="medium"
+                data-assignee="other"
+                data-overdue="true"
+              >
+                <div class="task-top">
+                  <div class="task-title">Arrange equipment</div>
+
+                  <span class="priority medium"> Medium </span>
+                </div>
+
+                <p class="task-description">
+                  Check microphones, projectors, speakers and extension boards.
+                </p>
+
+                <span class="task-event">
+                  <i class="fa-solid fa-calendar"></i>
+
+                  Orientation
+                </span>
+
+                <div class="progress-label">
+                  <span> Progress </span>
+
+                  <span> 70% </span>
+                </div>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
+                </div>
+
+                <div class="task-footer">
+                  <div class="assignee">
+                    <div class="mini-avatar">VD</div>
+
+                    <span class="assignee-name"> Ved </span>
+                  </div>
+
+                  <span class="deadline overdue">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    Overdue
+                  </span>
+                </div>
+              </div>
+
+              <button class="add-task-column" onclick="openCreateModal()">
+                <i class="fa-solid fa-plus"></i>
+
+                Add task
+              </button>
+            </div>
+
+            <!-- =================================================
+                     COMPLETED
+                ================================================= -->
+
+            <div class="kanban-column" data-status="completed">
+              <div class="column-header">
+                <div class="column-title">
+                  <span class="column-dot done-dot"></span>
+
+                  <h2>Completed</h2>
+                </div>
+
+                <span class="column-count"> 5 </span>
+              </div>
+
+              <!-- TASK -->
+
+              <div
+                class="task-card"
+                draggable="true"
+                data-priority="high"
+                data-assignee="other"
+                data-overdue="false"
+              >
+                <div class="task-top">
+                  <div class="task-title">Confirm speakers</div>
+
+                  <span class="priority high"> High </span>
+                </div>
+
+                <p class="task-description">
+                  Finalize guest speaker availability and session timings.
+                </p>
+
+                <span class="task-event">
+                  <i class="fa-solid fa-calendar"></i>
+
+                  TechFest 2026
+                </span>
+
+                <div class="progress-label">
+                  <span> Progress </span>
+
+                  <span> 100% </span>
+                </div>
+
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    style="width: 100%; background: var(--green)"
+                  ></div>
+                </div>
+
+                <div class="task-footer">
+                  <div class="assignee">
+                    <div class="mini-avatar">AK</div>
+
+                    <span class="assignee-name"> Aarav </span>
+                  </div>
+
+                  <span class="deadline">
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Completed
+                  </span>
+                </div>
+              </div>
+
+              <!-- TASK -->
+
+              <div
+                class="task-card"
+                draggable="true"
+                data-priority="medium"
+                data-assignee="mine"
+                data-overdue="false"
+              >
+                <div class="task-top">
+                  <div class="task-title">Create social media plan</div>
+
+                  <span class="priority medium"> Medium </span>
+                </div>
+
+                <p class="task-description">
+                  Prepare the posting schedule and promotional content.
+                </p>
+
+                <span class="task-event">
+                  <i class="fa-solid fa-calendar"></i>
+
+                  Orientation
+                </span>
+
+                <div class="progress-label">
+                  <span> Progress </span>
+
+                  <span> 100% </span>
+                </div>
+
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    style="width: 100%; background: var(--green)"
+                  ></div>
+                </div>
+
+                <div class="task-footer">
+                  <div class="assignee">
+                    <div class="mini-avatar">MB</div>
+
+                    <span class="assignee-name"> Mauli </span>
+                  </div>
+
+                  <span class="deadline">
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Completed
+                  </span>
+                </div>
+              </div>
+
+              <!-- TASK -->
+
+              <div
+                class="task-card"
+                draggable="true"
+                data-priority="low"
+                data-assignee="other"
+                data-overdue="false"
+              >
+                <div class="task-top">
+                  <div class="task-title">Book photography team</div>
+
+                  <span class="priority low"> Low </span>
+                </div>
+
+                <p class="task-description">
+                  Confirm photographer and collect contact details.
+                </p>
+
+                <span class="task-event">
+                  <i class="fa-solid fa-calendar"></i>
+
+                  Workshop
+                </span>
+
+                <div class="progress-label">
+                  <span> Progress </span>
+
+                  <span> 100% </span>
+                </div>
+
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    style="width: 100%; background: var(--green)"
+                  ></div>
+                </div>
+
+                <div class="task-footer">
+                  <div class="assignee">
+                    <div class="mini-avatar">RS</div>
+
+                    <span class="assignee-name"> Riya </span>
+                  </div>
+
+                  <span class="deadline">
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Completed
+                  </span>
+                </div>
+              </div>
+
+              <button class="add-task-column" onclick="openCreateModal()">
+                <i class="fa-solid fa-plus"></i>
+
+                Add task
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- =========================================================
+     CREATE TASK MODAL
+========================================================= -->
+
+    <div class="modal-overlay" id="createModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>Create New Task</h2>
+
+          <button class="close-modal" onclick="closeCreateModal()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label> Task Name </label>
+
+          <input
+            class="form-input"
+            id="newTaskName"
+            type="text"
+            placeholder="Enter task name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label> Description </label>
+
+          <textarea
+            class="form-textarea"
+            id="newTaskDescription"
+            placeholder="Describe the task..."
+          ></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label> Priority </label>
+
+            <select class="form-select" id="newTaskPriority">
+              <option value="low">Low</option>
+
+              <option value="medium" selected>Medium</option>
+
+              <option value="high">High</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label> Assign To </label>
+
+            <select class="form-select" id="newTaskAssignee">
+              <option>Mauli</option>
+
+              <option>Aarav</option>
+
+              <option>Riya</option>
+
+              <option>Kunal</option>
+
+              <option>Ved</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label> Event </label>
+
+            <select class="form-select" id="newTaskEvent">
+              <option>TechFest 2026</option>
+
+              <option>Orientation</option>
+
+              <option>Workshop</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label> Due Date </label>
+
+            <input class="form-input" id="newTaskDate" type="date" />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="cancel-btn" onclick="closeCreateModal()">
+            Cancel
+          </button>
+
+          <button class="save-btn" onclick="createTask()">
+            <i class="fa-solid fa-plus"></i>
+
+            Create Task
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     TOAST
+========================================================= -->
+
+    <div class="toast" id="toast">
+      <i class="fa-solid fa-circle-check"></i>
+
+      <span id="toastMessage"> Task created successfully </span>
+    </div>
+
+    <script>
+      /* =========================================================
+       SIDEBAR
+    ========================================================= */
+
+      const menuBtn = document.getElementById("menuBtn");
+
+      const sidebar = document.getElementById("sidebar");
+
+      menuBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+      });
+
+      /* =========================================================
+       CREATE MODAL
+    ========================================================= */
+
+      const createModal = document.getElementById("createModal");
+
+      const createTaskBtn = document.getElementById("createTaskBtn");
+
+      createTaskBtn.addEventListener("click", openCreateModal);
+
+      function openCreateModal() {
+        createModal.classList.add("show");
+
+        document.getElementById("newTaskName").focus();
+      }
+
+      function closeCreateModal() {
+        createModal.classList.remove("show");
+      }
+
+      /* CLOSE MODAL WHEN CLICKING OUTSIDE */
+
+      createModal.addEventListener("click", function (event) {
+        if (event.target === createModal) {
+          closeCreateModal();
+        }
+      });
+
+      /* =========================================================
+       CREATE TASK
+    ========================================================= */
+
+      function createTask() {
+        const name = document.getElementById("newTaskName").value.trim();
+
+        const description = document
+          .getElementById("newTaskDescription")
+          .value.trim();
+
+        const priority = document.getElementById("newTaskPriority").value;
+
+        if (!name) {
+          showToast("Please enter a task name");
+
+          return;
+        }
+
+        const todoColumn = document.querySelector(
+          '.kanban-column[data-status="todo"]',
+        );
+
+        const addButton = todoColumn.querySelector(".add-task-column");
+
+        const card = document.createElement("div");
+
+        card.className = "task-card";
+
+        card.draggable = true;
+
+        card.dataset.priority = priority;
+
+        card.dataset.assignee = "mine";
+
+        card.dataset.overdue = "false";
+
+        const priorityText =
+          priority.charAt(0).toUpperCase() + priority.slice(1);
+
+        card.innerHTML = `
+
+            <div class="task-top">
+
+                <div class="task-title">
+                    ${escapeHtml(name)}
+                </div>
+
+                <span class="priority ${priority}">
+                    ${priorityText}
+                </span>
+
+            </div>
+
+            <p class="task-description">
+                ${escapeHtml(description || "No description provided.")}
+            </p>
+
+            <span class="task-event">
+
+                <i class="fa-solid fa-calendar"></i>
+
+                New Task
+
+            </span>
+
+            <div class="progress-label">
+
+                <span>
+                    Progress
+                </span>
+
+                <span>
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    style="width:0%"
+                ></div>
+
+            </div>
+
+            <div class="task-footer">
+
+                <div class="assignee">
+
+                    <div class="mini-avatar">
+                        MB
+                    </div>
+
+                    <span class="assignee-name">
+                        Mauli
+                    </span>
+
+                </div>
+
+                <span class="deadline">
+
+                    <i class="fa-regular fa-calendar"></i>
+
+                    New
+
+                </span>
+
+            </div>
+
+        `;
+
+        todoColumn.insertBefore(card, addButton);
+
+        setupDrag(card);
+
+        updateCounts();
+
+        closeCreateModal();
+
+        document.getElementById("newTaskName").value = "";
+
+        document.getElementById("newTaskDescription").value = "";
+
+        showToast("Task created successfully");
+      }
+
+      /* =========================================================
+       HTML ESCAPE
+    ========================================================= */
+
+      function escapeHtml(text) {
+        const div = document.createElement("div");
+
+        div.textContent = text;
+
+        return div.innerHTML;
+      }
+
+      /* =========================================================
+       FILTERS
+    ========================================================= */
+
+      const filterButtons = document.querySelectorAll(".filter-btn");
+
+      let currentFilter = "all";
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          filterButtons.forEach((btn) => {
+            btn.classList.remove("active");
+          });
+
+          button.classList.add("active");
+
+          currentFilter = button.dataset.filter;
+
+          applyFilters();
+        });
+      });
+
+      /* =========================================================
+       SEARCH
+    ========================================================= */
+
+      const taskSearch = document.getElementById("taskSearch");
+
+      const globalSearch = document.getElementById("globalSearch");
+
+      taskSearch.addEventListener("input", applyFilters);
+
+      globalSearch.addEventListener("input", () => {
+        taskSearch.value = globalSearch.value;
+
+        applyFilters();
+      });
+
+      function applyFilters() {
+        const searchText = taskSearch.value.toLowerCase().trim();
+
+        const cards = document.querySelectorAll(".task-card");
+
+        cards.forEach((card) => {
+          const title = card
+            .querySelector(".task-title")
+            .textContent.toLowerCase();
+
+          const description = card
+            .querySelector(".task-description")
+            .textContent.toLowerCase();
+
+          const priority = card.dataset.priority;
+
+          const assignee = card.dataset.assignee;
+
+          const overdue = card.dataset.overdue;
+
+          let filterMatch = true;
+
+          if (currentFilter === "high") {
+            filterMatch = priority === "high";
+          }
+
+          if (currentFilter === "mine") {
+            filterMatch = assignee === "mine";
+          }
+
+          if (currentFilter === "overdue") {
+            filterMatch = overdue === "true";
+          }
+
+          const searchMatch =
+            title.includes(searchText) || description.includes(searchText);
+
+          if (filterMatch && searchMatch) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      }
+
+      /* =========================================================
+       DRAG AND DROP
+    ========================================================= */
+
+      const columns = document.querySelectorAll(".kanban-column");
+
+      function setupDrag(card) {
+        card.addEventListener("dragstart", () => {
+          card.classList.add("dragging");
+        });
+
+        card.addEventListener("dragend", () => {
+          card.classList.remove("dragging");
+
+          updateCounts();
+
+          showToast("Task status updated");
+        });
+      }
+
+      document.querySelectorAll(".task-card").forEach(setupDrag);
+
+      columns.forEach((column) => {
+        column.addEventListener("dragover", (event) => {
+          event.preventDefault();
+
+          const dragging = document.querySelector(".dragging");
+
+          if (!dragging) {
+            return;
+          }
+
+          const addButton = column.querySelector(".add-task-column");
+
+          column.insertBefore(dragging, addButton);
+        });
+      });
+
+      /* =========================================================
+       UPDATE COLUMN COUNTS
+    ========================================================= */
+
+      function updateCounts() {
+        columns.forEach((column) => {
+          const count = column.querySelectorAll(".task-card").length;
+
+          column.querySelector(".column-count").textContent = count;
+        });
+      }
+
+      /* =========================================================
+       ESC KEY
+    ========================================================= */
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeCreateModal();
+        }
+
+        if (event.ctrlKey && event.key.toLowerCase() === "k") {
+          event.preventDefault();
+
+          globalSearch.focus();
+        }
+      });
+
+      /* =========================================================
+       TOAST
+    ========================================================= */
+
+      let toastTimer;
+
+      function showToast(message) {
+        const toast = document.getElementById("toast");
+
+        const messageElement = document.getElementById("toastMessage");
+
+        messageElement.textContent = message;
+
+        toast.classList.add("show");
+
+        clearTimeout(toastTimer);
+
+        toastTimer = setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2500);
+      }
+
+      /* =========================================================
+       VIEW BUTTONS
+    ========================================================= */
+
+      const viewButtons = document.querySelectorAll(".view-btn");
+
+      viewButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          viewButtons.forEach((btn) => {
+            btn.classList.remove("active");
+          });
+
+          button.classList.add("active");
+
+          if (button.id === "listViewBtn") {
+            showToast("List view is ready for integration");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
