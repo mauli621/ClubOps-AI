@@ -4,102 +4,88 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>ClubOps AI — Dashboard</title>
+    <title>ClubOps AI - Dashboard</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/dashboard.css" />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Font Awesome -->
+    <!-- Icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-
-    <!-- Dashboard CSS -->
-    <link rel="stylesheet" href="css/dashboard.css" />
   </head>
 
   <body>
     <div class="app">
-      <!-- =====================================================
-         SIDEBAR
-         ===================================================== -->
+      <!-- ================= SIDEBAR ================= -->
 
-      <aside class="sidebar">
-        <!-- Logo -->
+      <aside class="sidebar" id="sidebar">
         <div class="logo">
           <div class="logo-icon">
-            <i class="fa-solid fa-layer-group"></i>
+            <i class="fa-solid fa-bolt"></i>
           </div>
 
           <div>
-            <h2>ClubOps AI</h2>
-            <span>EVENT OPERATIONS</span>
+            <h2>ClubOps</h2>
+            <span>AI OPERATIONS</span>
           </div>
         </div>
 
-        <!-- Workspace -->
         <div class="workspace">
           <div class="workspace-icon">
-            <i class="fa-solid fa-building"></i>
+            <i class="fa-solid fa-users"></i>
           </div>
 
           <div>
             <small>WORKSPACE</small>
-            <p>College Clubs</p>
+            <p>Tech Club</p>
           </div>
 
           <i class="fa-solid fa-chevron-down workspace-arrow"></i>
         </div>
 
-        <!-- Navigation -->
         <nav class="navigation">
-          <div class="nav-title">MAIN</div>
+          <p class="nav-title">MAIN</p>
 
-          <a href="dashboard.html" class="nav-link active">
-            <i class="fa-solid fa-house"></i>
+          <a href="#" class="nav-link active">
+            <i class="fa-solid fa-chart-pie"></i>
             <span>Dashboard</span>
           </a>
 
           <a href="events.html" class="nav-link">
-            <i class="fa-regular fa-calendar"></i>
+            <i class="fa-solid fa-calendar-days"></i>
             <span>Events</span>
-            <span class="nav-count">4</span>
           </a>
 
           <a href="tasks.html" class="nav-link">
             <i class="fa-solid fa-list-check"></i>
             <span>Tasks</span>
-            <span class="nav-count">18</span>
+            <span class="nav-count">12</span>
           </a>
 
           <a href="volunteers.html" class="nav-link">
-            <i class="fa-solid fa-users"></i>
+            <i class="fa-solid fa-user-group"></i>
             <span>Volunteers</span>
           </a>
 
+          <p class="nav-title">COLLABORATE</p>
+
           <a href="meetings.html" class="nav-link">
-            <i class="fa-solid fa-people-group"></i>
+            <i class="fa-solid fa-video"></i>
             <span>Meetings</span>
           </a>
 
-          <a href="deadlines.html" class="nav-link">
-            <i class="fa-regular fa-clock"></i>
-            <span>Deadlines</span>
+          <a href="announcements.html" class="nav-link">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>Announcements</span>
           </a>
-
-          <div class="nav-title">MANAGEMENT</div>
 
           <a href="documents.html" class="nav-link">
-            <i class="fa-regular fa-file-lines"></i>
+            <i class="fa-solid fa-file-lines"></i>
             <span>Documents</span>
           </a>
+
+          <p class="nav-title">INTELLIGENCE</p>
 
           <a href="risks.html" class="nav-link">
             <i class="fa-solid fa-triangle-exclamation"></i>
@@ -107,33 +93,19 @@
             <span class="risk-count">3</span>
           </a>
 
-          <a href="announcements.html" class="nav-link">
-            <i class="fa-regular fa-bell"></i>
-            <span>Announcements</span>
-          </a>
-
-          <div class="nav-title">INTELLIGENCE</div>
-
           <a href="ai-assistant.html" class="nav-link ai-link">
             <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <span>AI Assistant</span>
+            <span>ClubOps AI</span>
             <span class="ai-badge">AI</span>
-          </a>
-
-          <a href="knowledge.html" class="nav-link">
-            <i class="fa-solid fa-book-open"></i>
-            <span>Knowledge</span>
           </a>
         </nav>
 
-        <!-- Sidebar Bottom -->
         <div class="sidebar-bottom">
-          <a href="#" class="nav-link">
+          <a href="setting.html" class="nav-link">
             <i class="fa-solid fa-gear"></i>
             <span>Settings</span>
           </a>
 
-          <!-- Keep your original profile -->
           <div class="user-profile">
             <div class="avatar">MB</div>
 
@@ -147,61 +119,50 @@
         </div>
       </aside>
 
-      <!-- =====================================================
-         MAIN CONTENT
-         ===================================================== -->
+      <!-- ================= MAIN CONTENT ================= -->
 
       <main class="main-content">
-        <!-- ===================================================
-           TOPBAR
-           =================================================== -->
+        <!-- TOP BAR -->
 
         <header class="topbar">
-          <!-- Search -->
+          <button class="menu-btn" id="menuBtn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
           <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-
-            <input type="text" placeholder="Search anything..." />
-
-            <span class="shortcut"> Ctrl K </span>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search tasks, people, documents..."
+            />
+            <span class="shortcut">Ctrl K</span>
           </div>
 
-          <!-- Top Actions -->
           <div class="top-actions">
-            <button class="icon-btn" title="Notifications">
-              <i class="fa-regular fa-bell"></i>
-
-              <span></span>
-            </button>
-
             <button class="icon-btn" title="Help">
               <i class="fa-regular fa-circle-question"></i>
             </button>
 
+            <button class="icon-btn notification-btn" id="notificationBtn">
+              <i class="fa-regular fa-bell"></i>
+              <span></span>
+            </button>
+
             <div class="top-avatar">MB</div>
           </div>
-
-          <!-- Mobile Menu -->
-          <button class="menu-btn" id="menuBtn">
-            <i class="fa-solid fa-bars"></i>
-          </button>
         </header>
 
-        <!-- ===================================================
-           DASHBOARD
-           =================================================== -->
+        <!-- ================= PAGE ================= -->
 
-        <div class="dashboard">
-          <!-- =================================================
-             PAGE HEADER
-             ================================================= -->
+        <section class="dashboard">
+          <!-- PAGE HEADER -->
 
           <div class="page-header">
             <div>
               <p class="greeting">Saturday, September 19, 2026</p>
 
-              <!-- ONLY THIS IS DYNAMIC -->
-              <h1 id="welcomeMessage">Good morning, 👋</h1>
+              <h1>Good morning, Mauli <span>👋</span></h1>
 
               <p class="subtitle">
                 Here's what's happening across your club today.
@@ -210,29 +171,28 @@
 
             <button class="primary-btn" id="createBtn">
               <i class="fa-solid fa-plus"></i>
-
               Create
             </button>
           </div>
 
-          <!-- =================================================
-             ACTIVE EVENT
-             ================================================= -->
+          <!-- ACTIVE EVENT -->
 
-          <section class="event-banner">
+          <div class="event-banner">
             <div class="event-info">
               <div class="event-icon">
-                <i class="fa-solid fa-calendar-days"></i>
+                <i class="fa-solid fa-rocket"></i>
               </div>
 
               <div>
-                <span class="event-label"> NEXT EVENT </span>
+                <span class="event-label">ACTIVE EVENT</span>
 
-                <h2>Tech Fest 2026</h2>
+                <h2>TechFest 2026</h2>
 
                 <p>
-                  September 24, 2026
+                  <i class="fa-regular fa-calendar"></i>
+                  October 18, 2026
                   <span>•</span>
+                  <i class="fa-solid fa-location-dot"></i>
                   Main Auditorium
                 </p>
               </div>
@@ -240,99 +200,100 @@
 
             <div class="event-progress">
               <div class="progress-header">
-                <span> Planning progress </span>
-
-                <strong> 72% </strong>
+                <span>Event readiness</span>
+                <strong>72%</strong>
               </div>
 
               <div class="progress-bar">
                 <div style="width: 72%"></div>
               </div>
 
-              <small> 18 of 25 tasks completed </small>
+              <small> 29 days remaining </small>
             </div>
 
             <button class="outline-btn">
               View Event
-
               <i class="fa-solid fa-arrow-right"></i>
             </button>
-          </section>
+          </div>
 
-          <!-- =================================================
-             STAT CARDS
-             ================================================= -->
+          <!-- STAT CARDS -->
 
-          <section class="stats-grid">
-            <!-- Events -->
+          <div class="stats-grid">
             <div class="stat-card">
               <div class="stat-top">
                 <div class="stat-icon blue">
-                  <i class="fa-regular fa-calendar"></i>
-                </div>
-
-                <span class="trend positive"> +2 </span>
-              </div>
-
-              <h3>4</h3>
-
-              <p>Upcoming Events</p>
-
-              <small> 2 this week </small>
-            </div>
-
-            <!-- Tasks -->
-            <div class="stat-card">
-              <div class="stat-top">
-                <div class="stat-icon purple">
                   <i class="fa-solid fa-list-check"></i>
                 </div>
 
-                <span class="trend warning"> 6 due </span>
+                <span class="trend positive">
+                  <i class="fa-solid fa-arrow-up"></i>
+                  12%
+                </span>
               </div>
 
-              <h3>18</h3>
+              <h3>48</h3>
+              <p>Total Tasks</p>
 
-              <p>Open Tasks</p>
+              <div class="mini-progress">
+                <div style="width: 65%"></div>
+              </div>
 
-              <small> 6 due this week </small>
+              <small> 31 completed </small>
             </div>
 
-            <!-- Volunteers -->
             <div class="stat-card">
               <div class="stat-top">
-                <div class="stat-icon orange">
-                  <i class="fa-solid fa-users"></i>
+                <div class="stat-icon purple">
+                  <i class="fa-solid fa-user-group"></i>
                 </div>
 
-                <span class="trend positive"> +5 </span>
+                <span class="trend positive">
+                  <i class="fa-solid fa-arrow-up"></i>
+                  8%
+                </span>
               </div>
 
-              <h3>32</h3>
-
+              <h3>36</h3>
               <p>Active Volunteers</p>
 
               <div class="avatar-stack">
-                <span>AS</span>
-                <span>RP</span>
-                <span>PS</span>
-                <span>MK</span>
-                <span>+28</span>
+                <span>AK</span>
+                <span>RS</span>
+                <span>JP</span>
+                <span>+33</span>
               </div>
             </div>
 
-            <!-- Risks -->
+            <div class="stat-card">
+              <div class="stat-top">
+                <div class="stat-icon orange">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <span class="trend warning"> 5 due soon </span>
+              </div>
+
+              <h3>12</h3>
+              <p>Pending Tasks</p>
+
+              <div class="mini-progress orange-progress">
+                <div style="width: 42%"></div>
+              </div>
+
+              <small> 5 due this week </small>
+            </div>
+
             <div class="stat-card">
               <div class="stat-top">
                 <div class="stat-icon red">
                   <i class="fa-solid fa-triangle-exclamation"></i>
                 </div>
 
-                <span class="trend danger"> 1 high </span>
+                <span class="trend danger"> Needs attention </span>
               </div>
 
               <h3>3</h3>
-
               <p>Active Risks</p>
 
               <div class="risk-status">
@@ -347,38 +308,34 @@
                 </span>
               </div>
             </div>
-          </section>
+          </div>
 
-          <!-- =================================================
-             CONTENT GRID
-             ================================================= -->
+          <!-- MAIN GRID -->
 
-          <section class="content-grid">
-            <!-- =================================================
-               TASK CHART
-               ================================================= -->
+          <div class="content-grid">
+            <!-- TASK OVERVIEW -->
 
             <div class="panel task-panel">
               <div class="panel-header">
                 <div>
                   <h2>Task Overview</h2>
-
-                  <p>Completion activity over the last 7 days</p>
+                  <p>Track your event progress</p>
                 </div>
 
-                <select>
-                  <option>Last 7 days</option>
-
+                <select id="taskFilter">
                   <option>Last 30 days</option>
+                  <option>Last 7 days</option>
+                  <option>This month</option>
                 </select>
               </div>
 
               <div class="task-chart">
                 <div class="chart-y">
+                  <span>50</span>
+                  <span>40</span>
+                  <span>30</span>
                   <span>20</span>
-                  <span>15</span>
                   <span>10</span>
-                  <span>5</span>
                   <span>0</span>
                 </div>
 
@@ -391,59 +348,45 @@
 
                   <div class="bars">
                     <div class="bar-group">
-                      <div class="bar completed" style="height: 70%"></div>
-
-                      <div class="bar pending" style="height: 30%"></div>
-
-                      <span> Mon </span>
-                    </div>
-
-                    <div class="bar-group">
-                      <div class="bar completed" style="height: 85%"></div>
-
+                      <div class="bar completed" style="height: 42%"></div>
                       <div class="bar pending" style="height: 25%"></div>
-
-                      <span> Tue </span>
+                      <span>Mon</span>
                     </div>
 
                     <div class="bar-group">
-                      <div class="bar completed" style="height: 60%"></div>
-
-                      <div class="bar pending" style="height: 45%"></div>
-
-                      <span> Wed </span>
-                    </div>
-
-                    <div class="bar-group">
-                      <div class="bar completed" style="height: 75%"></div>
-
-                      <div class="bar pending" style="height: 35%"></div>
-
-                      <span> Thu </span>
-                    </div>
-
-                    <div class="bar-group">
-                      <div class="bar completed" style="height: 90%"></div>
-
+                      <div class="bar completed" style="height: 56%"></div>
                       <div class="bar pending" style="height: 20%"></div>
-
-                      <span> Fri </span>
+                      <span>Tue</span>
                     </div>
 
                     <div class="bar-group">
-                      <div class="bar completed" style="height: 80%"></div>
-
-                      <div class="bar pending" style="height: 30%"></div>
-
-                      <span> Sat </span>
+                      <div class="bar completed" style="height: 48%"></div>
+                      <div class="bar pending" style="height: 31%"></div>
+                      <span>Wed</span>
                     </div>
 
                     <div class="bar-group">
-                      <div class="bar completed" style="height: 55%"></div>
+                      <div class="bar completed" style="height: 70%"></div>
+                      <div class="bar pending" style="height: 18%"></div>
+                      <span>Thu</span>
+                    </div>
 
-                      <div class="bar pending" style="height: 40%"></div>
+                    <div class="bar-group">
+                      <div class="bar completed" style="height: 64%"></div>
+                      <div class="bar pending" style="height: 28%"></div>
+                      <span>Fri</span>
+                    </div>
 
-                      <span> Sun </span>
+                    <div class="bar-group">
+                      <div class="bar completed" style="height: 78%"></div>
+                      <div class="bar pending" style="height: 15%"></div>
+                      <span>Sat</span>
+                    </div>
+
+                    <div class="bar-group">
+                      <div class="bar completed" style="height: 84%"></div>
+                      <div class="bar pending" style="height: 12%"></div>
+                      <span>Sun</span>
                     </div>
                   </div>
                 </div>
@@ -452,21 +395,17 @@
               <div class="chart-legend">
                 <span>
                   <i class="legend-dot completed-dot"></i>
-
                   Completed
                 </span>
 
                 <span>
                   <i class="legend-dot pending-dot"></i>
-
                   Pending
                 </span>
               </div>
             </div>
 
-            <!-- =================================================
-               AI PANEL
-               ================================================= -->
+            <!-- AI INSIGHTS -->
 
             <div class="panel ai-panel">
               <div class="ai-header">
@@ -477,190 +416,209 @@
 
                   <div>
                     <h2>AI Insights</h2>
-
-                    <p>Smart recommendations</p>
+                    <p>ClubOps AI analysis</p>
                   </div>
                 </div>
 
                 <span class="live-badge">
                   <i class="fa-solid fa-circle"></i>
-
                   LIVE
                 </span>
               </div>
 
-              <!-- Insight 1 -->
               <div class="ai-insight">
                 <div class="insight-icon warning-icon">
                   <i class="fa-solid fa-triangle-exclamation"></i>
                 </div>
 
                 <div>
-                  <strong> High priority risk detected </strong>
+                  <strong>Deadline Risk</strong>
 
-                  <p>Auditorium confirmation is still pending for Tech Fest.</p>
+                  <p>
+                    3 tasks are due within the next 48 hours and have not been
+                    started.
+                  </p>
 
-                  <button>Review risk →</button>
+                  <button>
+                    Review tasks
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </button>
                 </div>
               </div>
 
-              <!-- Insight 2 -->
               <div class="ai-insight">
                 <div class="insight-icon people-icon">
-                  <i class="fa-solid fa-users"></i>
+                  <i class="fa-solid fa-user-clock"></i>
                 </div>
 
                 <div>
-                  <strong> Volunteer capacity </strong>
+                  <strong>Volunteer Workload</strong>
 
-                  <p>6 more volunteers are recommended for event operations.</p>
+                  <p>4 volunteers have more than 5 active tasks assigned.</p>
 
-                  <button>Find volunteers →</button>
+                  <button>
+                    View workload
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </button>
                 </div>
               </div>
 
-              <!-- Insight 3 -->
               <div class="ai-insight">
                 <div class="insight-icon success-icon">
                   <i class="fa-solid fa-circle-check"></i>
                 </div>
 
                 <div>
-                  <strong> Event progress is healthy </strong>
+                  <strong>Good Progress</strong>
 
-                  <p>Most critical tasks are on schedule.</p>
+                  <p>Event readiness increased by 14% this week.</p>
 
-                  <button>View details →</button>
+                  <button>
+                    View progress
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </button>
                 </div>
               </div>
 
               <button class="ask-ai-btn" id="askAiBtn">
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
-
+                <i class="fa-solid fa-sparkles"></i>
                 Ask ClubOps AI
               </button>
             </div>
-          </section>
+          </div>
 
-          <!-- =================================================
-             LOWER GRID
-             ================================================= -->
+          <!-- LOWER GRID -->
 
-          <section class="lower-grid">
-            <!-- =================================================
-               MY TASKS
-               ================================================= -->
+          <div class="lower-grid">
+            <!-- UPCOMING TASKS -->
 
             <div class="panel">
               <div class="panel-header">
                 <div>
-                  <h2>My Tasks</h2>
-
-                  <p>Tasks assigned to you</p>
+                  <h2>Upcoming Tasks</h2>
+                  <p>Your team's next priorities</p>
                 </div>
 
-                <a href="tasks.html"> View all → </a>
+                <a href="tasks.html">
+                  View all
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
               </div>
 
-              <!-- Task 1 -->
-              <div class="task-item">
-                <div class="task-check">
-                  <input type="checkbox" />
-                </div>
-
-                <div class="task-details">
-                  <strong> Finalize event poster </strong>
-
-                  <div>
-                    <span>
-                      <i class="fa-regular fa-calendar"></i>
-                      Today
-                    </span>
-
-                    <span class="tag high"> High </span>
+              <div class="task-list">
+                <div class="task-item">
+                  <div class="task-check">
+                    <input type="checkbox" />
                   </div>
-                </div>
 
-                <span class="task-status progress-status"> In progress </span>
-              </div>
+                  <div class="task-details">
+                    <strong>Finalize event sponsors</strong>
 
-              <!-- Task 2 -->
-              <div class="task-item">
-                <div class="task-check">
-                  <input type="checkbox" />
-                </div>
+                    <div>
+                      <span class="tag high"> High </span>
 
-                <div class="task-details">
-                  <strong> Confirm volunteers </strong>
+                      <span>
+                        <i class="fa-regular fa-calendar"></i>
+                        Today
+                      </span>
 
-                  <div>
-                    <span>
-                      <i class="fa-regular fa-calendar"></i>
-                      Tomorrow
-                    </span>
-
-                    <span class="tag medium"> Medium </span>
+                      <span>
+                        <i class="fa-solid fa-user"></i>
+                        Rahul
+                      </span>
+                    </div>
                   </div>
+
+                  <span class="task-status pending-status"> Pending </span>
                 </div>
 
-                <span class="task-status pending-status"> Pending </span>
-              </div>
-
-              <!-- Task 3 -->
-              <div class="task-item">
-                <div class="task-check">
-                  <input type="checkbox" />
-                </div>
-
-                <div class="task-details">
-                  <strong> Book auditorium </strong>
-
-                  <div>
-                    <span>
-                      <i class="fa-regular fa-calendar"></i>
-                      Sep 22
-                    </span>
-
-                    <span class="tag high"> High </span>
+                <div class="task-item">
+                  <div class="task-check">
+                    <input type="checkbox" />
                   </div>
-                </div>
 
-                <span class="task-status pending-status"> Pending </span>
-              </div>
+                  <div class="task-details">
+                    <strong>Publish registration form</strong>
 
-              <!-- Task 4 -->
-              <div class="task-item">
-                <div class="task-check">
-                  <input type="checkbox" />
-                </div>
+                    <div>
+                      <span class="tag medium"> Medium </span>
 
-                <div class="task-details">
-                  <strong> Prepare budget report </strong>
+                      <span>
+                        <i class="fa-regular fa-calendar"></i>
+                        Sep 20
+                      </span>
 
-                  <div>
-                    <span>
-                      <i class="fa-regular fa-calendar"></i>
-                      Sep 25
-                    </span>
-
-                    <span class="tag low"> Low </span>
+                      <span>
+                        <i class="fa-solid fa-user"></i>
+                        Priya
+                      </span>
+                    </div>
                   </div>
+
+                  <span class="task-status progress-status"> In Progress </span>
                 </div>
 
-                <span class="task-status pending-status"> Pending </span>
+                <div class="task-item">
+                  <div class="task-check">
+                    <input type="checkbox" />
+                  </div>
+
+                  <div class="task-details">
+                    <strong>Confirm auditorium equipment</strong>
+
+                    <div>
+                      <span class="tag high"> High </span>
+
+                      <span>
+                        <i class="fa-regular fa-calendar"></i>
+                        Sep 21
+                      </span>
+
+                      <span>
+                        <i class="fa-solid fa-user"></i>
+                        Jay
+                      </span>
+                    </div>
+                  </div>
+
+                  <span class="task-status pending-status"> Pending </span>
+                </div>
+
+                <div class="task-item">
+                  <div class="task-check">
+                    <input type="checkbox" />
+                  </div>
+
+                  <div class="task-details">
+                    <strong>Design social media campaign</strong>
+
+                    <div>
+                      <span class="tag low"> Low </span>
+
+                      <span>
+                        <i class="fa-regular fa-calendar"></i>
+                        Sep 23
+                      </span>
+
+                      <span>
+                        <i class="fa-solid fa-user"></i>
+                        Aarav
+                      </span>
+                    </div>
+                  </div>
+
+                  <span class="task-status progress-status"> In Progress </span>
+                </div>
               </div>
             </div>
 
-            <!-- =================================================
-               MEETINGS
-               ================================================= -->
+            <!-- MEETINGS -->
 
             <div class="panel">
               <div class="panel-header">
                 <div>
                   <h2>Upcoming Meetings</h2>
-
-                  <p>Your club schedule</p>
+                  <p>Stay aligned with your team</p>
                 </div>
 
                 <button class="small-icon-btn">
@@ -668,157 +626,145 @@
                 </button>
               </div>
 
-              <!-- Meeting 1 -->
-              <div class="meeting-item">
-                <div class="meeting-date">
-                  <strong> 20 </strong>
-
-                  <span> SEP </span>
-                </div>
-
-                <div class="meeting-info">
-                  <strong> Core Team Meeting </strong>
-
-                  <p>4:00 PM · Meeting Room 2</p>
-
-                  <div class="meeting-members">
-                    <span>MB</span>
-                    <span>AS</span>
-                    <span>RP</span>
-                    <span>+4</span>
+              <div class="meeting-list">
+                <div class="meeting-item">
+                  <div class="meeting-date">
+                    <strong>19</strong>
+                    <span>SEP</span>
                   </div>
-                </div>
 
-                <i class="fa-solid fa-chevron-right meeting-arrow"></i>
-              </div>
+                  <div class="meeting-info">
+                    <strong>Core Team Sync</strong>
 
-              <!-- Meeting 2 -->
-              <div class="meeting-item">
-                <div class="meeting-date purple-date">
-                  <strong> 22 </strong>
+                    <p>
+                      <i class="fa-regular fa-clock"></i>
+                      4:00 PM – 4:45 PM
+                    </p>
 
-                  <span> SEP </span>
-                </div>
-
-                <div class="meeting-info">
-                  <strong> Volunteer Briefing </strong>
-
-                  <p>2:30 PM · Seminar Hall</p>
-
-                  <div class="meeting-members">
-                    <span>PS</span>
-                    <span>MK</span>
-                    <span>AJ</span>
-                    <span>+8</span>
+                    <div class="meeting-members">
+                      <span>MB</span>
+                      <span>RS</span>
+                      <span>AK</span>
+                      <span>+4</span>
+                    </div>
                   </div>
+
+                  <i class="fa-solid fa-chevron-right meeting-arrow"></i>
                 </div>
 
-                <i class="fa-solid fa-chevron-right meeting-arrow"></i>
-              </div>
-
-              <!-- Meeting 3 -->
-              <div class="meeting-item">
-                <div class="meeting-date orange-date">
-                  <strong> 23 </strong>
-
-                  <span> SEP </span>
-                </div>
-
-                <div class="meeting-info">
-                  <strong> Event Review </strong>
-
-                  <p>11:00 AM · Club Office</p>
-
-                  <div class="meeting-members">
-                    <span>MB</span>
-                    <span>RP</span>
-                    <span>+3</span>
+                <div class="meeting-item">
+                  <div class="meeting-date purple-date">
+                    <strong>21</strong>
+                    <span>SEP</span>
                   </div>
+
+                  <div class="meeting-info">
+                    <strong>Volunteer Briefing</strong>
+
+                    <p>
+                      <i class="fa-regular fa-clock"></i>
+                      6:30 PM – 7:15 PM
+                    </p>
+
+                    <div class="meeting-members">
+                      <span>JP</span>
+                      <span>PS</span>
+                      <span>RS</span>
+                      <span>+12</span>
+                    </div>
+                  </div>
+
+                  <i class="fa-solid fa-chevron-right meeting-arrow"></i>
                 </div>
 
-                <i class="fa-solid fa-chevron-right meeting-arrow"></i>
+                <div class="meeting-item">
+                  <div class="meeting-date orange-date">
+                    <strong>24</strong>
+                    <span>SEP</span>
+                  </div>
+
+                  <div class="meeting-info">
+                    <strong>Sponsor Meeting</strong>
+
+                    <p>
+                      <i class="fa-regular fa-clock"></i>
+                      11:00 AM – 11:30 AM
+                    </p>
+
+                    <div class="meeting-members">
+                      <span>MB</span>
+                      <span>AK</span>
+                      <span>+2</span>
+                    </div>
+                  </div>
+
+                  <i class="fa-solid fa-chevron-right meeting-arrow"></i>
+                </div>
               </div>
             </div>
-          </section>
+          </div>
 
-          <!-- =================================================
-             QUICK ACTIONS
-             ================================================= -->
+          <!-- QUICK ACTIONS -->
 
-          <section class="quick-section">
+          <div class="quick-section">
             <div>
               <h2>Quick Actions</h2>
-
-              <p>Jump directly into common club operations</p>
+              <p>Get things done faster with ClubOps AI.</p>
             </div>
 
             <div class="quick-actions">
-              <!-- Event -->
-              <a href="events.html" class="quick-action">
+              <button class="quick-action">
                 <div>
-                  <i class="fa-regular fa-calendar"></i>
+                  <i class="fa-solid fa-plus"></i>
                 </div>
+                <span>Create Task</span>
+              </button>
 
-                <span> Create Event </span>
-              </a>
-
-              <!-- Task -->
-              <a href="tasks.html" class="quick-action">
-                <div>
-                  <i class="fa-solid fa-list-check"></i>
-                </div>
-
-                <span> Add Task </span>
-              </a>
-
-              <!-- Volunteer -->
-              <a href="volunteers.html" class="quick-action">
+              <button class="quick-action">
                 <div>
                   <i class="fa-solid fa-user-plus"></i>
                 </div>
+                <span>Add Volunteer</span>
+              </button>
 
-                <span> Add Volunteer </span>
-              </a>
-
-              <!-- Meeting -->
-              <a href="meetings.html" class="quick-action">
+              <button class="quick-action">
                 <div>
-                  <i class="fa-solid fa-people-group"></i>
+                  <i class="fa-solid fa-file-circle-plus"></i>
                 </div>
+                <span>Upload Document</span>
+              </button>
 
-                <span> Schedule Meeting </span>
-              </a>
-
-              <!-- Document -->
-              <a href="documents.html" class="quick-action">
+              <button class="quick-action">
                 <div>
-                  <i class="fa-regular fa-file-lines"></i>
+                  <i class="fa-solid fa-microphone"></i>
                 </div>
+                <span>Process Meeting</span>
+              </button>
 
-                <span> Upload Document </span>
-              </a>
+              <button class="quick-action">
+                <div>
+                  <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <span>Create Announcement</span>
+              </button>
 
-              <!-- AI -->
-              <button class="quick-action ai-action" id="quickAiBtn">
+              <button class="quick-action ai-action">
                 <div>
                   <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
-
-                <span> Ask AI </span>
+                <span>Ask AI</span>
               </button>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </main>
     </div>
 
-    <!-- =====================================================
-       AI MODAL
-       ===================================================== -->
+    <!-- ================= AI MODAL ================= -->
 
     <div class="modal-overlay" id="aiModal">
       <div class="ai-modal">
-        <button class="close-modal" id="closeAiModal">
+        <button class="close-modal" id="closeAi">
           <i class="fa-solid fa-xmark"></i>
         </button>
 
@@ -829,31 +775,29 @@
         <h2>Ask ClubOps AI</h2>
 
         <p>
-          Ask anything about your events, tasks, volunteers, deadlines, risks,
-          or club operations.
+          Ask anything about your event, tasks, volunteers, meetings or risks.
         </p>
 
         <div class="ai-input">
-          <input type="text" id="aiQuestion" placeholder="Ask something..." />
+          <input
+            type="text"
+            id="aiQuestion"
+            placeholder="e.g. Which tasks are at risk?"
+          />
 
-          <button id="sendAiBtn">
-            <i class="fa-solid fa-arrow-right"></i>
+          <button id="sendAi">
+            <i class="fa-solid fa-arrow-up"></i>
           </button>
         </div>
 
         <div class="ai-suggestions">
-          <button>What tasks are overdue?</button>
-
-          <button>Show event risks</button>
-
-          <button>Who is available?</button>
-
-          <button>What's next?</button>
+          <button>Show overdue tasks</button>
+          <button>Find overloaded volunteers</button>
+          <button>Summarize event progress</button>
         </div>
       </div>
     </div>
 
-    <!-- Dashboard JS -->
     <script src="js/dashboard.js"></script>
   </body>
 </html>
