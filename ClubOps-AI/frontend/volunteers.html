@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClubOps AI - Volunteers</title>
+
+  <link rel="stylesheet" href="./css/volunteers.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+<div class="app">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div>
+          <h2>ClubOps</h2>
+          <span>AI OPERATIONS</span>
+        </div>
+      </div>
+
+      <div class="workspace">
+        <div class="workspace-icon">
+          <i class="fa-solid fa-users"></i>
+        </div>
+        <div class="workspace-info">
+          <strong>WORKSPACE</strong>
+          <span>Tech Club</span>
+        </div>
+        <i class="fa-solid fa-chevron-down workspace-arrow"></i>
+      </div>
+
+      <nav class="navigation">
+        <p class="nav-title">MAIN</p>
+
+        <a href="dashboard.html" class="nav-link">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="events.html" class="nav-link">
+          <i class="fa-solid fa-calendar-days"></i>
+          <span>Events</span>
+        </a>
+
+        <a href="tasks.html" class="nav-link">
+          <i class="fa-solid fa-list-check"></i>
+          <span>Tasks</span>
+          <span class="nav-count">12</span>
+        </a>
+
+        <a href="volunteers.html" class="nav-link active">
+          <i class="fa-solid fa-user-group"></i>
+          <span>Volunteers</span>
+        </a>
+
+        <p class="nav-title">COLLABORATE</p>
+
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-video"></i>
+          <span>Meetings</span>
+        </a>
+
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-bullhorn"></i>
+          <span>Announcements</span>
+        </a>
+
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Documents</span>
+        </a>
+
+        <p class="nav-title">INTELLIGENCE</p>
+
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>Risks</span>
+          <span class="risk-count">3</span>
+        </a>
+
+        <a href="#" class="nav-link ai-link">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>ClubOps AI</span>
+          <span class="ai-badge">AI</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-bottom">
+      <a href="#" class="nav-link">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+      </a>
+
+      <div class="user-profile">
+        <div class="avatar">MB</div>
+        <div class="user-info">
+          <strong>Mauli Bhanderi</strong>
+          <span>Admin</span>
+        </div>
+        <i class="fa-solid fa-ellipsis"></i>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main class="main-content">
+
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearch"
+               placeholder="Search volunteers, roles, tasks...">
+        <span class="shortcut">Ctrl K</span>
+      </div>
+
+      <div class="top-actions">
+        <button class="icon-btn" title="Help">
+          <i class="fa-regular fa-circle-question"></i>
+        </button>
+        <button class="icon-btn notification-btn" title="Notifications">
+          <i class="fa-regular fa-bell"></i>
+          <span></span>
+        </button>
+        <div class="top-avatar">MB</div>
+      </div>
+    </header>
+
+    <section class="dashboard">
+
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <div>
+          <p class="greeting">TEAM MANAGEMENT</p>
+          <h1>Volunteers</h1>
+          <p class="subtitle">
+            Manage your club members, assignments and volunteer workload.
+          </p>
+        </div>
+
+        <div class="header-actions">
+          <button class="secondary-btn" id="filterBtn">
+            <i class="fa-solid fa-filter"></i>
+            Filters
+          </button>
+
+          <button class="primary-btn" id="addVolunteerBtn">
+            <i class="fa-solid fa-user-plus"></i>
+            Add Volunteer
+          </button>
+        </div>
+      </div>
+
+      <!-- OVERVIEW -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon blue">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <span class="trend positive">
+              <i class="fa-solid fa-arrow-up"></i> 8%
+            </span>
+          </div>
+          <h3>48</h3>
+          <p>Total Volunteers</p>
+          <small>Across all club activities</small>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon purple">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+            <span class="trend positive">Active</span>
+          </div>
+          <h3>36</h3>
+          <p>Active Volunteers</p>
+          <div class="mini-progress">
+            <div style="width:75%"></div>
+          </div>
+          <small>75% currently active</small>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon orange">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <span class="trend warning">Available</span>
+          </div>
+          <h3>28</h3>
+          <p>Available Today</p>
+          <small>Ready for new assignments</small>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon red">
+              <i class="fa-solid fa-user-clock"></i>
+            </div>
+            <span class="trend danger">4 overloaded</span>
+          </div>
+          <h3>72</h3>
+          <p>Assigned Tasks</p>
+          <small>Review workload balance</small>
+        </div>
+      </div>
+
+      <!-- VOLUNTEER MANAGEMENT -->
+      <div class="panel volunteer-panel">
+
+        <div class="panel-header volunteer-header">
+          <div>
+            <h2>Volunteer Directory</h2>
+            <p>View members and their current workload</p>
+          </div>
+
+          <div class="view-actions">
+            <button class="view-toggle active" title="Grid view">
+              <i class="fa-solid fa-table-cells-large"></i>
+            </button>
+            <button class="view-toggle" title="List view">
+              <i class="fa-solid fa-list"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-row">
+          <div class="tabs">
+            <button class="filter-tab active" data-filter="all">
+              All <span>48</span>
+            </button>
+            <button class="filter-tab" data-filter="active">
+              Active <span>36</span>
+            </button>
+            <button class="filter-tab" data-filter="available">
+              Available <span>28</span>
+            </button>
+            <button class="filter-tab" data-filter="busy">
+              Busy <span>8</span>
+            </button>
+          </div>
+
+          <select class="role-filter" id="roleFilter">
+            <option value="all">All roles</option>
+            <option value="lead">Team Lead</option>
+            <option value="tech">Technical</option>
+            <option value="design">Design</option>
+            <option value="marketing">Marketing</option>
+            <option value="operations">Operations</option>
+          </select>
+        </div>
+
+        <div class="volunteer-grid" id="volunteerGrid">
+
+          <article class="volunteer-card" data-status="active available" data-role="lead">
+            <div class="card-top">
+              <div class="member-avatar teal">AK</div>
+              <span class="status available"><i class="fa-solid fa-circle"></i> Available</span>
+              <button class="more-btn"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+            <div class="member-info">
+              <h3>Aarav Kapoor</h3>
+              <p>Team Lead</p>
+            </div>
+            <div class="member-meta">
+              <span><i class="fa-solid fa-list-check"></i> 3 tasks</span>
+              <span><i class="fa-regular fa-clock"></i> 6 hrs</span>
+            </div>
+            <div class="workload">
+              <div><span>Workload</span><strong>30%</strong></div>
+              <div class="workload-bar"><span style="width:30%"></span></div>
+            </div>
+          </article>
+
+          <article class="volunteer-card" data-status="active busy" data-role="tech">
+            <div class="card-top">
+              <div class="member-avatar gold">RS</div>
+              <span class="status busy"><i class="fa-solid fa-circle"></i> Busy</span>
+              <button class="more-btn"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+            <div class="member-info">
+              <h3>Rahul Shah</h3>
+              <p>Technical Team</p>
+            </div>
+            <div class="member-meta">
+              <span><i class="fa-solid fa-list-check"></i> 7 tasks</span>
+              <span><i class="fa-regular fa-clock"></i> 18 hrs</span>
+            </div>
+            <div class="workload high-workload">
+              <div><span>Workload</span><strong>82%</strong></div>
+              <div class="workload-bar"><span style="width:82%"></span></div>
+            </div>
+          </article>
+
+          <article class="volunteer-card" data-status="active available" data-role="design">
+            <div class="card-top">
+              <div class="member-avatar orange">JP</div>
+              <span class="status available"><i class="fa-solid fa-circle"></i> Available</span>
+              <button class="more-btn"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+            <div class="member-info">
+              <h3>Jiya Patel</h3>
+              <p>Design Team</p>
+            </div>
+            <div class="member-meta">
+              <span><i class="fa-solid fa-list-check"></i> 4 tasks</span>
+              <span><i class="fa-regular fa-clock"></i> 8 hrs</span>
+            </div>
+            <div class="workload">
+              <div><span>Workload</span><strong>42%</strong></div>
+              <div class="workload-bar"><span style="width:42%"></span></div>
+            </div>
+          </article>
+
+          <article class="volunteer-card" data-status="active busy" data-role="marketing">
+            <div class="card-top">
+              <div class="member-avatar purple">PS</div>
+              <span class="status busy"><i class="fa-solid fa-circle"></i> Busy</span>
+              <button class="more-btn"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+            <div class="member-info">
+              <h3>Priya Shah</h3>
+              <p>Marketing Team</p>
+            </div>
+            <div class="member-meta">
+              <span><i class="fa-solid fa-list-check"></i> 6 tasks</span>
+              <span><i class="fa-regular fa-clock"></i> 15 hrs</span>
+            </div>
+            <div class="workload high-workload">
+              <div><span>Workload</span><strong>74%</strong></div>
+              <div class="workload-bar"><span style="width:74%"></span></div>
+            </div>
+          </article>
+
+          <article class="volunteer-card" data-status="active available" data-role="operations">
+            <div class="card-top">
+              <div class="member-avatar teal">MB</div>
+              <span class="status available"><i class="fa-solid fa-circle"></i> Available</span>
+              <button class="more-btn"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+            <div class="member-info">
+              <h3>Meera Bhatt</h3>
+              <p>Operations</p>
+            </div>
+            <div class="member-meta">
+              <span><i class="fa-solid fa-list-check"></i> 2 tasks</span>
+              <span><i class="fa-regular fa-clock"></i> 4 hrs</span>
+            </div>
+            <div class="workload">
+              <div><span>Workload</span><strong>22%</strong></div>
+              <div class="workload-bar"><span style="width:22%"></span></div>
+            </div>
+          </article>
+
+          <article class="volunteer-card" data-status="active available" data-role="tech">
+            <div class="card-top">
+              <div class="member-avatar gold">AK</div>
+              <span class="status available"><i class="fa-solid fa-circle"></i> Available</span>
+              <button class="more-btn"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+            <div class="member-info">
+              <h3>Aarav Kumar</h3>
+              <p>Technical Team</p>
+            </div>
+            <div class="member-meta">
+              <span><i class="fa-solid fa-list-check"></i> 3 tasks</span>
+              <span><i class="fa-regular fa-clock"></i> 7 hrs</span>
+            </div>
+            <div class="workload">
+              <div><span>Workload</span><strong>35%</strong></div>
+              <div class="workload-bar"><span style="width:35%"></span></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- AI / WORKLOAD SECTION -->
+      <div class="lower-grid">
+        <div class="panel workload-panel">
+          <div class="panel-header">
+            <div>
+              <h2>Team Workload</h2>
+              <p>Current distribution across active volunteers</p>
+            </div>
+            <a href="#">View report <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+
+          <div class="workload-summary">
+            <div class="summary-item">
+              <div class="summary-icon teal-bg">
+                <i class="fa-solid fa-user-check"></i>
+              </div>
+              <div>
+                <strong>28</strong>
+                <span>Available</span>
+              </div>
+            </div>
+
+            <div class="summary-item">
+              <div class="summary-icon gold-bg">
+                <i class="fa-solid fa-user-clock"></i>
+              </div>
+              <div>
+                <strong>8</strong>
+                <span>Busy</span>
+              </div>
+            </div>
+
+            <div class="summary-item">
+              <div class="summary-icon orange-bg">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </div>
+              <div>
+                <strong>4</strong>
+                <span>Overloaded</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel ai-panel">
+          <div class="ai-header">
+            <div class="ai-title">
+              <div class="ai-icon">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+              </div>
+              <div>
+                <h2>AI Insights</h2>
+                <p>Volunteer workload analysis</p>
+              </div>
+            </div>
+            <span class="live-badge"><i class="fa-solid fa-circle"></i> LIVE</span>
+          </div>
+
+          <div class="ai-insight">
+            <div class="insight-icon warning-icon">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div>
+              <strong>Workload Risk</strong>
+              <p>4 volunteers are handling more than 5 active tasks.</p>
+            </div>
+          </div>
+
+          <div class="ai-insight">
+            <div class="insight-icon success-icon">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+              <strong>Good Availability</strong>
+              <p>28 volunteers are currently available for new tasks.</p>
+            </div>
+          </div>
+
+          <button class="ask-ai-btn">
+            <i class="fa-solid fa-sparkles"></i>
+            Ask ClubOps AI
+          </button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+</div>
+
+<!-- ================= ADD VOLUNTEER MODAL ================= -->
+<div class="modal-overlay" id="volunteerModal">
+  <div class="modal">
+    <button class="close-modal" id="closeModal">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="modal-icon">
+      <i class="fa-solid fa-user-plus"></i>
+    </div>
+
+    <h2>Add Volunteer</h2>
+    <p>Add a new member to your Tech Club volunteer team.</p>
+
+    <form id="volunteerForm">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter volunteer name" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Role</label>
+          <select>
+            <option>Team Lead</option>
+            <option>Technical</option>
+            <option>Design</option>
+            <option>Marketing</option>
+            <option>Operations</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="name@example.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Skills</label>
+        <input type="text" placeholder="e.g. Python, Design, Marketing">
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="cancel-button" id="cancelModal">Cancel</button>
+        <button type="submit" class="primary-btn">Add Volunteer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+const sidebar = document.getElementById("sidebar");
+const menuBtn = document.getElementById("menuBtn");
+const modal = document.getElementById("volunteerModal");
+const addBtn = document.getElementById("addVolunteerBtn");
+const closeModal = document.getElementById("closeModal");
+const cancelModal = document.getElementById("cancelModal");
+const form = document.getElementById("volunteerForm");
+const searchInput = document.getElementById("globalSearch");
+const roleFilter = document.getElementById("roleFilter");
+const cards = [...document.querySelectorAll(".volunteer-card")];
+
+menuBtn.addEventListener("click", () => sidebar.classList.toggle("open"));
+
+addBtn.addEventListener("click", () => modal.classList.add("show"));
+closeModal.addEventListener("click", () => modal.classList.remove("show"));
+cancelModal.addEventListener("click", () => modal.classList.remove("show"));
+
+modal.addEventListener("click", e => {
+  if (e.target === modal) modal.classList.remove("show");
+});
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  modal.classList.remove("show");
+  form.reset();
+  alert("Volunteer added successfully.");
+});
+
+function filterCards() {
+  const search = searchInput.value.toLowerCase().trim();
+  const role = roleFilter.value;
+
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    const cardRole = card.dataset.role;
+
+    const matchesSearch = text.includes(search);
+    const matchesRole = role === "all" || cardRole === role;
+
+    card.style.display = matchesSearch && matchesRole ? "" : "none";
+  });
+}
+
+searchInput.addEventListener("input", filterCards);
+roleFilter.addEventListener("change", filterCards);
+
+document.querySelectorAll(".filter-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+
+    const filter = tab.dataset.filter;
+
+    cards.forEach(card => {
+      card.style.display =
+        filter === "all" || card.dataset.status.includes(filter)
+          ? ""
+          : "none";
+    });
+  });
+});
+</script>
+
+</body>
+</html>
