@@ -80,9 +80,10 @@ AI        : Generative AI API
 ClubOps-AI/
 │
 ├── public/
-│   ├── app.js/
-│   ├── index.html/
-│   ├── style.css/
+│   ├── app.js
+│   ├── index.html
+│   └── style.css
+│
 ├── .gitignore
 ├── LICENSE
 ├── package-lock.json
@@ -91,28 +92,90 @@ ClubOps-AI/
 └── README.md
 ```
 
+---
 
+## ⚙️ Run Locally
+
+Follow these steps to run ClubOps-AI on your local machine.
+
+### 1. Clone the Repository
+
+```bash
+git clone <YOUR-GITHUB-URL>
+cd ClubOps-AI
 ```
+
+### 2. Install Backend Dependencies
+
+```bash
+cd backend
+npm install
+```
+
+### 3. Start the Node.js Backend
+
+```bash
+node server.js
+```
+
+Or, if your `package.json` contains a start script:
+
+```bash
+npm start
+```
+
+### 4. Open the Frontend
+
+Open the frontend folder in **VS Code** and launch the project using **Live Server**.
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file inside the `backend` folder:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+AI_API_KEY=your_ai_api_key
+```
+
+### Environment Variables Description
+
+| Variable     | Description                           |
+| ------------ | ------------------------------------- |
+| `PORT`       | Port on which the backend server runs |
+| `MONGO_URI`  | MongoDB database connection string    |
+| `AI_API_KEY` | API key used for AI-powered features  |
+
+> **Note:** Never commit your `.env` file or expose your API keys publicly.
+
+---
+
 ## 🎯 Future Scope
 
-* Voice AI Assistant
-* AI Meeting Transcription
-* Automatic Task Assignment
-* Smart Notifications
-* Risk Prediction
-* Mobile Application
-* Cloud Deployment
+* 🎙️ Voice AI Assistant
+* 📝 AI Meeting Transcription
+* 🤖 Automatic Task Assignment
+* 🔔 Smart Notifications
+* ⚠️ Risk Prediction
+* 📱 Mobile Application
+* ☁️ Cloud Deployment
 
 ---
 
 ## 👨‍💻 Team
 
-**Team:** TechLegends
-**Team Leader:** Mauli Bhanderi
-**College:** Dharmsinh Desai University
+* Team: TechLegends
+* Team Leader: Mauli Bhanderi
+* College: Dharmsinh Desai University
 
 ---
+## Live Link
 
-### 🚀 ClubOps AI
+* https://clubops-ai-ci4z.onrender.com/
+
+---
+## 🚀 ClubOps AI
 
 **Manage • Automate • Collaborate**
