@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <title>ClubOps AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">C</div><div><strong>ClubOps AI</strong><span>Event operations</span></div></div>
+    <nav id="nav"></nav>
+    <div class="sidebar-bottom"><div class="mini-card"><span class="status-dot"></span><div><b>AI Assistant</b><small>Ready to help</small></div></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="mobile-brand">ClubOps AI</div><div class="search"><span>⌕</span>
+    <div class="search-wrapper">
+  <input
+    id="globalSearch"
+    placeholder="Search tasks, people, events..."
+    autocomplete="off"
+  />
+
+  <div id="searchResults" class="search-results"></div>
+</div>
+</div><div class="top-actions"><button class="icon-btn" id="notifyBtn" title="Notifications">🔔<i></i></button><button class="avatar">H</button></div></header>
+    <section id="content" class="content"></section>
+  </main>
+</div>
+<div id="modalRoot"></div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
