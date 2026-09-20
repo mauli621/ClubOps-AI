@@ -80,4 +80,8 @@ const server=http.createServer((req,res)=>{
  if(req.method==='POST'&&url.pathname==='/api/ai'){let body='';req.on('data',c=>body+=c);req.on('end',()=>{try{const x=JSON.parse(body||'{}');const out=demoAI(String(x.action||'chat'),String(x.input||''));res.writeHead(200,{'Content-Type':'application/json'});res.end(JSON.stringify({ok:true,mode:'demo',response:out}));}catch(e){res.writeHead(400,{'Content-Type':'application/json'});res.end(JSON.stringify({ok:false,error:'Invalid JSON'}));}});return;}
  let file=url.pathname==='/'?'/index.html':url.pathname;file=path.normalize(file).replace(/^\.\.[\\/]/,'');const fp=path.join(publicDir,file);if(!fp.startsWith(publicDir)){res.writeHead(403);return res.end('Forbidden')}fs.readFile(fp,(err,data)=>{if(err){res.writeHead(404);return res.end('Not found')}res.writeHead(200,{'Content-Type':mime[path.extname(fp)]||'application/octet-stream'});res.end(data)});
 });
-const port=process.env.PORT||3000;server.listen(port,()=>console.log(`ClubOps AI running at http://localhost:${port}`));
+const port = process.env.PORT || 3000;
+
+server.listen(port, "0.0.0.0", () => {
+  console.log(`ClubOps AI running on port ${port}`);
+});
