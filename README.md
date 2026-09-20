@@ -42,4 +42,3 @@ git clone https://github.com/yourusername/clubops-ai.git
 # Navigate to project folder
 cd clubops-ai
 
-# Open index.html in your browser
