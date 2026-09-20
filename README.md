@@ -1,44 +1,118 @@
-# 🎓 ClubOps AI – Centralized Event Operations Platform
+# 🚀 ClubOps AI
 
-## 🌟 Overview
-**ClubOps AI** is an intelligent event management platform designed for college clubs to streamline planning, coordination, and execution.  
-It centralizes all club activities — tasks, volunteers, meetings, documents, risks, and announcements — into one AI-powered dashboard.
+### AI-Powered College Club & Event Management Platform
 
-The platform assists clubs throughout the **event lifecycle**, performing smart actions like identifying risks, extracting action items, and automating workflows.
+ClubOps AI is an AI-powered platform that helps college clubs manage **events, tasks, volunteers, meetings, documents, announcements, and students** from one centralized system.
 
 ---
 
-## 🚀 Features
-- 🤖 **AI-Assisted Event Planning** – Suggests timelines, dependencies, and resources.  
-- 📋 **Task & Volunteer Management** – Assign, track, and monitor responsibilities.  
-- 📝 **Meeting Note Processing** – Extracts action items and deadlines automatically.  
-- ⚠️ **Risk Identification** – Detects potential issues and provides explanations.  
-- 📂 **Knowledge Repository** – Stores and retrieves event-related documents.  
-- 📢 **AI-Assisted Communication** – Drafts and sends announcements.  
-- 🔄 **Workflow Automation** – Executes application-level actions like scheduling and notifications.
+## 🏆 Hackathon
+
+**Hackathon:** BitNBuild'26
+**Problem Statement:** PS-3 – ClubOps AI
 
 ---
 
-## 🧠 Tech Stack
+## 💡 Problem
 
-| Layer | Technologies | Description |
-|-------|---------------|-------------|
-| **Frontend (Basic)** | [HTML](ca://s?q=HTML_basics), [CSS](ca://s?q=CSS_styling), [JavaScript](ca://s?q=JavaScript_frontend) | Responsive UI with interactive dashboard |
-| **Frontend (Advanced)** | [React](ca://s?q=React_frontend), [Tailwind CSS](ca://s?q=Tailwind_CSS), [Next.js](ca://s?q=Next_js_frontend) | Modern component-based design |
-| **Backend** | [Node.js](ca://s?q=Node_js_backend), [Express.js](ca://s?q=Express_js_framework) | RESTful APIs and server logic |
-| **Database** | [MongoDB](ca://s?q=MongoDB_database) | Stores tasks, volunteers, and event data |
-| **AI Layer** | [OpenAI API](ca://s?q=OpenAI_API), [Gemini API](ca://s?q=Gemini_API) | Natural language understanding and automation |
-| **Additional Tools** | [RAG](ca://s?q=RAG_in_event_management), Authentication, Notifications, Dashboard | Enhanced functionality |
+College clubs use different platforms like WhatsApp, spreadsheets, documents, and meeting notes to manage activities. This makes it difficult to track tasks, volunteers, deadlines, events, and important information.
+
+## ✅ Solution
+
+ClubOps AI brings everything into **one centralized platform** with an **AI Assistant** that helps users quickly access and manage club information.
 
 ---
 
-## 🖥️ Installation & Setup
+## ✨ Features
 
-### 🔧 HTML/CSS/JS Version
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/clubops-ai.git
+* 🔐 Login & Signup
+* 📊 Admin Dashboard
+* 📅 Event Management
+* ✅ Task Management
+* 👥 Volunteer Management
+* 📝 Meeting Management
+* 📄 Document Management
+* 📢 Announcements
+* 🎓 Student Portal
+* 🤖 AI Assistant
+* 🔔 Notifications
 
-# Navigate to project folder
-cd clubops-ai
+---
 
+## 🤖 AI Assistant
+
+Users can ask questions using natural language.
+
+**Examples:**
+
+```text
+Show upcoming events
+```
+
+```text
+Show my pending tasks
+```
+
+```text
+Who is responsible for this task?
+```
+
+```text
+Find the event documents
+```
+
+---
+
+## 🛠️ Tech Stack
+
+```text
+Frontend  : HTML, CSS, JavaScript
+Backend   : MERN Stack
+Database  : MongoDB
+AI        : Generative AI API
+```
+
+---
+
+## 🏗️ Project Structure
+
+```text
+ClubOps-AI/
+│
+├── public/
+│   ├── app.js/
+│   ├── index.html/
+│   ├── style.css/
+├── .gitignore
+├── LICENSE
+├── package-lock.json
+├── package.json
+├── requirements.txt
+└── README.md
+```
+
+
+```
+## 🎯 Future Scope
+
+* Voice AI Assistant
+* AI Meeting Transcription
+* Automatic Task Assignment
+* Smart Notifications
+* Risk Prediction
+* Mobile Application
+* Cloud Deployment
+
+---
+
+## 👨‍💻 Team
+
+**Team:** TechLegends
+**Team Leader:** Mauli Bhanderi
+**College:** Dharmsinh Desai University
+
+---
+
+### 🚀 ClubOps AI
+
+**Manage • Automate • Collaborate**
