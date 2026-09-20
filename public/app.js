@@ -1,4 +1,18 @@
 const KEY='clubops-ai-v1';
+const AUTH_KEY='clubops-auth';
+function updateUserHeader() {
+  const user = getAuthUser();
+  const username =
+    user?.name ||
+    localStorage.getItem('clubops_profile_name') ||
+    'User';
+
+  const avatar = document.getElementById('userAvatar');
+
+  if (avatar) {
+    avatar.textContent = username.charAt(0).toUpperCase();
+  }
+}
 const seed={
  club:{name:'Tech Society',college:'Your College',email:'club@college.edu',timezone:'Asia/Kolkata'},
  events:[{id:1,name:'TechFest 2026',date:'2026-10-18',venue:'Main Auditorium',status:'Planning',progress:62,lead:'Hasti'},{id:2,name:'AI Workshop',date:'2026-09-28',venue:'Lab 3',status:'Ready',progress:86,lead:'Riya'}],
@@ -20,7 +34,18 @@ function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt
 function pageHead(title,desc,button,handler=''){return `<div class="page-head"><div><div class="eyebrow">CLUBOPS AI</div><h1>${title}</h1><p>${desc}</p></div>${button?`<div class="actions"><button class="btn primary" data-action="${handler}">${button}</button></div>`:''}</div>`}
 function panel(title,body,extra=''){return `<section class="panel"><div class="panel-head"><h3>${title}</h3><span>${extra}</span></div><div class="panel-body">${body}</div></section>`}
 function badge(v){let c=v==='High'?'b-red':v==='Medium'?'b-amber':v==='Low'?'b-green':v==='Done'||v==='Ready'?'b-green':v==='In progress'?'b-blue':'b-purple';return `<span class="badge ${c}">${esc(v)}</span>`}
-function dashboard(){let done=state.tasks.filter(t=>t.status==='Done').length;let due=state.tasks.filter(t=>t.status!=='Done').length;return pageHead('Good evening, Hasti 👋','Plan events, coordinate volunteers, and let AI keep operations moving.','New event','new-event')+`<div class="grid stats"><div class="stat"><div class="label">Active events</div><div class="num">${state.events.length}</div><div class="delta">● On track</div></div><div class="stat"><div class="label">Open tasks</div><div class="num">${due}</div><div class="delta">${done} completed</div></div><div class="stat"><div class="label">Volunteers</div><div class="num">${state.volunteers.length}</div><div class="delta">${state.volunteers.filter(v=>v.status==='Pending').length} pending approval</div></div><div class="stat"><div class="label">Open risks</div><div class="num">${state.risks.length}</div><div class="delta">${state.risks.filter(r=>r.level==='High').length} high priority</div></div></div><div style="height:16px"></div><div class="grid two">${panel('Upcoming events',state.events.map(e=>`<div class="event-card"><div style="display:flex;justify-content:space-between;gap:10px"><div><h3>${esc(e.name)}</h3><div class="event-meta">${e.date} · ${esc(e.venue)} · Lead: ${esc(e.lead)}</div></div>${badge(e.status)}</div><div style="margin-top:14px"><div style="display:flex;justify-content:space-between;font-size:10px;color:#697386;margin-bottom:6px"><span>Readiness</span><b>${e.progress}%</b></div><div class="progress"><span style="width:${e.progress}%"></span></div></div></div>`).join('')||'<div class="empty">No events yet.</div>','')}${panel('AI operations pulse',`<div class="notice"><b>AI found ${state.risks.length} operational risks.</b><br>Use the AI Assistant to extract actions from meeting notes or draft announcements.</div><div style="height:12px"></div><div class="kpi"><b>Tasks without owner</b><span>${state.tasks.filter(t=>!t.owner).length}</span></div><div class="kpi"><b>High-priority tasks</b><span>${state.tasks.filter(t=>t.priority==='High'&&t.status!=='Done').length}</span></div><div class="kpi"><b>Announcements drafted</b><span>${state.announcements.length}</span></div><button class="btn small" data-view="assistant" style="margin-top:8px">Open AI Assistant →</button>`,'') }</div><div style="height:16px"></div><div class="grid two">${panel('Recent tasks',`<table class="table"><thead><tr><th>Task</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead><tbody>${state.tasks.slice(0,5).map(t=>`<tr><td>${esc(t.title)}</td><td>${esc(t.owner)}</td><td>${esc(t.due)}</td><td>${badge(t.status)}</td></tr>`).join('')}</tbody></table>`,'')}${panel('Recent activity',`<div class="timeline"><div class="dot"></div><div><b>AI extracted action items</b><p>From TechFest weekly sync · 10 min ago</p></div></div><div class="timeline"><div class="dot"></div><div><b>Volunteer sign-up approved</b><p>Dev joined Tech team · 2h ago</p></div></div><div class="timeline"><div class="dot"></div><div><b>Risk flagged</b><p>Venue confirmation pending · 3h ago</p></div></div>`,'') }</div>`}
+function dashboard()
+{
+  let done=state.tasks.filter(t=>t.status==='Done').length;
+  let due=state.tasks.filter(t=>t.status!=='Done').length;
+  const user = getAuthUser();
+const username = user?.name || localStorage.getItem('clubops_profile_name') || 'User';
+
+return pageHead(
+  `Welcome to ${esc(username)} 👋`,
+  'Plan events, coordinate volunteers, and let AI keep operations moving.',
+  'New event',
+  'new-event')+`<div class="grid stats"><div class="stat"><div class="label">Active events</div><div class="num">${state.events.length}</div><div class="delta">● On track</div></div><div class="stat"><div class="label">Open tasks</div><div class="num">${due}</div><div class="delta">${done} completed</div></div><div class="stat"><div class="label">Volunteers</div><div class="num">${state.volunteers.length}</div><div class="delta">${state.volunteers.filter(v=>v.status==='Pending').length} pending approval</div></div><div class="stat"><div class="label">Open risks</div><div class="num">${state.risks.length}</div><div class="delta">${state.risks.filter(r=>r.level==='High').length} high priority</div></div></div><div style="height:16px"></div><div class="grid two">${panel('Upcoming events',state.events.map(e=>`<div class="event-card"><div style="display:flex;justify-content:space-between;gap:10px"><div><h3>${esc(e.name)}</h3><div class="event-meta">${e.date} · ${esc(e.venue)} · Lead: ${esc(e.lead)}</div></div>${badge(e.status)}</div><div style="margin-top:14px"><div style="display:flex;justify-content:space-between;font-size:10px;color:#697386;margin-bottom:6px"><span>Readiness</span><b>${e.progress}%</b></div><div class="progress"><span style="width:${e.progress}%"></span></div></div></div>`).join('')||'<div class="empty">No events yet.</div>','')}${panel('AI operations pulse',`<div class="notice"><b>AI found ${state.risks.length} operational risks.</b><br>Use the AI Assistant to extract actions from meeting notes or draft announcements.</div><div style="height:12px"></div><div class="kpi"><b>Tasks without owner</b><span>${state.tasks.filter(t=>!t.owner).length}</span></div><div class="kpi"><b>High-priority tasks</b><span>${state.tasks.filter(t=>t.priority==='High'&&t.status!=='Done').length}</span></div><div class="kpi"><b>Announcements drafted</b><span>${state.announcements.length}</span></div><button class="btn small" data-view="assistant" style="margin-top:8px">Open AI Assistant →</button>`,'') }</div><div style="height:16px"></div><div class="grid two">${panel('Recent tasks',`<table class="table"><thead><tr><th>Task</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead><tbody>${state.tasks.slice(0,5).map(t=>`<tr><td>${esc(t.title)}</td><td>${esc(t.owner)}</td><td>${esc(t.due)}</td><td>${badge(t.status)}</td></tr>`).join('')}</tbody></table>`,'')}${panel('Recent activity',`<div class="timeline"><div class="dot"></div><div><b>AI extracted action items</b><p>From TechFest weekly sync · 10 min ago</p></div></div><div class="timeline"><div class="dot"></div><div><b>Volunteer sign-up approved</b><p>Dev joined Tech team · 2h ago</p></div></div><div class="timeline"><div class="dot"></div><div><b>Risk flagged</b><p>Venue confirmation pending · 3h ago</p></div></div>`,'') }</div>`}
 function events(){return pageHead('Events','Plan every event from kickoff to final readiness.','Create event','new-event')+`<div class="grid three">${state.events.map(e=>`<div class="panel"><div class="event-card"><div style="display:flex;justify-content:space-between">${badge(e.status)}<button class="btn small" data-edit="event:${e.id}">Edit</button></div><h3 style="margin-top:16px">${esc(e.name)}</h3><div class="event-meta">${esc(e.date)} · ${esc(e.venue)}</div><div style="margin-top:16px" class="event-meta">Event lead: <b>${esc(e.lead)}</b></div><div style="margin-top:12px" class="progress"><span style="width:${e.progress}%"></span></div><div style="font-size:10px;color:#697386;margin-top:5px">${e.progress}% ready</div></div></div>`).join('')}</div>`}
 function tasks(){return pageHead('Tasks','Assign owners, due dates, priorities, and dependencies.','Add task','new-task')+panel('Task board',`<div class="actions" style="margin-bottom:12px"><button class="btn small" data-filter="all">All</button><button class="btn small" data-filter="Todo">Todo</button><button class="btn small" data-filter="In progress">In progress</button><button class="btn small" data-filter="Done">Done</button></div><table class="table"><thead><tr><th>Task</th><th>Event</th><th>Owner</th><th>Due</th><th>Priority</th><th>Status</th><th></th></tr></thead><tbody>${state.tasks.map(t=>`<tr data-task-row data-status="${t.status}"><td><b>${esc(t.title)}</b></td><td>${esc(t.event)}</td><td>${esc(t.owner||'Unassigned')}</td><td>${esc(t.due)}</td><td>${badge(t.priority)}</td><td>${badge(t.status)}</td><td><button class="btn small" data-edit="task:${t.id}">Edit</button></td></tr>`).join('')}</tbody></table>`,'')}
 function volunteers(){return pageHead('Volunteers','Manage members, teams, roles, hours, and approvals.','Add volunteer','new-volunteer')+panel('Team and roles',`<table class="table"><thead><tr><th>Member</th><th>Role</th><th>Team</th><th>Status</th><th>Hours</th><th></th></tr></thead><tbody>${state.volunteers.map(v=>`<tr><td><div class="person"><span class="avatar-sm">${esc(v.name[0])}</span>${esc(v.name)}</div></td><td>${esc(v.role)}</td><td>${esc(v.team)}</td><td>${badge(v.status)}</td><td>${v.hours}h</td><td><button class="btn small" data-edit="volunteer:${v.id}">Edit</button></td></tr>`).join('')}</tbody></table>`,'')}
@@ -420,6 +445,10 @@ function showNotifications() {
 function showProfile() {
   closeHeaderMenus();
 
+  const user = getAuthUser();
+  const username = user?.name || localStorage.getItem('clubops_profile_name') || 'User';
+  const initial = username.charAt(0).toUpperCase();
+
   const panel = document.createElement('div');
   panel.id = 'profilePanel';
 
@@ -441,13 +470,17 @@ function showProfile() {
       padding:16px;
       border-bottom:1px solid #eef0f3;
     ">
-      <div style="font-weight:700;font-size:14px;">Hasti</div>
+      <div style="font-weight:700;font-size:14px;">
+        ${esc(username)}
+      </div>
+
       <div style="font-size:12px;color:#697386;margin-top:3px;">
         Club administrator
       </div>
     </div>
 
     <div style="padding:7px;">
+
       <button class="profile-menu-item" data-profile-action="settings">
         ⚙️
         <span>Settings</span>
@@ -462,13 +495,16 @@ function showProfile() {
         ❓
         <span>Help & support</span>
       </button>
+
     </div>
 
     <div style="border-top:1px solid #eef0f3;padding:7px;">
+
       <button class="profile-menu-item danger" data-profile-action="logout">
         ↪
         <span>Sign out</span>
       </button>
+
     </div>
   `;
 
@@ -487,7 +523,7 @@ function showProfile() {
 
       if (action === 'profile') {
         showProfilePage();
-    }
+      }
 
       if (action === 'help') {
         current = 'assistant';
@@ -495,12 +531,16 @@ function showProfile() {
       }
 
       if (action === 'logout') {
-        toast('Signed out successfully');
+        logoutUser();
       }
     };
   });
 }
 function showProfilePage() {
+    const user = getAuthUser();
+  const username = user?.name || localStorage.getItem('clubops_profile_name') || 'User';
+  const initial = username.charAt(0).toUpperCase(); 
+
   const old = document.getElementById('profilePageModal');
   if (old) old.remove();
 
@@ -578,17 +618,16 @@ function showProfilePage() {
             font-size:24px;
             font-weight:700;
           ">
-            H
+            ${initial}
           </div>
 
-          <div>
-            <div style="
-              font-size:18px;
-              font-weight:700;
-              color:#18212f;
-            ">
-              Hasti
-            </div>
+          <div style="
+            font-size:18px;
+            font-weight:700;
+            color:#18212f;
+          ">
+            ${esc(username)}
+          </div>
 
             <div style="
               font-size:13px;
@@ -612,7 +651,7 @@ function showProfilePage() {
 
         <input
           id="profileName"
-          value="Hasti"
+          value="${esc(username)}"
           style="
             width:100%;
             box-sizing:border-box;
@@ -730,4 +769,283 @@ document.addEventListener('click', e => {
     closeHeaderMenus();
   }
 });
-render();
+// =====================================================
+// LOGIN / SIGNUP
+// =====================================================
+
+function getAuthUser(){
+  try{
+    return JSON.parse(localStorage.getItem(AUTH_KEY) || 'null');
+  }catch{
+    return null;
+  }
+}
+
+function getUsers(){
+  try{
+    return JSON.parse(localStorage.getItem('clubops-users') || '[]');
+  }catch{
+    return [];
+  }
+}
+
+function saveUsers(users){
+  localStorage.setItem('clubops-users', JSON.stringify(users));
+}
+
+function showAuth(mode='login'){
+  const authRoot=document.getElementById('authRoot');
+  const app=document.getElementById('app');
+
+  if(app){
+    app.style.display='none';
+  }
+
+  if(!authRoot)return;
+
+  authRoot.style.display='flex';
+
+  const signup=mode==='signup';
+
+  authRoot.innerHTML=`
+    <div class="auth-card">
+
+      <div class="auth-logo">C</div>
+
+      <h1 class="auth-title">
+        ${signup ? 'Create your account' : 'Welcome back'}
+      </h1>
+
+      <p class="auth-subtitle">
+        ${signup
+          ? 'Create your ClubOps AI account to manage your college events.'
+          : 'Sign in to continue to your ClubOps AI dashboard.'}
+      </p>
+
+      <div id="authError" class="auth-error"></div>
+      <div id="authSuccess" class="auth-success"></div>
+
+      ${signup ? `
+        <div class="auth-field">
+          <label>Full name</label>
+          <input id="authName" type="text" placeholder="Enter your name">
+        </div>
+      ` : ''}
+
+      <div class="auth-field">
+        <label>Email</label>
+        <input id="authEmail" type="email" placeholder="you@example.com">
+      </div>
+
+      <div class="auth-field">
+        <label>Password</label>
+        <input id="authPassword" type="password" placeholder="Enter password">
+      </div>
+
+      ${signup ? `
+        <div class="auth-field">
+          <label>Confirm password</label>
+          <input id="authConfirm" type="password" placeholder="Confirm password">
+        </div>
+      ` : ''}
+
+      <button class="auth-button" id="authSubmit">
+        ${signup ? 'Create account' : 'Login'}
+      </button>
+
+      <div class="auth-switch">
+        ${signup
+          ? `Already have an account?
+             <button id="switchLogin">Login</button>`
+          : `Don't have an account?
+             <button id="switchSignup">Create account</button>`
+        }
+      </div>
+
+    </div>
+  `;
+
+  document.getElementById('authSubmit').onclick=()=>{
+    if(signup){
+      signupUser();
+    }else{
+      loginUser();
+    }
+  };
+
+  const switchLogin=document.getElementById('switchLogin');
+  if(switchLogin){
+    switchLogin.onclick=()=>showAuth('login');
+  }
+
+  const switchSignup=document.getElementById('switchSignup');
+  if(switchSignup){
+    switchSignup.onclick=()=>showAuth('signup');
+  }
+
+  document.querySelectorAll('#authRoot input').forEach(input=>{
+    input.addEventListener('keydown',e=>{
+      if(e.key==='Enter'){
+        document.getElementById('authSubmit')?.click();
+      }
+    });
+  });
+}
+
+function showAuthError(message){
+  const error=document.getElementById('authError');
+
+  if(error){
+    error.textContent=message;
+    error.style.display='block';
+  }
+
+  const success=document.getElementById('authSuccess');
+
+  if(success){
+    success.style.display='none';
+  }
+}
+
+function showAuthSuccess(message){
+  const success=document.getElementById('authSuccess');
+
+  if(success){
+    success.textContent=message;
+    success.style.display='block';
+  }
+
+  const error=document.getElementById('authError');
+
+  if(error){
+    error.style.display='none';
+  }
+}
+
+function signupUser(){
+
+  const name=document.getElementById('authName')?.value.trim();
+  const email=document.getElementById('authEmail')?.value.trim().toLowerCase();
+  const password=document.getElementById('authPassword')?.value;
+  const confirm=document.getElementById('authConfirm')?.value;
+
+  if(!name){
+    showAuthError('Please enter your name.');
+    return;
+  }
+
+  if(!email){
+    showAuthError('Please enter your email.');
+    return;
+  }
+
+  if(password.length<6){
+    showAuthError('Password must contain at least 6 characters.');
+    return;
+  }
+
+  if(password!==confirm){
+    showAuthError('Passwords do not match.');
+    return;
+  }
+
+  const users=getUsers();
+
+  if(users.some(u=>u.email===email)){
+    showAuthError('An account with this email already exists.');
+    return;
+  }
+
+  const user={
+    id:Date.now(),
+    name,
+    email,
+    password
+  };
+
+  users.push(user);
+  saveUsers(users);
+
+  showAuthSuccess('Account created successfully. You can now login.');
+
+  setTimeout(()=>{
+    showAuth('login');
+
+    const emailInput=document.getElementById('authEmail');
+
+    if(emailInput){
+      emailInput.value=email;
+    }
+  },700);
+}
+
+function loginUser(){
+
+  const email=document.getElementById('authEmail')?.value.trim().toLowerCase();
+  const password=document.getElementById('authPassword')?.value;
+
+  if(!email || !password){
+    showAuthError('Please enter your email and password.');
+    return;
+  }
+
+  const users=getUsers();
+
+  const user=users.find(
+    u=>u.email===email && u.password===password
+  );
+
+  if(!user){
+    showAuthError('Invalid email or password.');
+    return;
+  }
+
+  localStorage.setItem(
+    AUTH_KEY,
+    JSON.stringify({
+      id:user.id,
+      name:user.name,
+      email:user.email
+    })
+  );
+
+  localStorage.setItem('clubops_profile_name',user.name);
+
+  enterDashboard();
+}
+
+function enterDashboard(){
+
+  const authRoot=document.getElementById('authRoot');
+  const app=document.getElementById('app');
+
+  if(authRoot){
+    authRoot.style.display='none';
+    authRoot.innerHTML='';
+  }
+
+  if(app){
+    app.style.display='flex';
+  }
+
+  render();
+  updateUserHeader();
+}
+
+function logoutUser(){
+
+  localStorage.removeItem(AUTH_KEY);
+
+  closeHeaderMenus();
+
+  showAuth('login');
+}
+// =====================================================
+// START APPLICATION
+// =====================================================
+
+if(getAuthUser()){
+  enterDashboard();
+}else{
+  showAuth('login');
+}
